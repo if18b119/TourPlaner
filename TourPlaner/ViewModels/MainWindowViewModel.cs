@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TourPlaner.ViewModels
 {
-    class MainWindowViewModel
+    public class MainWindowViewModel : ViewModelBase
     {
     }
 }

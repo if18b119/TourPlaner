@@ -7,6 +7,99 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <!-- Das Menu oben -->
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <!-- Die einzelne Elmente -->
+                <MenuItem Header="_File" Margin="5">
+                    <!-- Um den Hover abzurunden -->
+                    <MenuItem.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="3"/>
+                        </Style>
+                    </MenuItem.Resources>
+                    <!-- - -->
+                    <MenuItem Header="_New" />
+                    <MenuItem Header="_Open" />
+                    <MenuItem Header="_Save" />
+                    <Separator />
+                    <MenuItem Header="_Exit" />
+                </MenuItem>
+                <MenuItem Header="_Edit" Margin="5">
+                    <!-- Um den Hover abzurunden -->
+                    <MenuItem.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="3"/>
+                        </Style>
+                    </MenuItem.Resources>
+                    <!-- - -->
+                    <MenuItem Command="Cut" />
+                    <MenuItem Command="Copy" />
+                    <MenuItem Command="Paste" />
+                </MenuItem>
+                <MenuItem Header="_Options" Margin="5" >
+                    <!-- Um den Hover abzurunden -->
+                    <MenuItem.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="3"/>
+                        </Style>
+                    </MenuItem.Resources>
+                    <!-- - -->
+                    <MenuItem Header=".." />
+                    <MenuItem Header=".." />
+                    <MenuItem Header=".." />
+                </MenuItem>
+                <MenuItem Header="_Help" Margin="5">
+                    <!-- Um den Hover abzurunden -->
+                    <MenuItem.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="3"/>
+                        </Style>
+                    </MenuItem.Resources>
+                    <!-- - -->
+                    <MenuItem Header=".." />
+                    <MenuItem Header=".." />
+                    <MenuItem Header=".." />
+                </MenuItem>
+                </Menu>
+            <TextBox AcceptsReturn="True" />
+        </DockPanel>
+        <!-- Ende des Menüs -->
+
+
+        <StackPanel Orientation="Vertical" Grid.Row="1" Margin="0,30,0,0">
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBox Name="txtSearchName" VerticalAlignment="Center" Height="25" Text="{Binding SearchName, Mode=TwoWay}">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="3"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Button Grid.Column="1" Width="50" Margin="0,0,0,0" Command="{Binding SearchCommand}">
+                    <!-- Damit die Buttons Rund sind -->
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="3"/>
+                        </Style>
+                    </Button.Resources> Search
+                    <!-- - -->
+                </Button>
+                <Button Grid.Column="2" Width="50" Margin="5,0,0,0" Command="{Binding ClearSearch}">
+                    <!-- Damit die Buttons Rund sind -->
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="3"/>
+                        </Style>
+                        <!-- - -->
+                    </Button.Resources> Clear
+                </Button>
+            </Grid>
+        </StackPanel>
     </Grid>
 </Window>
