@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using TourPlaner.Models;
 
 namespace TourPlaner.ViewModels
 {
@@ -7,6 +8,7 @@ namespace TourPlaner.ViewModels
     {
         private readonly Action<object> executeAction;
         private readonly Predicate<object> canExecutePredicate;
+
 
         public RelayCommand(Action<object> execute)
             : this(execute, null)
@@ -23,6 +25,8 @@ namespace TourPlaner.ViewModels
             executeAction = execute;
             canExecutePredicate = canExecute;
         }
+
+ 
 
         /// <summary>
         /// Defines the method to be called when the command is invoked.
