@@ -57,6 +57,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BusinessLayer\ITourItemFactory.cs" />
+    <Compile Include="BusinessLayer\TourItemFactory.cs" />
+    <Compile Include="BusinessLayer\TourItemFactoryImpl.cs" />
+    <Compile Include="DataAcessLayer\Database.cs" />
+    <Compile Include="DataAcessLayer\FileSystem.cs" />
+    <Compile Include="DataAcessLayer\IDataAcess.cs" />
+    <Compile Include="DataAcessLayer\TourItemDAO.cs" />
     <Compile Include="ViewModels\AddTourViewModel.cs" />
     <Compile Include="Views\AddTourView.xaml.cs">
       <DependentUpon>AddTourView.xaml</DependentUpon>

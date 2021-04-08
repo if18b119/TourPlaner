@@ -6,17 +6,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using TourPlaner.BusinessLayer;
+using TourPlaner.DataAcessLayer;
+using TourPlaner.Models;
 
 namespace TourPlaner.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private ObservableCollection<TourViewModel> tours;
-        private TourViewModel currentTour;
 
-        //Das zweite Fenster ViewModel 
-        
+        public ITourItemFactory itemFactory;
 
+        public AddTourViewModel addTourViewModel;
+
+        //die ObservableCollection nimmt dann die liste die von dem DataAccessLayer über den businessLayer geht
+        private ObservableCollection<Tour> tours;
+
+        private Tour currentTour;
 
         private RelayCommand addTourCommand;
         public ICommand AddTourCommand => addTourCommand ??= new RelayCommand(AddTour);
@@ -24,11 +30,15 @@ namespace TourPlaner.ViewModels
         private void AddTour(object obj)
         {
             //view Object erstellen und DataContext auf dessen Viewmodel setzen.
-            AddTourViewModel addTourViewModel = new AddTourViewModel();
+           
             AddTourView addTourView = new AddTourView();
             addTourView.DataContext = addTourViewModel;
-            addTourView.ShowDialog();
-            
+            bool? dialogResult = addTourView.ShowDialog();
+            if(!(bool)dialogResult)
+            {
+                tours.Clear();
+                RefreshingListItems();
+            }
         }
 
         private ICommand deleteTourCommand;
@@ -36,10 +46,13 @@ namespace TourPlaner.ViewModels
 
         private void Delete(object obj)
         {
-            Tours.Remove(currentTour);
+       
+            itemFactory.DeleteTour(currentTour.Name);
+            tours.Clear();
+            RefreshingListItems();
         }
 
-        public ObservableCollection<TourViewModel> Tours
+        public ObservableCollection<Tour> Tours
         {
             get
             {
@@ -56,7 +69,7 @@ namespace TourPlaner.ViewModels
             }
         }
 
-        public TourViewModel CurrentTour
+        public Tour CurrentTour
         {
             get
             {
@@ -75,8 +88,24 @@ namespace TourPlaner.ViewModels
 
         public MainWindowViewModel()
         {
-            Tours = new ObservableCollection<TourViewModel>();
-            
+             addTourViewModel = new AddTourViewModel();
+            itemFactory = TourItemFactory.GetInstance(DataType.Database);
+            ReadListBox();
+
+        }
+
+        private void ReadListBox()
+        {
+            Tours = new ObservableCollection<Tour>();
+            RefreshingListItems();
+        }
+
+        private void RefreshingListItems()
+        {
+            foreach (Tour item in this.itemFactory.GetItems())
+            {
+                Tours.Add(item);
+            }
         }
 
         private void Search(object commandParameter)
