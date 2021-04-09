@@ -53,9 +53,15 @@ namespace TourPlaner.DataAcessLayer
             return filePath+picName;
         }
 
-        public bool DeleteTour(string name)
+        public bool DeleteTour(string pic_path)
         {
-            throw new NotImplementedException();
+            if (File.Exists(pic_path))
+            {
+               
+                File.Delete(pic_path);
+            }
+                
+            return true;
         }
 
         public List<Tour> GetTours()

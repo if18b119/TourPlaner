@@ -65,6 +65,7 @@
     <Compile Include="DataAcessLayer\IDataAcess.cs" />
     <Compile Include="DataAcessLayer\TourItemDAO.cs" />
     <Compile Include="ViewModels\AddTourViewModel.cs" />
+    <Compile Include="ViewModels\StringToImageConverter.cs" />
     <Compile Include="Views\AddTourView.xaml.cs">
       <DependentUpon>AddTourView.xaml</DependentUpon>
     </Compile>

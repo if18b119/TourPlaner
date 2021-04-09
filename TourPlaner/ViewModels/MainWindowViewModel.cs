@@ -49,7 +49,7 @@ namespace TourPlaner.ViewModels
 
             if (currentTour == null)
                 return;
-            itemFactory.DeleteTour(currentTour.Name);
+            itemFactory.DeleteTour(currentTour);
             tours.Clear();
             RefreshingListItems();
         }

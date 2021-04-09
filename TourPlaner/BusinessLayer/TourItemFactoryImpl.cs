@@ -27,10 +27,13 @@ namespace TourPlaner.BusinessLayer
             return true;
         }
 
-        public bool DeleteTour(string name)
+        public bool DeleteTour(Tour tour_to_delete)
         {
-            tourItemDatabase.DeleteTour(name);
 
+            string picPath = tour_to_delete.PicPath;
+            tour_to_delete.PicPath = string.Empty;
+            tourItemDatabase.DeleteTour(tour_to_delete.Name);
+            tourItemFileSystem.DeleteTour(picPath);
             return true;
         }
 

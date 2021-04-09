@@ -167,7 +167,7 @@
                                 </Style>
                             </TabItem.Resources>
                             <!-- -->
-                            <Image Source="{Binding CurrentTour.PicPath, UpdateSourceTrigger=PropertyChanged }" />
+                            <Image Source="{Binding CurrentTour.PicPath, UpdateSourceTrigger=PropertyChanged}" />
 
 
                         </TabItem>

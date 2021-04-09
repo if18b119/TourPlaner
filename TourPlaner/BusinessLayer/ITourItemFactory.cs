@@ -12,7 +12,7 @@ namespace TourPlaner.BusinessLayer
         IEnumerable<Tour> GetItems();
         IEnumerable<Tour> Search(string tourName, bool caseSensitive = false);
         public bool AddTour(string name, string from, string to);
-        public bool DeleteTour(string name);
+        public bool DeleteTour(Tour tour_to_delete);
 
     }
 }
