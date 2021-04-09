@@ -38,9 +38,8 @@ namespace TourPlaner.DataAcessLayer
                 using (BinaryReader reader = new BinaryReader(lxResponse.GetResponseStream()))
                 {
                     Byte[] lnByte = reader.ReadBytes(1 * 1024 * 1024 * 10);
-                    //string name
                     Random rand2 = new Random();
-                    Thread.Sleep(200);
+                    //Thread.Sleep(200);
                     picName = Convert.ToString(rand2.Next(999999));
                     picName += ".jpg";
                     using (FileStream lxFS = new FileStream(filePath + picName, FileMode.Create))
