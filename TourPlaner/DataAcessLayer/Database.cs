@@ -9,22 +9,28 @@ namespace TourPlaner.DataAcessLayer
 {
     class Database : IDataAcess
     {
-        private List<Tour> tourItems = new List<Tour>()
+        private List<Tour> tourItems = new List<Tour>();/*
         {
             new Tour() {Name = "Wien"},
             new Tour() {Name = "Salzbutg"},
             new Tour() {Name = "Kairo"},
             new Tour() {Name = "Atlanta"}
-        };
+        };*/
 
         public Database()
         {
             //connection string to the database
         }
 
-        public bool AddTour(string name)
+        public bool AddTour(string name,string from, string to, string pic_path)
         {
-            tourItems.Add(new Tour() { Name = name });
+            tourItems.Add(new Tour() { 
+                Name = name, 
+                From = from,
+                To = to,
+                PicPath =pic_path
+            }
+            );
             return true;
         }
 
@@ -38,6 +44,11 @@ namespace TourPlaner.DataAcessLayer
         public List<Tour> GetTours()
         {
             return tourItems;
+        }
+
+        public string SaveImage(string from, string to)
+        {
+            throw new NotImplementedException();
         }
     }
 }

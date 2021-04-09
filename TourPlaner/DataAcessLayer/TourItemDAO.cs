@@ -23,14 +23,19 @@ namespace TourPlaner.DataAcessLayer
                 accesType = new FileSystem();
         }
 
+        public string SaveImage(string from, string to)
+        {
+            return accesType.SaveImage(from, to);
+        }
+
         public List<Tour> GetTours()
         {
             return accesType.GetTours();
         }
 
-        public bool AddTour(string name)
+        public bool AddTour(string name, string from, string to, string pic_path)
         {
-            accesType.AddTour(name);
+            accesType.AddTour(name, from, to, pic_path);
             return true;
         }
 
@@ -39,5 +44,7 @@ namespace TourPlaner.DataAcessLayer
             accesType.DeleteTour(name);
             return true;
         }
+        
+        
     }
 }

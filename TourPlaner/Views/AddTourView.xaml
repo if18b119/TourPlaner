@@ -30,17 +30,18 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0"  Margin="70,0,0,0" VerticalAlignment="Center">From</Label>
-            <TextBox Grid.Column="1" Margin="5" Height="20"/>
+            <Label Grid.Column="0"  Margin="70,0,0,0" VerticalAlignment="Center" >From</Label>
+            <TextBox Grid.Column="1" Margin="5" Height="20" Text="{Binding From,  UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="198*"/>
+                <ColumnDefinition Width="109*"/>
+                <ColumnDefinition Width="287*"/>
+                <ColumnDefinition Width="198*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Margin="70,0,0,0" VerticalAlignment="Center">To</Label>
-            <TextBox Grid.Column="1" Margin="5" Height="20"/>
+            <Label Grid.Column="0" Margin="70,2,0,2" VerticalAlignment="Center">To</Label>
+            <TextBox Grid.Column="1" Margin="5" Height="20" Grid.ColumnSpan="2" Text="{Binding To , UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
@@ -74,7 +75,7 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="1" Margin="5" Background="LightGreen" Command="{Binding AddTourCommand}">
+            <Button Grid.Column="1" Margin="5" Background="LightGreen" Command="{Binding AddTourCommand }">
                 <!-- Um den Hover abzurunden -->
                 <Button.Resources>
                     <Style TargetType="Border">

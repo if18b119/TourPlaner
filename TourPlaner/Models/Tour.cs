@@ -21,7 +21,6 @@ namespace TourPlaner.Models
         public string From { get; set; }
         public string To { get; set; }
         public RouteType Route_Type { get; set; }
-
-
+        public string PicPath { get; set; }
     }
 }

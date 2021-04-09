@@ -12,11 +12,11 @@ namespace TourPlaner.BusinessLayer
     {
         private static ITourItemFactory tourItemFactory;
         
-        public static ITourItemFactory GetInstance(DataType dt)
+        public static ITourItemFactory GetInstance()
         {
             if(tourItemFactory == null)
             {
-                tourItemFactory = new TourItemFactoryImpl(dt);
+                tourItemFactory = new TourItemFactoryImpl();
             }
             return tourItemFactory;
         }

@@ -167,7 +167,9 @@
                                 </Style>
                             </TabItem.Resources>
                             <!-- -->
-                            <Label Content="Route goes here..." />
+                            <Image Source="{Binding CurrentTour.PicPath, UpdateSourceTrigger=PropertyChanged }" />
+
+
                         </TabItem>
                         <TabItem Header="Description">
                             <!-- Um den Hover abzurunden -->
