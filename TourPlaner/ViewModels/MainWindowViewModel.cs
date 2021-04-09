@@ -46,7 +46,9 @@ namespace TourPlaner.ViewModels
 
         private void Delete(object obj)
         {
-       
+
+            if (currentTour == null)
+                return;
             itemFactory.DeleteTour(currentTour.Name);
             tours.Clear();
             RefreshingListItems();
@@ -85,11 +87,12 @@ namespace TourPlaner.ViewModels
                 }
             }
         }
+      
 
         public MainWindowViewModel()
         {
              addTourViewModel = new AddTourViewModel();
-            itemFactory = TourItemFactory.GetInstance(DataType.Database);
+            itemFactory = TourItemFactory.GetInstance();
             ReadListBox();
 
         }

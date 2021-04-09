@@ -12,6 +12,8 @@ namespace TourPlaner.ViewModels
 {
     public class AddTourViewModel : ViewModelBase
     {
+        private string from;
+        private string to;
         public ITourItemFactory itemFactory;
         private RelayCommand addTour;
         public ICommand AddTourCommand => addTour ??= new RelayCommand(AddTour);
@@ -35,14 +37,47 @@ namespace TourPlaner.ViewModels
             }
         }
 
+        public string From
+        {
+            get
+            {
+
+                return from;
+            }
+            set
+            {
+                if (from != value)
+                {
+                    from = value;
+                    RaisePropertyChangedEvent(nameof(From));
+                }
+            }
+        }
+
+        public string To
+        {
+            get
+            {
+
+                return to;
+            }
+            set
+            {
+                if (to != value)
+                {
+                    to = value;
+                    RaisePropertyChangedEvent(nameof(To));
+                }
+            }
+        }
         private void AddTour(object obj)
         {
-            itemFactory.AddTour(NewTourName);
+            itemFactory.AddTour(NewTourName, From, To);
         }
 
         public AddTourViewModel()
         {
-            itemFactory = TourItemFactory.GetInstance(DataType.Database);
+            itemFactory = TourItemFactory.GetInstance();
             
         }
 

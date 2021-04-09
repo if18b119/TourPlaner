@@ -8,31 +8,36 @@ namespace TourPlaner.BusinessLayer
     internal class TourItemFactoryImpl : ITourItemFactory
     {
 
-        private TourItemDAO tourItemDAO;
+        private TourItemDAO tourItemDatabase;
+        private TourItemDAO tourItemFileSystem;
 
-        public TourItemFactoryImpl(DataType dt)
+        public TourItemFactoryImpl()
         {
-            tourItemDAO = new TourItemDAO(dt);
+            tourItemDatabase = new TourItemDAO(DataType.Database);
+            tourItemFileSystem = new TourItemDAO(DataType.Filesystem);
         }
               
 
 
-        public bool AddTour(string name)
+        public bool AddTour(string name, string from, string to)
         {
-            tourItemDAO.AddTour(name);
+            string pic_path = tourItemFileSystem.SaveImage(from, to);
+            tourItemDatabase.AddTour(name,  from,  to, pic_path);
+
             return true;
         }
 
         public bool DeleteTour(string name)
         {
-            tourItemDAO.DeleteTour(name);
+            tourItemDatabase.DeleteTour(name);
+
             return true;
         }
 
 
         public IEnumerable<Tour> GetItems()
         {
-            return tourItemDAO.GetTours();
+            return tourItemDatabase.GetTours();
              
         }
 
