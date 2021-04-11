@@ -22,15 +22,18 @@ namespace TourPlaner.DataAcessLayer
             //connection string to the database
         }
 
-        public bool AddTour(string name,string from, string to, string pic_path)
+        public bool AddTour(string name,string from, string to, string pic_path, string description)
         {
-            tourItems.Add(new Tour() { 
-                Name = name, 
+            tourItems.Add(new Tour()
+            {
+                Name = name,
                 From = from,
                 To = to,
-                PicPath =pic_path
+                PicPath = pic_path,
+                Description = description
+
             }
-            );
+            ); 
             return true;
         }
 

@@ -12,13 +12,13 @@ namespace TourPlaner.DataAcessLayer
 {
     class FileSystem : IDataAcess
     {
-        private readonly string filePath;
-
+        private string filePath;
+       
         public FileSystem()
         {
             this.filePath = "C:\\Users\\titto\\Desktop\\Studium\\4.Semester\\Swe2\\TourPlaner\\TourPic\\";
         }
-        public bool AddTour(string name,string from, string to, string pic_path)
+        public bool AddTour(string name,string from, string to, string pic_path, string description)
         {
             throw new NotImplementedException();
         }

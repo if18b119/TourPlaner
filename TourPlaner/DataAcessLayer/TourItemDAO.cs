@@ -12,7 +12,7 @@ namespace TourPlaner.DataAcessLayer
         Database,
         Filesystem
     }
-    class TourItemDAO
+    public class TourItemDAO
     {
         private IDataAcess accesType;
         public TourItemDAO(DataType dt)
@@ -33,9 +33,9 @@ namespace TourPlaner.DataAcessLayer
             return accesType.GetTours();
         }
 
-        public bool AddTour(string name, string from, string to, string pic_path)
+        public bool AddTour(string name, string from, string to, string pic_path, string description)
         {
-            accesType.AddTour(name, from, to, pic_path);
+            accesType.AddTour(name, from, to, pic_path, description);
             return true;
         }
 

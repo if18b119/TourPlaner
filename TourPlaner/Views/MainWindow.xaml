@@ -139,7 +139,7 @@
                         <ColumnDefinition Width="12*"/>
                     </Grid.ColumnDefinitions>
                     <ListBox                     
-                        Name="listTours" 
+                        x:Name="listTours" 
                         ItemsSource="{Binding Tours}"
                         SelectedItem="{Binding CurrentTour}"
                         DisplayMemberPath="Name" Grid.ColumnSpan="2" 
@@ -179,7 +179,7 @@
                                 </Style>
                             </TabItem.Resources>
                             <!-- -->
-                            <Label Content="Description goes here..." />
+                            <TextBlock Text="{Binding CurrentTour.Description, UpdateSourceTrigger=PropertyChanged}" />
                         </TabItem>
                     </TabControl>
                 </Grid>

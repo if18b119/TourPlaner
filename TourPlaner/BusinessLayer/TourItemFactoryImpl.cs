@@ -10,6 +10,7 @@ namespace TourPlaner.BusinessLayer
 
         private TourItemDAO tourItemDatabase;
         private TourItemDAO tourItemFileSystem;
+        
 
         public TourItemFactoryImpl()
         {
@@ -19,10 +20,10 @@ namespace TourPlaner.BusinessLayer
               
 
 
-        public bool AddTour(string name, string from, string to)
+        public bool AddTour(string name, string from, string to, string description)
         {
             string pic_path = tourItemFileSystem.SaveImage(from, to);
-            tourItemDatabase.AddTour(name,  from,  to, pic_path);
+            tourItemDatabase.AddTour(name,  from,  to, pic_path, description);
 
             return true;
         }

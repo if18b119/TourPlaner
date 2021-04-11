@@ -10,7 +10,7 @@ namespace TourPlaner.DataAcessLayer
     interface IDataAcess 
     {
         public List<Tour> GetTours();
-        public bool AddTour(string name, string from, string to, string pic_path);
+        public bool AddTour(string name, string from, string to, string pic_path, string description);
         public bool DeleteTour(string name);
 
         public string SaveImage(string from, string to);

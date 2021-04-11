@@ -9,9 +9,10 @@ namespace TourPlaner.BusinessLayer
 {
     public interface ITourItemFactory
     {
+
         IEnumerable<Tour> GetItems();
         IEnumerable<Tour> Search(string tourName, bool caseSensitive = false);
-        public bool AddTour(string name, string from, string to);
+        public bool AddTour(string name, string from, string to, string description);
         public bool DeleteTour(Tour tour_to_delete);
 
     }
