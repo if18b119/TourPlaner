@@ -22,5 +22,12 @@ namespace TourPlaner.Models
         public string To { get; set; }
         public RouteType Route_Type { get; set; }
         public string PicPath { get; set; }
+
+        public Log log { get; set; }
+
+        public void SetLog(Log obj)
+        {
+            this.log = obj;
+        }
     }
 }

@@ -1,4 +1,0 @@
-1) Beim zweiten Fenster beim Sumbit dass das fenster sich schließt
-2) Delete, funkt net weil noch im form offen
-3) Nunit, wie mit filesystem fotos
-4) wie geht das mit den logs? mehrere logs pro tour? kommen die daten vom json object? werden sie automatisch oder manuel erstellt?

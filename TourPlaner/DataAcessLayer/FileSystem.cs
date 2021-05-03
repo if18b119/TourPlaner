@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,22 +14,29 @@ namespace TourPlaner.DataAcessLayer
 {
     class FileSystem : IDataAcess
     {
-        private string filePath;
-       
+        public string save_path;
+        public string delete_path;
+        public string key;
+        private ConfigFile config_file;
         public FileSystem()
         {
-            this.filePath = "C:\\Users\\titto\\Desktop\\Studium\\4.Semester\\Swe2\\TourPlaner\\TourPic\\";
+            
+            string json_path = "C:\\Users\\titto\\Desktop\\Studium\\4.Semester\\Swe2\\TourPlaner\\TourPlaner\\config_file.json";
+            string json = File.ReadAllText(json_path);
+            this.config_file = JsonConvert.DeserializeObject<ConfigFile>(json);
+            this.save_path = config_file.RouteImageSettings.Location;
+            this.delete_path = config_file.ToDeletePath.Path;
+            this.key = config_file.RequestKey.Key;
         }
-        public bool AddTour(string name,string from, string to, string pic_path, string description)
+        public void AddTourAsync(string name,string from, string to, string pic_path, string description, string route_Type)
         {
             throw new NotImplementedException();
         }
         
         public string SaveImage(string from, string to)
-        {
-            string key = "zWULCwXtukAXX8gQEsyQVMrXaHNJJMPU";
+        {   //HTTP CLient verwenden (singleton)
+          
             string picName;
-            var json = string.Empty;
             string url = @"https://www.mapquestapi.com/staticmap/v5/map?start=" + from + "&end=" + to + "&size=600,400@2x&key=" + key;
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
@@ -36,13 +45,14 @@ namespace TourPlaner.DataAcessLayer
             using (HttpWebResponse lxResponse = (HttpWebResponse)request.GetResponse())
             {
                 using (BinaryReader reader = new BinaryReader(lxResponse.GetResponseStream()))
-                {
+                {   
+                    //UUID
                     Byte[] lnByte = reader.ReadBytes(1 * 1024 * 1024 * 10);
                     Random rand2 = new Random();
                     //Thread.Sleep(200);
                     picName = Convert.ToString(rand2.Next(999999));
                     picName += ".jpg";
-                    using (FileStream lxFS = new FileStream(filePath + picName, FileMode.Create))
+                    using (FileStream lxFS = new FileStream(save_path + picName, FileMode.Create))
                     {
                         lxFS.Write(lnByte, 0, lnByte.Length);
                     }
@@ -50,17 +60,22 @@ namespace TourPlaner.DataAcessLayer
 
             }
 
-            return filePath+picName;
+            return save_path + picName;
         }
 
-        public bool DeleteTour(string pic_path)
+        public bool DeleteImages( )
         {
-            if (File.Exists(pic_path))
+            string json = File.ReadAllText(delete_path);
+            List<ImageToBeDeleted> images = JsonConvert.DeserializeObject<List<ImageToBeDeleted>>(json);
+            if (images != null)
             {
-               
-                File.Delete(pic_path);
+                foreach (ImageToBeDeleted image in images)
+                {
+                    File.Delete(image.path);
+                }
+                //Jason file wird entleert
+                File.WriteAllText(delete_path, String.Empty);
             }
-                
             return true;
         }
 
@@ -69,6 +84,30 @@ namespace TourPlaner.DataAcessLayer
             throw new NotImplementedException();
         }
 
+        public bool AddLog(Tour current_tour, string date_Time, double distance, double totalTime, string report)
+        {
+            throw new NotImplementedException();
+        }
 
+        public void SaveImagePath(string _path)
+        {
+            string initialJson = File.ReadAllText(delete_path);
+            var list = JsonConvert.DeserializeObject<List<ImageToBeDeleted>>(initialJson);
+            ImageToBeDeleted image = new ImageToBeDeleted() { path = _path };
+            if (list == null)
+            {
+                list = new List<ImageToBeDeleted>();
+            }
+            list.Add(image);
+
+            string output = JsonConvert.SerializeObject(list, Formatting.Indented);
+            File.WriteAllText(delete_path, output);
+
+        }
+
+        public bool DeleteTour(string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

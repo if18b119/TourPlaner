@@ -37,6 +37,9 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -64,8 +67,22 @@
     <Compile Include="DataAcessLayer\FileSystem.cs" />
     <Compile Include="DataAcessLayer\IDataAcess.cs" />
     <Compile Include="DataAcessLayer\TourItemDAO.cs" />
+    <Compile Include="Models\Config\ConfigFile.cs" />
+    <Compile Include="Models\Config\DBConfig.cs" />
+    <Compile Include="Models\Config\DeleteConfig.cs" />
+    <Compile Include="Models\Config\ImageConfig.cs" />
+    <Compile Include="Models\JsonObjects\ImageToBeDeleted.cs" />
+    <Compile Include="Models\JsonObjects\ReqObj.cs" />
+    <Compile Include="Models\JsonObjects\RouteInformation.cs" />
+    <Compile Include="Models\Log.cs" />
+    <Compile Include="Models\Config\ReqKeyConfig.cs" />
+    <Compile Include="Models\TourType.cs" />
+    <Compile Include="ViewModels\AddLogViewModel.cs" />
     <Compile Include="ViewModels\AddTourViewModel.cs" />
     <Compile Include="ViewModels\StringToImageConverter.cs" />
+    <Compile Include="Views\AddLogView.xaml.cs">
+      <DependentUpon>AddLogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddTourView.xaml.cs">
       <DependentUpon>AddTourView.xaml</DependentUpon>
     </Compile>
@@ -75,6 +92,10 @@
     <Compile Include="ViewModels\TourViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Page Include="Views\AddLogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddTourView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -110,6 +131,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

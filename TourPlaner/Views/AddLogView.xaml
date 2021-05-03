@@ -1,12 +1,12 @@
-﻿<Window x:Class="TourPlaner.AddTourView"
+﻿<Window x:Class="TourPlaner.Views.AddLogView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewmodels="clr-namespace:TourPlaner.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AddTourViewModel}"
+        xmlns:viewmodels="clr-namespace:TourPlaner.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AddLogViewModel}"
         mc:Ignorable="d"
-        Title="AddTourView" Height="450" Width="800"
-        x:Name="AddTourWindow">
+        Title="AddLogView" Height="450" Width="800"
+        x:Name="AddLogWindow">
         
     <Grid>
         <Grid.RowDefinitions>
@@ -23,8 +23,8 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0"  Margin="70,0,0,0" VerticalAlignment="Center">Name</Label>
-            <TextBox Grid.Column="1" Margin="5" Height="20" Text="{Binding NewTourName}"/>
+            <Label Grid.Column="0"  Margin="70,0,0,0" VerticalAlignment="Center">Date or Time</Label>
+            <TextBox Grid.Column="1" Margin="5" Height="20" Text="{Binding Date_Time}"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -32,8 +32,9 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0"  Margin="70,0,0,0" VerticalAlignment="Center" >From</Label>
-            <TextBox Grid.Column="1" Margin="5" Height="20" Text="{Binding From,  UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Grid.Column="0"  Margin="70,0,0,0" VerticalAlignment="Center">Distance</Label>
+            <TextBox Grid.Column="1" Margin="5" Height="20" Text="{Binding Distance,  UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Grid.Column="2"  Margin="70,0,0,0" VerticalAlignment="Center">Kilometers</Label>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
@@ -42,24 +43,19 @@
                 <ColumnDefinition Width="287*"/>
                 <ColumnDefinition Width="198*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Margin="70,2,0,2" VerticalAlignment="Center">To</Label>
-            <TextBox Grid.Column="1" Margin="5" Height="20" Grid.ColumnSpan="2" Text="{Binding To , UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Grid.Column="0" Margin="70,2,0,2" VerticalAlignment="Center">Total Time</Label>
+            <TextBox Grid.Column="1" Margin="5" Height="20" Grid.ColumnSpan="2" Text="{Binding TotalTime , UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
+        
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Margin="70,0,0,0" VerticalAlignment="Center">Route Type</Label>
-            <StackPanel Grid.Column="1" Margin="10">
-                <ComboBox SelectedValue="{Binding RouteType, UpdateSourceTrigger=PropertyChanged}"
-                          ItemsSource="{Binding ListOfTourTypes, Mode=OneWay}"
-                          DisplayMemberPath="Name"
-                          SelectedValuePath="Name">
-                  
-                </ComboBox>
-            </StackPanel>
+            <Label Grid.Column="0" Margin="70,2,0,2" VerticalAlignment="Center">Report
+            </Label>
+            <TextBox Grid.Column="1" Margin="5" Height="20" Grid.ColumnSpan="2" Text="{Binding Report , UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
@@ -67,16 +63,17 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Margin="70,0,0,0" VerticalAlignment="Center">Description</Label>
-            <TextBox Grid.Column="1" Margin="5" Text="{Binding Description,  UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Grid.Column="1" Margin="60,2,0,2" FontSize="50" VerticalAlignment="Center" Content="{Binding NameOfTour}"/>
+            
+
         </Grid>
         <Grid Grid.Row="5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="1" Margin="5" Background="LightGreen" Command="{Binding AddTourCommand }" CommandParameter="{x:Reference Name=AddTourWindow}">
+            <Button Grid.Column="1" Margin="5" Background="LightGreen" Command="{Binding AddLogCommand }" CommandParameter="{x:Reference Name=AddLogWindow}">
                 <!-- Um den Hover abzurunden -->
                 <Button.Resources>
                     <Style TargetType="Border">
@@ -87,5 +84,7 @@
                 Submit
             </Button>
         </Grid>
+        
     </Grid>
+    
 </Window>

@@ -9,6 +9,7 @@ using System.Windows.Input;
 using TourPlaner.BusinessLayer;
 using TourPlaner.DataAcessLayer;
 using TourPlaner.Models;
+using TourPlaner.Views;
 
 namespace TourPlaner.ViewModels
 {
@@ -18,6 +19,7 @@ namespace TourPlaner.ViewModels
         public ITourItemFactory itemFactory;
 
         public AddTourViewModel addTourViewModel;
+        public AddLogViewModel addLogViewModel;
 
         //die ObservableCollection nimmt dann die liste die von dem DataAccessLayer über den businessLayer geht
         private ObservableCollection<Tour> tours;
@@ -27,29 +29,54 @@ namespace TourPlaner.ViewModels
         private RelayCommand addTourCommand;
         public ICommand AddTourCommand => addTourCommand ??= new RelayCommand(AddTour);
 
+        private RelayCommand addLog;
+        public ICommand AddLogCommand => addLog ??= new RelayCommand(AddLog);
+
+        private ICommand deleteTourCommand;
+        public ICommand DeleteTourCommand => deleteTourCommand ??= new RelayCommand(Delete);
+
+        private void AddLog(object obj)
+        {
+            if(currentTour!=null)
+            {
+                AddLogView addLogView = new AddLogView();
+                addLogView.DataContext = addLogViewModel;
+                bool? dialogResult = addLogView.ShowDialog();
+                if (!(bool)dialogResult)
+                {
+                    tours.Clear();
+                    RefreshingListItems();
+                }
+            }
+            else
+            {
+                return;
+            }
+            
+        }
         private void AddTour(object obj)
         {
             //view Object erstellen und DataContext auf dessen Viewmodel setzen.
-           
+
             AddTourView addTourView = new AddTourView();
             addTourView.DataContext = addTourViewModel;
             bool? dialogResult = addTourView.ShowDialog();
-            if(!(bool)dialogResult)
+            if (!(bool)dialogResult)
             {
                 tours.Clear();
                 RefreshingListItems();
             }
         }
 
-        private ICommand deleteTourCommand;
-        public ICommand DeleteTourCommand => deleteTourCommand ??= new RelayCommand(Delete);
+        
 
         private void Delete(object obj)
         {
 
             if (currentTour == null)
                 return;
-            itemFactory.DeleteTour(currentTour);
+
+            itemFactory.SaveToDeleteTour(currentTour);
             tours.Clear();
             RefreshingListItems();
         }
@@ -58,7 +85,7 @@ namespace TourPlaner.ViewModels
         {
             get
             {
-                
+
                 return tours;
             }
             set
@@ -75,7 +102,7 @@ namespace TourPlaner.ViewModels
         {
             get
             {
-                
+
                 return currentTour;
             }
             set
@@ -83,18 +110,33 @@ namespace TourPlaner.ViewModels
                 if (currentTour != value)
                 {
                     currentTour = value;
+                    addLogViewModel.current_tour = value;
                     RaisePropertyChangedEvent(nameof(CurrentTour));
                 }
             }
         }
+
+        /*public string CurrentTourDateLog
+        {
+            get
+            {
+                CurrentTour.
+            }
+        }*/
       
 
         public MainWindowViewModel()
         {
-             addTourViewModel = new AddTourViewModel();
+            addTourViewModel = new AddTourViewModel();
+            addLogViewModel = new AddLogViewModel();
             itemFactory = TourItemFactory.GetInstance();
             ReadListBox();
 
+        }
+
+        ~MainWindowViewModel()
+        {
+            itemFactory.DeleteImages();
         }
 
         private void ReadListBox()

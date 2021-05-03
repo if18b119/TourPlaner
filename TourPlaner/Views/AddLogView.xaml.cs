@@ -11,20 +11,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using TourPlaner.ViewModels;
 
-namespace TourPlaner
+namespace TourPlaner.Views
 {
     /// <summary>
-    /// Interaktionslogik für AddTourView.xaml
+    /// Interaktionslogik für AddLogView.xaml
     /// </summary>
-    public partial class AddTourView : Window
+    public partial class AddLogView : Window
     {
-        public AddTourView()
+        public AddLogView()
         {
             InitializeComponent();
-        
         }
-
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,14 +29,19 @@ namespace TourPlaner.DataAcessLayer
             return accesType.SaveImage(from, to);
         }
 
+        public void SaveImagePath(string path)
+        {
+            accesType.SaveImagePath(path);
+        }
+
         public List<Tour> GetTours()
         {
             return accesType.GetTours();
         }
 
-        public bool AddTour(string name, string from, string to, string pic_path, string description)
+        public bool AddTour(string name, string from, string to, string pic_path, string description, string route_type)
         {
-            accesType.AddTour(name, from, to, pic_path, description);
+            accesType.AddTourAsync(name, from, to, pic_path, description, route_type);
             return true;
         }
 
@@ -44,7 +50,18 @@ namespace TourPlaner.DataAcessLayer
             accesType.DeleteTour(name);
             return true;
         }
-        
-        
+
+        public bool DeleteImages( )
+        {
+            accesType.DeleteImages();
+            return true;
+        }
+
+        public bool AddLog(Tour current_tour, string date_Time, double distance, double totalTime, string report)
+        {
+            accesType.AddLog(current_tour, date_Time, distance, totalTime, report);
+            return true;
+
+        }
     }
 }
