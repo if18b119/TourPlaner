@@ -12,9 +12,9 @@ namespace TourPlaner.BusinessLayer
 
         IEnumerable<Tour> GetItems();
         IEnumerable<Tour> Search(string tourName, bool caseSensitive = false);
-        public bool AddTour(string name, string from, string to, string description, string route_type);
-        public bool SaveToDeleteTour(Tour tour_to_delete);
-        public bool DeleteImages( );
+        public bool AddTour(String UUID, string name, string from, string to, string description, string route_type);
+        public bool SavePathAndDeleteTour(Tour tour_to_delete);
+        public bool DeleteImages();
         public bool AddLog(Tour current_tour, string date_Time, double distance, double totalTime, string report);
 
 

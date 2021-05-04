@@ -5,52 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodels="clr-namespace:TourPlaner.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="49*"/>
+            <ColumnDefinition Width="215*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row ="0">
+        <Grid Grid.Row ="0" Grid.ColumnSpan="2">
             <DockPanel>
-                <Menu DockPanel.Dock="Top" Background="LightGray">
-                    <MenuItem Header="_File">
-                        <!-- Um den Hover abzurunden -->
-                        <MenuItem.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="3"/>
-                            </Style>
-                        </MenuItem.Resources>
-                        <!-- -->
+                <Menu DockPanel.Dock="Top" Style="{StaticResource MaterialDesignMenu}" Background="#25272b">
+                    <MenuItem Header="{materialDesign:PackIcon Kind=File}"
+                        Style="{StaticResource MaterialDesignMenuItem}" Foreground="Silver">
                         <MenuItem Header="_Import" />
                         <MenuItem Header="_Export" />
                         <MenuItem Header="_Quit" />
                     </MenuItem>
-                    <MenuItem Header="_Edit">
-                        <!-- Um den Hover abzurunden -->
-                        <MenuItem.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="3"/>
-                            </Style>
-                        </MenuItem.Resources>
-                        <!-- -->
+                    <MenuItem Header="{materialDesign:PackIcon Kind=Edit}"
+                        Style="{StaticResource MaterialDesignMenuItem}" Foreground="Silver">
                         <MenuItem Header="_Cut" />
                         <MenuItem Header="_Copy" />
                         <MenuItem Header="_Paste" />
                     </MenuItem>
-                    <MenuItem Header="_Options">
-                        <!-- Um den Hover abzurunden -->
-                        <MenuItem.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="3"/>
-                            </Style>
-                        </MenuItem.Resources>
-                        <!-- -->
-                        <MenuItem Header="_Settings" />
-                    </MenuItem>
+                    <MenuItem Header="{materialDesign:PackIcon Kind=Accessibility}"
+                        Style="{StaticResource MaterialDesignMenuItem}" Foreground="Silver">
 
-                    <MenuItem Header="_Help">
+                    </MenuItem>
+                    <MenuItem Header="{materialDesign:PackIcon Kind=Settings}"
+                        Style="{StaticResource MaterialDesignMenuItem}" Foreground="Silver"/>
+                    <MenuItem Header="{materialDesign:PackIcon Kind=Help}"
+                        Style="{StaticResource MaterialDesignMenuItem}" Foreground="Silver">
                         <!-- Um den Hover abzurunden -->
                         <MenuItem.Resources>
                             <Style TargetType="Border">
@@ -63,16 +60,17 @@
                 </Menu>
             </DockPanel>
         </Grid>
-        <Grid Grid.Row ="1" Background="Cyan">
+        <Grid Grid.Row ="1" Background="#25272b" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="206*"/>
                 <ColumnDefinition Width="457*"/>
                 <ColumnDefinition Width="55*"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="12.5"/>
+                <ColumnDefinition Width="63.5"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0" Margin="5" Text="{Binding SearchName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="3"></TextBox>
-            <Button Grid.Column="3" Margin="1,5" Height="20" Command="{Binding SearchCommand}">
+            <TextBox Grid.Column="0" Margin="5" Text="{Binding SearchName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Background="#303338"/>
+            <Button Grid.Column="3" Margin="10" Height="24" Command="{Binding SearchCommand}" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignOutlinedButton}" >
                 <!-- Um den Hover abzurunden -->
                 <Button.Resources>
                     <Style TargetType="Border">
@@ -80,9 +78,9 @@
                     </Style>
                 </Button.Resources>
                 <!-- -->
-                Search
+                <materialDesign:PackIcon Kind="Search"/>
             </Button>
-            <Button Grid.Column="4" Margin="1,5" Height="20" Command="{Binding ClearCommand}">
+            <Button Grid.Column="5" Margin="10" Height="24" Command="{Binding ClearCommand}" Style="{StaticResource MaterialDesignOutlinedButton}" >
                 <!-- Um den Hover abzurunden -->
                 <Button.Resources>
                     <Style TargetType="Border">
@@ -90,10 +88,11 @@
                     </Style>
                 </Button.Resources>
                 <!-- -->
-                Clear
+                <materialDesign:PackIcon Kind="Clear"/>
+
             </Button>
         </Grid>
-        <Grid Grid.Row ="2">
+        <Grid Grid.Row ="2" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" MinWidth="110"/>
                 <ColumnDefinition Width="Auto" />
@@ -104,15 +103,16 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0" Background="DarkCyan">
+                <Grid Grid.Row="0" Background="#25272b">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Height="30">Tours</Label>
-                    <Button Grid.Column="1" Margin="1" Height="20" Width="20" Name="AddTour" Command="{Binding AddTourCommand}">
+                    <Label Grid.Column="0" Height="30"  Foreground="LightSkyBlue" FontSize="23" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Agency" Margin="0,0,0,5" Content="Tours"/>
+                    <Button Grid.Column="1"  Height="20" Width="20" Name="AddTour" Command="{Binding AddTourCommand}"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}" Foreground="#03a9f4" Background="#25272b" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,0,5,0">
                         <!-- Um den Hover abzurunden -->
                         <Button.Resources>
                             <Style TargetType="Border">
@@ -120,9 +120,9 @@
                             </Style>
                         </Button.Resources>
                         <!-- -->
-                        +
+                        <materialDesign:PackIcon Kind="Plus"/>
                     </Button>
-                    <Button Grid.Column="2" Margin="1" Height="20" Width="20" Command="{Binding DeleteTourCommand}">
+                    <Button Grid.Column="2"  Height="20" Width="20" Command="{Binding DeleteTourCommand}" Style="{StaticResource MaterialDesignIconForegroundButton}" Foreground="#03a9f4" Background="#25272b" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,0,5,0">
                         <!-- Um den Hover abzurunden -->
                         <Button.Resources>
                             <Style TargetType="Border">
@@ -130,26 +130,27 @@
                             </Style>
                         </Button.Resources>
                         <!-- -->
-                        -
+                        <materialDesign:PackIcon Kind="Minus"/>
                     </Button>
                 </Grid>
-                <Grid Grid.Row="1">
+                <Grid Grid.Row="1" Background="#303338">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="185*"/>
                         <ColumnDefinition Width="12*"/>
                     </Grid.ColumnDefinitions>
-                    <ListBox                     
+                    <ListBox  Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineListBox}"                 
                         x:Name="listTours" 
                         ItemsSource="{Binding Tours}"
                         SelectedItem="{Binding CurrentTour}"
-                        DisplayMemberPath="Name" Grid.ColumnSpan="2" 
-                    />
+                        DisplayMemberPath="Name" Grid.ColumnSpan="2"                       
+                    >
+                    </ListBox>
 
                 </Grid>
 
             </Grid>
 
-            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Cyan"/>
+            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource MaterialDesignGridSplitter}" Background="silver"/>
 
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
@@ -157,9 +158,14 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="1*" MinHeight="100"/>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0" Background="DarkCyan">
-                    <TabControl Name="DetailedTour">
-                        <TabItem Header="Route">
+                <Grid Grid.Row="0" Background="#25272b">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35*"/>
+                        <RowDefinition Height="109*"/>
+                        <RowDefinition Height="13*"/>
+                    </Grid.RowDefinitions>
+                    <TabControl Name="DetailedTour" Grid.RowSpan="3" Background="#25272b">
+                        <TabItem Header="Route" Foreground="#03a9f4">
                             <!-- Um den Hover abzurunden -->
                             <TabItem.Resources>
                                 <Style TargetType="Border">
@@ -179,27 +185,49 @@
                                 </Style>
                             </TabItem.Resources>
                             <!-- -->
-                            <TextBlock Text="{Binding CurrentTour.Description, UpdateSourceTrigger=PropertyChanged}" />
+                            <TabControl Name="TourInfo">
+                                <TabItem Header="User Description">
+                                    <!-- Um den Hover abzurunden -->
+                                    <TabItem.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="3"/>
+                                        </Style>
+                                    </TabItem.Resources>
+                                    <!-- -->
+                                    <TextBlock Text="{Binding CurrentTour.Description, UpdateSourceTrigger=PropertyChanged}" Background="#25272b" Foreground="#03a9f4"/>
+                                </TabItem>
+                                <TabItem Header="Tour Description">
+                                    <!-- Um den Hover abzurunden -->
+                                    <TabItem.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="3"/>
+                                        </Style>
+                                    </TabItem.Resources>
+                                    <!-- -->
+                                    <TextBlock Text="{Binding CurrentTour.TourInfoString, UpdateSourceTrigger=PropertyChanged}" Background="#25272b" Foreground="#03a9f4"/>
+                                </TabItem>
+                            </TabControl>
                         </TabItem>
                     </TabControl>
                 </Grid>
 
-                <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Cyan"/>
+                <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Style="{StaticResource MaterialDesignGridSplitter}" Background="silver"/>
 
                 <Grid Grid.Row="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <Grid Grid.Row="0" Background="DarkCyan">
+                    <Grid Grid.Row="0" Background="#25272b">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Height="30">Logs</Label>
-                        <Button Grid.Column="1" Margin="1" Height="20" Width="20" Command="{Binding AddLogCommand}">
+                        <Label Grid.Column="0" Height="30"  Foreground="LightSkyBlue" FontSize="19" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Agency" Margin="0,0,0,5" Content="Logs"/>
+                        <Button Grid.Column="1"  Height="20" Width="20" Command="{Binding AddLogCommand}"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}" Foreground="#03a9f4" Background="#25272b" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,0,5,0">
                             <!-- Um den Hover abzurunden -->
                             <Button.Resources>
                                 <Style TargetType="Border">
@@ -207,9 +235,10 @@
                                 </Style>
                             </Button.Resources>
                             <!-- -->
-                            +
+                            <materialDesign:PackIcon Kind="Plus"/>
                         </Button>
-                        <Button Grid.Column="2" Margin="1" Height="20" Width="20">
+                        <Button Grid.Column="2"  Height="20" Width="20"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}" Foreground="#03a9f4" Background="#25272b" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,0,5,0">
                             <!-- Um den Hover abzurunden -->
                             <Button.Resources>
                                 <Style TargetType="Border">
@@ -217,18 +246,57 @@
                                 </Style>
                             </Button.Resources>
                             <!-- -->
-                            -
+                            <materialDesign:PackIcon Kind="Minus"/>
                         </Button>
-
                     </Grid>
-                    <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="10">
+                    <DataGrid Style="{StaticResource MaterialDesignDataGrid}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="10" Background="#303338">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="date/time" />
-                            <DataGridTextColumn Header="report"/>
-                            <DataGridTextColumn Header="distance" />
-                            <DataGridTextColumn Header="total time" />
+                            <DataGridTextColumn Header="date/time">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="Foreground" Value="LightSkyBlue"></Setter>
+                                        <Setter Property="Background" Value="#303338"/>
+                                        <Setter Property="Margin" Value="5"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="report">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="Foreground" Value="LightSkyBlue"></Setter>
+                                        <Setter Property="Background" Value="#303338"/>
+                                        <Setter Property="Margin" Value="5"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="distance">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="Foreground" Value="LightSkyBlue"></Setter>
+                                        <Setter Property="Background" Value="#303338"/>
+                                        <Setter Property="Margin" Value="5"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="total time">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="Foreground" Value="LightSkyBlue"></Setter>
+                                        <Setter Property="Background" Value="#303338"/>
+                                        <Setter Property="Margin" Value="5"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                            </DataGridTextColumn>
                         </DataGrid.Columns>
-                        
+
                     </DataGrid>
                 </Grid>
             </Grid>

@@ -128,12 +128,20 @@ namespace TourPlaner.ViewModels
 
         private void AddTour(object obj)
         {
-            itemFactory.AddTour(NewTourName, From, To, Description, RouteType);
+            //UUID erstellen
+            String UUID = Guid.NewGuid().ToString();
+            Console.WriteLine(UUID);
+
+            itemFactory.AddTour(UUID, NewTourName, From, To, Description, RouteType);
+
+            //Um das Fenster zu schließen nach dem drücken des Buttons
             Window tmp = (Window)obj;
+            //die felder leeren
             NewTourName = string.Empty;
             From = string.Empty;
             To = string.Empty;
             Description = string.Empty;
+            //schließen des Fensters
             tmp.Close();
         }
 

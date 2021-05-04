@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -26,10 +27,12 @@ namespace TourPlaner.BusinessLayer
             return true;
         }
 
-        public bool AddTour(string name, string from, string to, string description, string route_type)
+        public bool AddTour(String UUID, string name, string from, string to, string description, string route_type)
         {
+            //Um das foto aus dem request zu holen und um FIlesystem zu speichern
             string pic_path = tourItemFileSystem.SaveImage(from, to);
-            tourItemDatabase.AddTour(name,  from,  to, pic_path, description, route_type);
+
+            tourItemDatabase.AddTour(UUID, name,  from,  to, pic_path, description, route_type);
 
             return true;
         }
@@ -40,14 +43,17 @@ namespace TourPlaner.BusinessLayer
             return true;
         }
 
-        public bool SaveToDeleteTour(Tour tour_to_delete)
+        public bool SavePathAndDeleteTour(Tour tour_to_delete)
         {
 
             string picPath = tour_to_delete.PicPath;
-            tour_to_delete.PicPath = string.Empty;            
+            tour_to_delete.PicPath = string.Empty;   
+            
+            //string speichern um beim beenden des programms das foto aus dem filesystem zu löschen
             tourItemFileSystem.SaveImagePath(picPath);
             
-            tourItemDatabase.DeleteTour(tour_to_delete.Name);
+            //das foto entfernen
+            tourItemDatabase.DeleteTour(tour_to_delete.UUID);
             return true;
         }
 

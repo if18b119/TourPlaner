@@ -28,7 +28,7 @@ namespace TourPlaner.DataAcessLayer
             this.delete_path = config_file.ToDeletePath.Path;
             this.key = config_file.RequestKey.Key;
         }
-        public void AddTourAsync(string name,string from, string to, string pic_path, string description, string route_Type)
+        public void AddTourAsync(String UUID, string name,string from, string to, string pic_path, string description, string route_Type)
         {
             throw new NotImplementedException();
         }

@@ -33,7 +33,7 @@ namespace NUnitTourPlaner
         [Test, Order(1)]
         public void TourCreateDB()
         {
-            Assert.AreEqual(true, tour_item_fac_impl.AddTour("Tour1", "Vienna", "Berlin", "Hey"));
+            Assert.AreEqual(true, tour_item_fac_impl.AddTour("UUID","Tour1", "Vienna", "Berlin", "Hey","Fastest"));
         }
 
         [Test, Order(2)]
@@ -74,7 +74,7 @@ namespace NUnitTourPlaner
             IEnumerable<Tour> created_tours = tour_item_fac_impl.GetItems();
             Tour first = created_tours.First();
 
-            Assert.AreEqual(true, tour_item_fac_impl.DeleteTour(first));
+            Assert.AreEqual(true, tour_item_fac_impl.SavePathAndDeleteTour(first));
 
         }
 

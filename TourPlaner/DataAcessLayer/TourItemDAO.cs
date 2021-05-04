@@ -39,9 +39,9 @@ namespace TourPlaner.DataAcessLayer
             return accesType.GetTours();
         }
 
-        public bool AddTour(string name, string from, string to, string pic_path, string description, string route_type)
+        public bool AddTour(String UUID, string name, string from, string to, string pic_path, string description, string route_type)
         {
-            accesType.AddTourAsync(name, from, to, pic_path, description, route_type);
+            accesType.AddTourAsync(UUID, name, from, to, pic_path, description, route_type);
             return true;
         }
 

@@ -54,6 +54,8 @@ namespace TourPlaner.ViewModels
             }
             
         }
+
+
         private void AddTour(object obj)
         {
             //view Object erstellen und DataContext auf dessen Viewmodel setzen.
@@ -76,7 +78,7 @@ namespace TourPlaner.ViewModels
             if (currentTour == null)
                 return;
 
-            itemFactory.SaveToDeleteTour(currentTour);
+            itemFactory.SavePathAndDeleteTour(currentTour);
             tours.Clear();
             RefreshingListItems();
         }
@@ -97,6 +99,9 @@ namespace TourPlaner.ViewModels
                 }
             }
         }
+
+
+        
 
         public Tour CurrentTour
         {

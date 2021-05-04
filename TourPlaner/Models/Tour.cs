@@ -6,23 +6,20 @@ using System.Threading.Tasks;
 
 namespace TourPlaner.Models
 {
-    public enum RouteType
-    {
-        Fastest,
-        Shortest,
-        Pedestrian,
-        Multimodal,
-        Bicycle
-    }
+
     public class Tour
-    {
+    {   
+        public string UUID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string From { get; set; }
         public string To { get; set; }
-        public RouteType Route_Type { get; set; }
+        public string Route_Type { get; set; }
         public string PicPath { get; set; }
 
+        public TourInfo TourInfo { get; set; }
+
+        public string TourInfoString { get; set; }
         public Log log { get; set; }
 
         public void SetLog(Log obj)
