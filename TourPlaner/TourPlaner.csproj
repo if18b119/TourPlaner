@@ -122,7 +122,8 @@
     <Compile Include="Models\TourType.cs" />
     <Compile Include="ViewModels\AddLogViewModel.cs" />
     <Compile Include="ViewModels\AddTourViewModel.cs" />
-    <Compile Include="ViewModels\StringToImageConverter.cs" />
+    <Compile Include="ViewModels\EditLogsViewModel.cs" />
+    <Compile Include="ViewModels\UpdateLogViewModel.cs" />
     <Compile Include="Views\AddLogView.xaml.cs">
       <DependentUpon>AddLogView.xaml</DependentUpon>
     </Compile>
@@ -135,11 +136,18 @@
     <Compile Include="ViewModels\TourViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\UpdateLogVIew.xaml.cs">
+      <DependentUpon>UpdateLogVIew.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\AddLogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AddTourView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditLogsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -151,10 +159,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\EditLogsView.xaml.cs">
+      <DependentUpon>EditLogsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\UpdateLogVIew.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

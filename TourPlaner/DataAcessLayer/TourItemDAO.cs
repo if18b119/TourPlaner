@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,10 @@ namespace TourPlaner.DataAcessLayer
                 accesType = new FileSystem();
         }
 
+        public bool UpdateLogValue(string tour_id, string log_id, string to_update_column, string new_value)
+        {
+            return accesType.UpdateLogValue(tour_id, log_id, to_update_column, new_value);
+        }
         public string SaveImage(string from, string to)
         {
             return accesType.SaveImage(from, to);
@@ -57,11 +62,26 @@ namespace TourPlaner.DataAcessLayer
             return true;
         }
 
-        public bool AddLog(Tour current_tour, string date_Time, double distance, double totalTime, string report)
+        public bool AddLog(Tour current_tour, string date_Time, string distance, string totalTime, string report, string rating, string avarage_speed, string comment, string problems, string transport_modus, string recomended)
         {
-            accesType.AddLog(current_tour, date_Time, distance, totalTime, report);
+            accesType.AddLog(current_tour, date_Time, distance, totalTime, report, rating, avarage_speed, comment, problems, transport_modus, recomended);
             return true;
 
         }
+        public ObservableCollection<Log> GetTourLogs(String UUID)
+        {
+            return accesType.GetTourLogs(UUID);
+            
+        }
+        public Log GetNewLog(string tour_id, string log_id)
+        {
+            return accesType.GetNewLog(tour_id, log_id);
+        }
+
+        public bool DeleteLog(string tour_id, string log_id)
+        {
+            return accesType.DeleteLog(tour_id, log_id);
+        }
+
     }
 }

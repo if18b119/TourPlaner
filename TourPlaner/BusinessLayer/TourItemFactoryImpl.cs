@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using TourPlaner.DataAcessLayer;
@@ -21,9 +22,9 @@ namespace TourPlaner.BusinessLayer
             tourItemFileSystem = new TourItemDAO(DataType.Filesystem);
         }
 
-        public bool AddLog(Tour current_tour, string date_Time, double distance, double totalTime, string report)
+        public bool AddLog(Tour current_tour, string date_Time, string distance, string totalTime, string report, string rating, string avarage_speed, string comment, string problems, string transport_modus, string recomended)
         {
-            tourItemDatabase.AddLog(current_tour, date_Time, distance, totalTime, report);
+            tourItemDatabase.AddLog(current_tour, date_Time, distance, totalTime, report, rating, avarage_speed, comment, problems, transport_modus, recomended);
             return true;
         }
 
@@ -75,6 +76,27 @@ namespace TourPlaner.BusinessLayer
                 return items.Where(x => x.Name.Contains(tourName));
             }
             return items.Where(x => x.Name.ToLower().Contains(tourName.ToLower()));
+        }
+
+        public ObservableCollection<Log> GetTourLogs(string UUID)
+        {
+           return tourItemDatabase.GetTourLogs(UUID);
+        }
+
+        public bool UpdateLogValue(string tour_id, string log_id, string to_update_column, string new_value)
+        {
+            
+            return tourItemDatabase.UpdateLogValue(tour_id, log_id, to_update_column, new_value);
+        }
+
+        public Log GetNewLog(string tour_id, string log_id)
+        {
+            return tourItemDatabase.GetNewLog(tour_id, log_id);
+        }
+
+        public bool DeleteLog(string tour_id, string log_id)
+        {
+            return tourItemDatabase.DeleteLog(tour_id, log_id);
         }
     }
 }

@@ -110,7 +110,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Height="30"  Foreground="LightSkyBlue" FontSize="23" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Agency" Margin="0,0,0,5" Content="Tours"/>
+                    <Label Grid.Column="0" Height="30"  Foreground="#c0c0c0" FontSize="23" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Agency" Margin="0,0,0,5" Content="Tours"/>
                     <Button Grid.Column="1"  Height="20" Width="20" Name="AddTour" Command="{Binding AddTourCommand}"
                             Style="{StaticResource MaterialDesignIconForegroundButton}" Foreground="#03a9f4" Background="#25272b" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,0,5,0">
                         <!-- Um den Hover abzurunden -->
@@ -164,12 +164,38 @@
                         <RowDefinition Height="109*"/>
                         <RowDefinition Height="13*"/>
                     </Grid.RowDefinitions>
-                    <TabControl Name="DetailedTour" Grid.RowSpan="3" Background="#25272b">
+
+                    <TabControl Name="DetailedTour" Grid.RowSpan="3" Background="#25272b" BorderBrush="Gainsboro">
+                        <TabControl.Resources>
+                            <Style TargetType="TabItem">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TabItem">
+                                            <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
+                                                <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsSelected" Value="True">
+                                                    <Setter TargetName="Border" Property="Background" Value="#3b3e45" />
+                                                </Trigger>
+                                                <Trigger Property="IsSelected" Value="False">
+                                                    <Setter TargetName="Border" Property="Background" Value="#25272b" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TabControl.Resources>
                         <TabItem Header="Route" Foreground="#03a9f4">
                             <!-- Um den Hover abzurunden -->
                             <TabItem.Resources>
                                 <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="3"/>
+                                    <Setter Property="CornerRadius" Value="10,10,0,0"/>
                                 </Style>
                             </TabItem.Resources>
                             <!-- -->
@@ -177,16 +203,41 @@
 
 
                         </TabItem>
-                        <TabItem Header="Description">
+                        <TabItem Header="Description" Foreground="#03a9f4">
                             <!-- Um den Hover abzurunden -->
                             <TabItem.Resources>
                                 <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="3"/>
+                                    <Setter Property="CornerRadius" Value="10,10,0,0"/>
                                 </Style>
                             </TabItem.Resources>
                             <!-- -->
-                            <TabControl Name="TourInfo">
-                                <TabItem Header="User Description">
+                            <TabControl Name="TourInfo" Margin="10" BorderBrush="Gainsboro" >
+                                <TabControl.Resources>
+                                    <Style TargetType="TabItem">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="TabItem">
+                                                    <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
+                                                        <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsSelected" Value="True">
+                                                            <Setter TargetName="Border" Property="Background" Value="#3b3e45" />
+                                                        </Trigger>
+                                                        <Trigger Property="IsSelected" Value="False">
+                                                            <Setter TargetName="Border" Property="Background" Value="#25272b" />
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </TabControl.Resources>
+                                <TabItem Header="User Description" Foreground="#03a9f4">
                                     <!-- Um den Hover abzurunden -->
                                     <TabItem.Resources>
                                         <Style TargetType="Border">
@@ -196,7 +247,7 @@
                                     <!-- -->
                                     <TextBlock Text="{Binding CurrentTour.Description, UpdateSourceTrigger=PropertyChanged}" Background="#25272b" Foreground="#03a9f4"/>
                                 </TabItem>
-                                <TabItem Header="Tour Description">
+                                <TabItem Header="Tour Description" Foreground="#03a9f4">
                                     <!-- Um den Hover abzurunden -->
                                     <TabItem.Resources>
                                         <Style TargetType="Border">
@@ -225,9 +276,9 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Height="30"  Foreground="LightSkyBlue" FontSize="19" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Agency" Margin="0,0,0,5" Content="Logs"/>
-                        <Button Grid.Column="1"  Height="20" Width="20" Command="{Binding AddLogCommand}"
-                            Style="{StaticResource MaterialDesignIconForegroundButton}" Foreground="#03a9f4" Background="#25272b" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,0,5,0">
+                        <Label Grid.Column="0" Height="30"  Foreground="#c0c0c0" FontSize="19" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Agency" Margin="0,0,0,5" Content="Logs"/>
+                        <Button Grid.Column="1"  Height="20" Width="22" Command="{Binding AddLogCommand}"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}" Foreground="#03a9f4" Background="#25272b" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3,8,5,7">
                             <!-- Um den Hover abzurunden -->
                             <Button.Resources>
                                 <Style TargetType="Border">
@@ -237,8 +288,8 @@
                             <!-- -->
                             <materialDesign:PackIcon Kind="Plus"/>
                         </Button>
-                        <Button Grid.Column="2"  Height="20" Width="20"
-                            Style="{StaticResource MaterialDesignIconForegroundButton}" Foreground="#03a9f4" Background="#25272b" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,0,5,0">
+                        <Button Grid.Column="2"  Height="20" Width="20"  Command="{Binding DeleteLogCommand}"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}"  Foreground="#03a9f4" Background="#25272b" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,0,5,0">
                             <!-- Um den Hover abzurunden -->
                             <Button.Resources>
                                 <Style TargetType="Border">
@@ -248,10 +299,22 @@
                             <!-- -->
                             <materialDesign:PackIcon Kind="Minus"/>
                         </Button>
+                        <Button Grid.Column="3"  Height="20" Width="20"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}" Foreground="#03a9f4" Background="#25272b" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,0,5,0"
+                                Command="{Binding EditLogsCommand}">
+                            <!-- Um den Hover abzurunden -->
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </Button.Resources>
+                            <!-- -->
+                            <materialDesign:PackIcon Kind="Settings"/>
+                        </Button>
                     </Grid>
-                    <DataGrid Style="{StaticResource MaterialDesignDataGrid}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="10" Background="#303338">
+                    <DataGrid Style="{StaticResource MaterialDesignDataGrid}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="10" Background="#303338" SelectedItem="{Binding CurrentLog}" ItemsSource="{Binding Logs}" AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="date/time">
+                            <DataGridTextColumn Header="Date-Time" Width="auto" Binding="{Binding Date_Time, UpdateSourceTrigger=PropertyChanged}" EditingElementStyle="{StaticResource MaterialDesignFloatingHintTextBox}" ElementStyle="{StaticResource MaterialDesignCharacterCounterTextBlock}" Foreground="Silver">
                                 <DataGridTextColumn.HeaderStyle>
                                     <Style TargetType="DataGridColumnHeader">
                                         <Setter Property="Foreground" Value="LightSkyBlue"></Setter>
@@ -262,7 +325,7 @@
                                     </Style>
                                 </DataGridTextColumn.HeaderStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="report">
+                            <DataGridTextColumn Header="Report" Width="auto"  Binding="{Binding Report, UpdateSourceTrigger=PropertyChanged}" EditingElementStyle="{StaticResource MaterialDesignFloatingHintTextBox}" ElementStyle="{StaticResource MaterialDesignCharacterCounterTextBlock}" Foreground="Silver">
                                 <DataGridTextColumn.HeaderStyle>
                                     <Style TargetType="DataGridColumnHeader">
                                         <Setter Property="Foreground" Value="LightSkyBlue"></Setter>
@@ -273,7 +336,7 @@
                                     </Style>
                                 </DataGridTextColumn.HeaderStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="distance">
+                            <DataGridTextColumn Header="Distance" Width="auto" Binding="{Binding Distance, UpdateSourceTrigger=PropertyChanged}" EditingElementStyle="{StaticResource MaterialDesignFloatingHintTextBox}" ElementStyle="{StaticResource MaterialDesignCharacterCounterTextBlock}" Foreground="Silver">
                                 <DataGridTextColumn.HeaderStyle>
                                     <Style TargetType="DataGridColumnHeader">
                                         <Setter Property="Foreground" Value="LightSkyBlue"></Setter>
@@ -284,7 +347,7 @@
                                     </Style>
                                 </DataGridTextColumn.HeaderStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="total time">
+                            <DataGridTextColumn Header="Total Time" Width="auto" Binding="{Binding TotalTime, UpdateSourceTrigger=PropertyChanged}" EditingElementStyle="{StaticResource MaterialDesignFloatingHintTextBox}" ElementStyle="{StaticResource MaterialDesignCharacterCounterTextBlock}" Foreground="Silver">
                                 <DataGridTextColumn.HeaderStyle>
                                     <Style TargetType="DataGridColumnHeader">
                                         <Setter Property="Foreground" Value="LightSkyBlue"></Setter>
@@ -295,11 +358,98 @@
                                     </Style>
                                 </DataGridTextColumn.HeaderStyle>
                             </DataGridTextColumn>
+                            <DataGridTextColumn Header="Rating" Width="auto" Binding="{Binding Rating, UpdateSourceTrigger=PropertyChanged}" EditingElementStyle="{StaticResource MaterialDesignFloatingHintTextBox}" ElementStyle="{StaticResource MaterialDesignCharacterCounterTextBlock}" Foreground="Silver">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader" >
+                                        <Setter Property="Foreground" Value="LightSkyBlue"></Setter>
+                                        <Setter Property="Background" Value="#303338"/>
+                                        <Setter Property="Margin" Value="5"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Avg Speed" Width="auto" Binding="{Binding AvarageSpeed, UpdateSourceTrigger=PropertyChanged}" EditingElementStyle="{StaticResource MaterialDesignFloatingHintTextBox}" ElementStyle="{StaticResource MaterialDesignCharacterCounterTextBlock}" Foreground="Silver">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="Foreground" Value="LightSkyBlue"></Setter>
+                                        <Setter Property="Background" Value="#303338"/>
+                                        <Setter Property="Margin" Value="5"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Comment" Width="auto" Binding="{Binding Comment, UpdateSourceTrigger=PropertyChanged}" EditingElementStyle="{StaticResource MaterialDesignFloatingHintTextBox}" ElementStyle="{StaticResource MaterialDesignCharacterCounterTextBlock}" Foreground="Silver">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="Foreground" Value="LightSkyBlue"></Setter>
+                                        <Setter Property="Background" Value="#303338"/>
+                                        <Setter Property="Margin" Value="5"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Problems" Width="auto" Binding="{Binding Problems, UpdateSourceTrigger=PropertyChanged}" EditingElementStyle="{StaticResource MaterialDesignFloatingHintTextBox}" ElementStyle="{StaticResource MaterialDesignCharacterCounterTextBlock}" Foreground="Silver">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="Foreground" Value="LightSkyBlue"></Setter>
+                                        <Setter Property="Background" Value="#303338"/>
+                                        <Setter Property="Margin" Value="5"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Transport Modus" Width="auto" Binding="{Binding TransportModus, UpdateSourceTrigger=PropertyChanged}" EditingElementStyle="{StaticResource MaterialDesignFloatingHintTextBox}" ElementStyle="{StaticResource MaterialDesignCharacterCounterTextBlock}" Foreground="Silver">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="Foreground" Value="LightSkyBlue"></Setter>
+                                        <Setter Property="Background" Value="#303338"/>
+                                        <Setter Property="Margin" Value="5"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Recomend" Width="auto" Binding="{Binding Recomended, UpdateSourceTrigger=PropertyChanged}" EditingElementStyle="{StaticResource MaterialDesignFloatingHintTextBox}" ElementStyle="{StaticResource MaterialDesignCharacterCounterTextBlock}" Foreground="Silver">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="Foreground" Value="LightSkyBlue"></Setter>
+                                        <Setter Property="Background" Value="#303338"/>
+                                        <Setter Property="Margin" Value="5"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                            </DataGridTextColumn>
+
                         </DataGrid.Columns>
 
                     </DataGrid>
                 </Grid>
             </Grid>
         </Grid>
+        
+        <!-- Pop UP Deleted successfully -->
+        <Popup Placement="Center" IsOpen="{Binding IsHelpVisible}">
+            <Border>
+                <StackPanel Background="#25272b" Height="83" Width="288">
+                    <TextBlock Text="Deleted Successfully!" Margin="5" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Silver"/>
+                    <Button Grid.Column="1"  Height="20" Width="22" Command="{Binding CloseHelpCommand}"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}" Foreground="#03a9f4" Background="#25272b" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3,8,5,7">
+                        <!-- Um den Hover abzurunden -->
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="3"/>
+                            </Style>
+                        </Button.Resources>
+                        <!-- -->
+                        <materialDesign:PackIcon Kind="Close"/>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Popup>
     </Grid>
 </Window>

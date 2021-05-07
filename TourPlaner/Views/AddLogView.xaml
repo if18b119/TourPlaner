@@ -7,9 +7,15 @@
         mc:Ignorable="d"
         Title="AddLogView" Height="450" Width="800"
         x:Name="AddLogWindow">
-        
+
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -25,6 +31,7 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0"  Margin="70,0,0,0" VerticalAlignment="Center">Date or Time</Label>
             <TextBox Grid.Column="1" Margin="5" Height="20" Text="{Binding Date_Time}"/>
+            <Label Grid.Column="2"  Margin="70,0,0,0" VerticalAlignment="Center">dd.mm.yyyy</Label>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -38,15 +45,15 @@
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="198*"/>
-                <ColumnDefinition Width="109*"/>
-                <ColumnDefinition Width="287*"/>
-                <ColumnDefinition Width="198*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Margin="70,2,0,2" VerticalAlignment="Center">Total Time</Label>
-            <TextBox Grid.Column="1" Margin="5" Height="20" Grid.ColumnSpan="2" Text="{Binding TotalTime , UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Grid.Column="1" Margin="5,5,0,5" Height="20" Text="{Binding TotalTime , UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Grid.Column="2"  Margin="70,0,0,0" VerticalAlignment="Center"></Label>
         </Grid>
-        
+
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -55,7 +62,8 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Margin="70,2,0,2" VerticalAlignment="Center">Report
             </Label>
-            <TextBox Grid.Column="1" Margin="5" Height="20" Grid.ColumnSpan="2" Text="{Binding Report , UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Grid.Column="1" Margin="5,5,0,5" Height="20" Text="{Binding Report , UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Grid.Column="2"  Margin="70,0,0,0" VerticalAlignment="Center"></Label>
         </Grid>
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
@@ -63,15 +71,75 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="1" Margin="60,2,0,2" FontSize="50" VerticalAlignment="Center" Content="{Binding NameOfTour}"/>
-            
-
+            <Label Grid.Column="0" Margin="70,2,0,2" VerticalAlignment="Center">Rating
+            </Label>
+            <TextBox Grid.Column="1" Margin="5,5,0,5" Height="20" Text="{Binding Rating , UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Grid.Column="2"  Margin="70,0,0,0" VerticalAlignment="Center"></Label>
         </Grid>
         <Grid Grid.Row="5">
             <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Margin="70,2,0,2" VerticalAlignment="Center">Avarage Speed
+            </Label>
+            <TextBox Grid.Column="1" Margin="5,5,0,5" Height="20" Text="{Binding AvarageSpeed , UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Grid.Column="2" Margin="70,0,0,0" VerticalAlignment="Center">km/h
+            </Label>
+        </Grid>
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Margin="70,2,0,2" VerticalAlignment="Center">Comment
+            </Label>
+            <TextBox Grid.Column="1" Margin="5,5,0,5" Height="20" Text="{Binding Comment , UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Grid.Column="2"  Margin="70,0,0,0" VerticalAlignment="Center"></Label>
+        </Grid>
+        <Grid Grid.Row="7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Margin="70,2,0,2" VerticalAlignment="Center" Content="Problems"/>
+            <TextBox Grid.Column="1" Margin="5,5,0,5" Height="20" Text="{Binding Problems , UpdateSourceTrigger=PropertyChanged}"/>
+        </Grid>
+        <Grid Grid.Row="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Margin="70,2,0,2" VerticalAlignment="Center" Content="Transport Modus"/>
+            <TextBox Grid.Column="1" Margin="5,5,0,5" Height="20" Text="{Binding TransportModus , UpdateSourceTrigger=PropertyChanged}"/>
+        </Grid>
+        <Grid Grid.Row="9">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Margin="60,5,10,1" VerticalAlignment="Center" Content="Would you recomend?"/>
+            <TextBox Grid.Column="1" Margin="5,5,0,5" Height="20" Text="{Binding Recomended , UpdateSourceTrigger=PropertyChanged}"/>
+        </Grid>
+        <Grid Grid.Row="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="1" Margin="40,4,20,0" FontSize="50" VerticalAlignment="Center" Content="{Binding NameOfTour}"/>
+        </Grid>
+
+        <Grid Grid.Row="11">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="1" Margin="5" Background="LightGreen" Command="{Binding AddLogCommand }" CommandParameter="{x:Reference Name=AddLogWindow}">
                 <!-- Um den Hover abzurunden -->
@@ -84,7 +152,7 @@
                 Submit
             </Button>
         </Grid>
-        
+
     </Grid>
-    
+
 </Window>

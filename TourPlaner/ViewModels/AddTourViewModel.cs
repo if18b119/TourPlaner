@@ -130,7 +130,6 @@ namespace TourPlaner.ViewModels
         {
             //UUID erstellen
             String UUID = Guid.NewGuid().ToString();
-            Console.WriteLine(UUID);
 
             itemFactory.AddTour(UUID, NewTourName, From, To, Description, RouteType);
 

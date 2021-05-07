@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -84,7 +85,7 @@ namespace TourPlaner.DataAcessLayer
             throw new NotImplementedException();
         }
 
-        public bool AddLog(Tour current_tour, string date_Time, double distance, double totalTime, string report)
+        public bool AddLog(Tour current_tour, string date_Time, string distance, string totalTime, string report, string rating, string avarage_speed, string comment, string problems, string transport_modus, string recomended)
         {
             throw new NotImplementedException();
         }
@@ -106,6 +107,31 @@ namespace TourPlaner.DataAcessLayer
         }
 
         public bool DeleteTour(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Tour> GetTourLogs(string UUID)
+        {
+            throw new NotImplementedException();
+        }
+
+        ObservableCollection<Log> IDataAcess.GetTourLogs(string UUID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateLogValue(string tour_id, string log_id, string to_update_column, string new_value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Log GetNewLog(string tour_id, string log_id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DeleteLog(string tour_id, string log_id)
         {
             throw new NotImplementedException();
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,15 +17,9 @@ namespace TourPlaner.Models
         public string To { get; set; }
         public string Route_Type { get; set; }
         public string PicPath { get; set; }
-
         public TourInfo TourInfo { get; set; }
-
         public string TourInfoString { get; set; }
-        public Log log { get; set; }
+        public ObservableCollection<Log>LogItems { get; set; }
 
-        public void SetLog(Log obj)
-        {
-            this.log = obj;
-        }
     }
 }

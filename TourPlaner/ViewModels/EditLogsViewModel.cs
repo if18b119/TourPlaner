@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using TourPlaner.BusinessLayer;
-using TourPlaner.DataAcessLayer;
 using TourPlaner.Models;
+using TourPlaner.Views;
 
 namespace TourPlaner.ViewModels
 {
-    public class AddLogViewModel : ViewModelBase
+    public class EditLogsViewModel: ViewModelBase
     {
         private string date_Time;
         private string distance;
@@ -25,11 +25,95 @@ namespace TourPlaner.ViewModels
         private string transport_modus;
         private string recomended;
 
+        public UpdateLogViewModel updateLogViewModel;
+
         private Tour current_tour;
         public ITourItemFactory itemFactory;
-        private RelayCommand addLog;
-        public ICommand AddLogCommand => addLog ??= new RelayCommand(AddLog);
+        private Log current_log;
 
+        private RelayCommand update_field;
+        public ICommand UpdateFieldCommand => update_field ??= new RelayCommand(UpdateField);
+
+        private RelayCommand cancel;
+        public ICommand CancelCommand => cancel ??= new RelayCommand(Cancel);
+
+        private RelayCommand done;
+        public ICommand DoneCommand => done ??= new RelayCommand(Done);
+
+
+        private void Cancel(object obj)
+        {
+            Window window = (Window)obj;
+            window.Close();
+        }
+
+        private void Done(object obj)
+        {
+            Window window = (Window)obj;
+            window.Close();
+        }
+
+        private void UpdateField(object obj)
+        {
+            Button clicked_button = (Button)obj;
+            string b_name = (string)clicked_button.Name;
+
+            UpdateLogVIew updateLogView = new UpdateLogVIew();
+            updateLogView.DataContext = updateLogViewModel;
+            //Die daten die man für das update braucht der neuen view geben
+            updateLogViewModel.tour_id = current_tour.UUID;
+            updateLogViewModel.log_id = current_log.UUID;
+            updateLogViewModel.to_update_name = b_name;
+
+            //Immer wenn das updateWindow geschlossen wird, wir hier in diesem Objekt aus der Datenbank alle daten des logs wieder reingeladen
+            Log updatedLog = new Log();
+
+            bool? dialogResult = updateLogView.ShowDialog();
+            if (!(bool)dialogResult)
+            {
+                //Um die Werte im mainwindowFenster zu aktualisieren
+                itemFactory.GetTourLogs(current_tour.UUID);
+                updatedLog = itemFactory.GetNewLog(current_tour.UUID, current_log.UUID);
+                //Um die werte im editLog window zu aktualisieren
+                switch(b_name)
+                {
+                    case "b0":
+                        Date_Time = updatedLog.Date_Time;
+                        break;
+                    case "b1":
+                        Distance = updatedLog.Distance;
+                        break;
+                    case "b2":
+                        TotalTime = updatedLog.TotalTime;
+                        break;
+                    case "b3":
+                        Report = updatedLog.Report;
+                        break;
+                    case "b4":
+                        Rating = updatedLog.Rating;
+                        break;
+                    case "b5":
+                        AvarageSpeed = updatedLog.AvarageSpeed;
+                        break;
+                    case "b6":
+                        Comment = updatedLog.Comment;
+                        break;
+                    case "b7":
+                        Problems = updatedLog.Problems;
+                        break;
+                    case "b8":
+                        TransportModus = updatedLog.TransportModus;
+                        break;
+                    case "b9":
+                        Recomended = updatedLog.Recomended;
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+
+        }
 
         public Tour CurrentTour
         {
@@ -46,29 +130,24 @@ namespace TourPlaner.ViewModels
                 }
             }
         }
-        public void AddLog(object obj)
-        {
-
-            itemFactory.AddLog(current_tour, date_Time, distance, totalTime, report, rating, avarage_speed, comment, problems, transport_modus, recomended);
-
-            Window tmp = (Window)obj;
-            tmp.Close();
-        }
-
-        public string NameOfTour
+       
+        public Log CurrentLog
         {
             get
             {
-                if (current_tour != null)
-                    return current_tour.Name;
-                else
-                    return null;
+                return current_log;
             }
             set
             {
-              
+                if (current_log != value)
+                {
+                    current_log = value;
+                    RaisePropertyChangedEvent(nameof(CurrentLog));
+                }
             }
         }
+
+       
         public string Date_Time
         {
             get
@@ -239,11 +318,16 @@ namespace TourPlaner.ViewModels
             }
         }
 
-        public AddLogViewModel()
+        public EditLogsViewModel()
         {
             this.itemFactory = TourItemFactory.GetInstance();
+            this.updateLogViewModel = new UpdateLogViewModel();
+           
+            
+
         }
 
-       
+
     }
 }
+
