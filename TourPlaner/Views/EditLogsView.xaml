@@ -197,5 +197,8 @@
                                 Command="{Binding CancelCommand}" CommandParameter="{x:Reference Name=EditLogWindow}" RenderTransformOrigin="-0.472,0.577">
             <materialDesign:PackIcon Kind="Cancel" Height="26" Width="30"/>
         </Button>
+
+
+       
     </Grid>
 </Window>

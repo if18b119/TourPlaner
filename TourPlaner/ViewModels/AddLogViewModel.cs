@@ -31,6 +31,110 @@ namespace TourPlaner.ViewModels
         public ICommand AddLogCommand => addLog ??= new RelayCommand(AddLog);
 
 
+        //Pop Up Added Successfully 
+        // //////////////////////////////
+        private ICommand openAddedCommand;
+        private ICommand closeAddedCommand;
+        private bool isAddedVisible;
+
+        public ICommand OpenAddedCommand
+        {
+            get
+            {
+                if (openAddedCommand == null)
+                    openAddedCommand = new RelayCommand(OpenAdded);
+                return openAddedCommand;
+            }
+        }
+
+        private void OpenAdded(object param)
+        {
+            IsAddedVisible = true;
+        }
+
+        public ICommand CloseAddedCommand
+        {
+            get
+            {
+                if (closeAddedCommand == null)
+                    closeAddedCommand = new RelayCommand(CloseAdded);
+                return closeAddedCommand;
+            }
+        }
+
+        private void CloseAdded(object param)
+        {
+            IsAddedVisible = false;
+            Window tmp = (Window)param;
+            tmp.Close();
+        }
+
+        public bool IsAddedVisible
+        {
+            get { return isAddedVisible; }
+            set
+            {
+                if (isAddedVisible == value)
+                    return;
+                isAddedVisible = value;
+                RaisePropertyChangedEvent("IsAddedVisible");
+            }
+        }
+
+        // ////////////
+
+        //Pop Up Null  
+        // //////////////////////////////
+        private ICommand openNullCommand;
+        private ICommand closeNullCommand;
+        private bool isNullVisible;
+
+        public ICommand OpenNullCommand
+        {
+            get
+            {
+                if (openNullCommand == null)
+                    openNullCommand = new RelayCommand(OpenNull);
+                return openAddedCommand;
+            }
+        }
+
+        private void OpenNull(object param)
+        {
+            IsNullVisible = true;
+        }
+
+        public ICommand CloseNullCommand
+        {
+            get
+            {
+                if (closeNullCommand == null)
+                    closeNullCommand = new RelayCommand(CloseNull);
+                return closeNullCommand;
+            }
+        }
+
+        private void CloseNull(object param)
+        {
+            IsNullVisible = false;
+           
+        }
+
+        public bool IsNullVisible
+        {
+            get { return isNullVisible; }
+            set
+            {
+                if (isNullVisible == value)
+                    return;
+                isNullVisible = value;
+                RaisePropertyChangedEvent("IsNullVisible");
+            }
+        }
+
+        // ////////////
+
+
         public Tour CurrentTour
         {
             get
@@ -48,11 +152,30 @@ namespace TourPlaner.ViewModels
         }
         public void AddLog(object obj)
         {
+            if (Date_Time == null || Distance == null || TotalTime == null || Report == null || Rating == null || AvarageSpeed == null
+                || Comment == null || Problems == null || TransportModus == null || Recomended == null )
+            {
+                OpenNull(obj);
+            }
+            else
+            {
+                itemFactory.AddLog(current_tour, date_Time, distance, totalTime, report, rating, avarage_speed, comment, problems, transport_modus, recomended);
+                CurrentTour = null;
+                Date_Time = null;
+                Distance = null;
+                TotalTime = null;
+                Report = null;
+                Rating = null;
+                AvarageSpeed = null;
+                Comment = null;
+                Problems = null;
+                TransportModus = null;
+                Recomended = null;
+                OpenAdded(obj);
+            }
 
-            itemFactory.AddLog(current_tour, date_Time, distance, totalTime, report, rating, avarage_speed, comment, problems, transport_modus, recomended);
-
-            Window tmp = (Window)obj;
-            tmp.Close();
+            
+            
         }
 
         public string NameOfTour

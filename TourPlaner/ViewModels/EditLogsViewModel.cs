@@ -40,17 +40,19 @@ namespace TourPlaner.ViewModels
         private RelayCommand done;
         public ICommand DoneCommand => done ??= new RelayCommand(Done);
 
-
+        
         private void Cancel(object obj)
         {
             Window window = (Window)obj;
             window.Close();
+            
         }
 
         private void Done(object obj)
         {
             Window window = (Window)obj;
             window.Close();
+            
         }
 
         private void UpdateField(object obj)
@@ -110,7 +112,7 @@ namespace TourPlaner.ViewModels
                     default:
                         break;
                 }
-
+            
             }
 
         }

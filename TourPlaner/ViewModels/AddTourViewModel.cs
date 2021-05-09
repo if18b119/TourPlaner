@@ -28,6 +28,108 @@ namespace TourPlaner.ViewModels
         private string newTourName;
 
 
+        //Pop Up Added Successfully 
+        // //////////////////////////////
+        private ICommand openAddedCommand;
+        private ICommand closeAddedCommand;
+        private bool isAddedVisible;
+
+        public ICommand OpenAddedCommand
+        {
+            get
+            {
+                if (openAddedCommand == null)
+                    openAddedCommand = new RelayCommand(OpenAdded);
+                return openAddedCommand;
+            }
+        }
+
+        private void OpenAdded(object param)
+        {
+            IsAddedVisible = true;
+        }
+
+        public ICommand CloseAddedCommand
+        {
+            get
+            {
+                if (closeAddedCommand == null)
+                    closeAddedCommand = new RelayCommand(CloseAdded);
+                return closeAddedCommand;
+            }
+        }
+
+        private void CloseAdded(object param)
+        {
+            IsAddedVisible = false;
+            Window tmp = (Window)param;
+            tmp.Close();
+        }
+
+        public bool IsAddedVisible
+        {
+            get { return isAddedVisible; }
+            set
+            {
+                if (isAddedVisible == value)
+                    return;
+                isAddedVisible = value;
+                RaisePropertyChangedEvent("IsAddedVisible");
+            }
+        }
+
+        // ////////////
+        //Pop Up Null  
+        // //////////////////////////////
+        private ICommand openNullCommand;
+        private ICommand closeNullCommand;
+        private bool isNullVisible;
+
+        public ICommand OpenNullCommand
+        {
+            get
+            {
+                if (openNullCommand == null)
+                    openNullCommand = new RelayCommand(OpenNull);
+                return openAddedCommand;
+            }
+        }
+
+        private void OpenNull(object param)
+        {
+            IsNullVisible = true;
+        }
+
+        public ICommand CloseNullCommand
+        {
+            get
+            {
+                if (closeNullCommand == null)
+                    closeNullCommand = new RelayCommand(CloseNull);
+                return closeNullCommand;
+            }
+        }
+
+        private void CloseNull(object param)
+        {
+            IsNullVisible = false;
+
+        }
+
+        public bool IsNullVisible
+        {
+            get { return isNullVisible; }
+            set
+            {
+                if (isNullVisible == value)
+                    return;
+                isNullVisible = value;
+                RaisePropertyChangedEvent("IsNullVisible");
+            }
+        }
+
+        // ////////////
+
         public ObservableCollection<TourType> ListOfTourTypes
         {
             get
@@ -128,20 +230,30 @@ namespace TourPlaner.ViewModels
 
         private void AddTour(object obj)
         {
-            //UUID erstellen
-            String UUID = Guid.NewGuid().ToString();
 
-            itemFactory.AddTour(UUID, NewTourName, From, To, Description, RouteType);
+            if (From == null || To == null || Description == null || RouteType == null || RouteType == null)
+            {
+                OpenNull(obj);
+            }
+            else
+            {
+                //UUID erstellen
+                String UUID = Guid.NewGuid().ToString();
 
-            //Um das Fenster zu schließen nach dem drücken des Buttons
-            Window tmp = (Window)obj;
-            //die felder leeren
-            NewTourName = string.Empty;
-            From = string.Empty;
-            To = string.Empty;
-            Description = string.Empty;
-            //schließen des Fensters
-            tmp.Close();
+                itemFactory.AddTour(UUID, NewTourName, From, To, Description, RouteType);
+
+
+                //die felder leeren
+                NewTourName = string.Empty;
+                From = string.Empty;
+                To = string.Empty;
+                Description = string.Empty;
+
+                OpenAdded(obj);
+                //schließen des Fensters
+            }
+
+
         }
 
         public AddTourViewModel()

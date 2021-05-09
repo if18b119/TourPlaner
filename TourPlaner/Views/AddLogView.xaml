@@ -5,75 +5,74 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodels="clr-namespace:TourPlaner.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AddLogViewModel}"
         mc:Ignorable="d"
-        Title="AddLogView" Height="450" Width="800"
+        Title="AddLogWindow" Height="450" Width="800"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         x:Name="AddLogWindow">
 
-    <Grid>
+
+    <Grid Background="#25272b" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0"  Margin="70,0,0,0" VerticalAlignment="Center">Date or Time</Label>
-            <TextBox Grid.Column="1" Margin="5" Height="20" Text="{Binding Date_Time}"/>
-            <Label Grid.Column="2"  Margin="70,0,0,0" VerticalAlignment="Center">dd.mm.yyyy</Label>
-        </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0"  Margin="70,0,0,0" VerticalAlignment="Center">Distance</Label>
-            <TextBox Grid.Column="1" Margin="5" Height="20" Text="{Binding Distance,  UpdateSourceTrigger=PropertyChanged}"/>
-            <Label Grid.Column="2"  Margin="70,0,0,0" VerticalAlignment="Center">Kilometers</Label>
+            <Label Grid.Column="0"  Margin="49,0,10,0" VerticalAlignment="Center" Foreground="#03a9f4" HorizontalAlignment="Center" FontFamily="Arial" FontSize="17" FontWeight="Bold" Width="139">Date or Time</Label>
+            <TextBox Grid.Column="1" Margin="5,0,0,0" Text="{Binding Date_Time}" Background="#303338" Foreground="GhostWhite"/>
+            <Label Grid.Column="2"  Margin="70,0,0,0" VerticalAlignment="Center" Foreground="LightSkyBlue">dd.mm.yyyy</Label>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="99*"/>
+                <ColumnDefinition Width="149*"/>
+                <ColumnDefinition Width="49*"/>
+                <ColumnDefinition Width="99*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Margin="70,2,0,2" VerticalAlignment="Center">Total Time</Label>
-            <TextBox Grid.Column="1" Margin="5,5,0,5" Height="20" Text="{Binding TotalTime , UpdateSourceTrigger=PropertyChanged}"/>
-            <Label Grid.Column="2"  Margin="70,0,0,0" VerticalAlignment="Center"></Label>
+            <Label Grid.Column="0"  Margin="58,0,60,1" VerticalAlignment="Center" Foreground="#03a9f4" HorizontalAlignment="Center" FontFamily="Arial" FontSize="17" FontWeight="Bold">Distance</Label>
+            <TextBox Grid.Column="1" Margin="5,3,0,1" Text="{Binding Distance,  UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" Background="#303338" Foreground="GhostWhite"/>
+            <Label Grid.Column="3"  Margin="70,2,0,3" VerticalAlignment="Center" Foreground="LightSkyBlue">Kilometers</Label>
         </Grid>
-
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Margin="70,2,0,2" VerticalAlignment="Center">Report
-            </Label>
-            <TextBox Grid.Column="1" Margin="5,5,0,5" Height="20" Text="{Binding Report , UpdateSourceTrigger=PropertyChanged}"/>
-            <Label Grid.Column="2"  Margin="70,0,0,0" VerticalAlignment="Center"></Label>
+            <Label Grid.Column="0" Margin="29,0,10,4" VerticalAlignment="Center" Foreground="#03a9f4" HorizontalAlignment="Center" FontFamily="Arial" FontSize="17" FontWeight="Bold">Total Time</Label>
+            <TextBox Grid.Column="1" Margin="5,0,0,2" Text="{Binding TotalTime , UpdateSourceTrigger=PropertyChanged}" Background="#303338" Foreground="GhostWhite"/>
+            <Label Grid.Column="2"  Margin="70,0,0,0" VerticalAlignment="Center" Foreground="LightSkyBlue">hh.mm.ss</Label>
         </Grid>
+
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Margin="70,2,0,2" VerticalAlignment="Center">Rating
+            <Label Grid.Column="0" Margin="29,0,10,4" VerticalAlignment="Center" Foreground="#03a9f4" HorizontalAlignment="Center" FontFamily="Arial" FontSize="17" FontWeight="Bold">Report
             </Label>
-            <TextBox Grid.Column="1" Margin="5,5,0,5" Height="20" Text="{Binding Rating , UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Grid.Column="1" Margin="5,0,0,4" Text="{Binding Report , UpdateSourceTrigger=PropertyChanged}" Background="#303338" Foreground="GhostWhite"/>
             <Label Grid.Column="2"  Margin="70,0,0,0" VerticalAlignment="Center"></Label>
         </Grid>
         <Grid Grid.Row="5">
@@ -82,11 +81,10 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Margin="70,2,0,2" VerticalAlignment="Center">Avarage Speed
+            <Label Grid.Column="0" Margin="29,0,10,4" VerticalAlignment="Center" Foreground="#03a9f4" HorizontalAlignment="Center" FontFamily="Arial" FontSize="17" FontWeight="Bold">Rating
             </Label>
-            <TextBox Grid.Column="1" Margin="5,5,0,5" Height="20" Text="{Binding AvarageSpeed , UpdateSourceTrigger=PropertyChanged}"/>
-            <Label Grid.Column="2" Margin="70,0,0,0" VerticalAlignment="Center">km/h
-            </Label>
+            <TextBox Grid.Column="1"  Margin="6,0,192,2" Text="{Binding Rating , UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" Background="#303338" Foreground="GhostWhite"/>
+            <Label Grid.Column="2"  Margin="70,0,0,0" VerticalAlignment="Center"></Label>
         </Grid>
         <Grid Grid.Row="6">
             <Grid.ColumnDefinitions>
@@ -94,10 +92,11 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Margin="70,2,0,2" VerticalAlignment="Center">Comment
+            <Label Grid.Column="0" Margin="29,0,10,4" VerticalAlignment="Center" Foreground="#03a9f4" HorizontalAlignment="Center" FontFamily="Arial" FontSize="17" FontWeight="Bold" Width="159">Avarage Speed
             </Label>
-            <TextBox Grid.Column="1" Margin="5,5,0,5" Height="20" Text="{Binding Comment , UpdateSourceTrigger=PropertyChanged}"/>
-            <Label Grid.Column="2"  Margin="70,0,0,0" VerticalAlignment="Center"></Label>
+            <TextBox Grid.Column="1" Margin="5,0,0,4" Text="{Binding AvarageSpeed , UpdateSourceTrigger=PropertyChanged}" Background="#303338" Foreground="GhostWhite"/>
+            <Label Grid.Column="2" Margin="70,0,0,0" VerticalAlignment="Center" Foreground="LightSkyBlue">km/h
+            </Label>
         </Grid>
         <Grid Grid.Row="7">
             <Grid.ColumnDefinitions>
@@ -105,8 +104,10 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Margin="70,2,0,2" VerticalAlignment="Center" Content="Problems"/>
-            <TextBox Grid.Column="1" Margin="5,5,0,5" Height="20" Text="{Binding Problems , UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Grid.Column="0"  Margin="29,0,10,4" VerticalAlignment="Center" Foreground="#03a9f4" HorizontalAlignment="Center" FontFamily="Arial" FontSize="17" FontWeight="Bold">Comment
+            </Label>
+            <TextBox Grid.Column="1" Margin="5,0,0,2" Text="{Binding Comment , UpdateSourceTrigger=PropertyChanged}" Background="#303338" Foreground="GhostWhite"/>
+            <Label Grid.Column="2"  Margin="70,0,0,0" VerticalAlignment="Center"></Label>
         </Grid>
         <Grid Grid.Row="8">
             <Grid.ColumnDefinitions>
@@ -114,8 +115,8 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Margin="70,2,0,2" VerticalAlignment="Center" Content="Transport Modus"/>
-            <TextBox Grid.Column="1" Margin="5,5,0,5" Height="20" Text="{Binding TransportModus , UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Grid.Column="0"  Margin="29,0,10,4" VerticalAlignment="Center" Content="Problems" Foreground="#03a9f4" HorizontalAlignment="Center" FontFamily="Arial" FontSize="17" FontWeight="Bold"/>
+            <TextBox Grid.Column="1" Margin="5,0,0,2" Text="{Binding Problems , UpdateSourceTrigger=PropertyChanged}" Background="#303338" Foreground="GhostWhite"/>
         </Grid>
         <Grid Grid.Row="9">
             <Grid.ColumnDefinitions>
@@ -123,8 +124,8 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Margin="60,5,10,1" VerticalAlignment="Center" Content="Would you recomend?"/>
-            <TextBox Grid.Column="1" Margin="5,5,0,5" Height="20" Text="{Binding Recomended , UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Grid.Column="0" Margin="10,4,10,0" VerticalAlignment="Center" Content="Transport Modus" Foreground="#03a9f4" HorizontalAlignment="Center" FontFamily="Arial" FontSize="17" FontWeight="Bold" Width="178"/>
+            <TextBox Grid.Column="1" Margin="5,0,0,2" Text="{Binding TransportModus , UpdateSourceTrigger=PropertyChanged}" Background="#303338" Foreground="GhostWhite"/>
         </Grid>
         <Grid Grid.Row="10">
             <Grid.ColumnDefinitions>
@@ -132,7 +133,16 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="1" Margin="40,4,20,0" FontSize="50" VerticalAlignment="Center" Content="{Binding NameOfTour}"/>
+            <Label Grid.Column="0" Margin="0,6,391,0" VerticalAlignment="Center" Content="Would you recomend?" Foreground="#03a9f4" HorizontalAlignment="Center" FontFamily="Arial" FontSize="17" FontWeight="Bold" Width="203" Grid.ColumnSpan="2"/>
+            <TextBox Grid.Column="1" Margin="5,0,0,2" Text="{Binding Recomended , UpdateSourceTrigger=PropertyChanged}" Background="#303338" Foreground="GhostWhite"/>
+        </Grid>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="1" Margin="40,4,20,0" FontSize="50" VerticalAlignment="Center" Content="{Binding NameOfTour}" Foreground="#03a9f4"/>
         </Grid>
 
         <Grid Grid.Row="11">
@@ -141,7 +151,7 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="1" Margin="5" Background="LightGreen" Command="{Binding AddLogCommand }" CommandParameter="{x:Reference Name=AddLogWindow}">
+            <Button Grid.Column="1" Margin="5" Background="#03a9f4" Foreground="GhostWhite" Command="{Binding AddLogCommand }">
                 <!-- Um den Hover abzurunden -->
                 <Button.Resources>
                     <Style TargetType="Border">
@@ -152,6 +162,51 @@
                 Submit
             </Button>
         </Grid>
+
+        <!-- Pop UP Added successfully -->
+        <Popup Placement="Center" IsOpen="{Binding IsAddedVisible}">
+            <Border CornerRadius="5" Background="#03a9f4">
+                <StackPanel Background="#303338" Height="83" Width="288">
+                    <TextBlock Text="Added Successfully!" Margin="5" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Silver"/>
+                    <Button Grid.Column="1"  Height="20" Width="22" Command="{Binding CloseAddedCommand}"  CommandParameter="{x:Reference Name=AddLogWindow}"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}" Foreground="#03a9f4" Background="#303338" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3,8,5,7">
+                        <!-- Um den Hover abzurunden -->
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="3"/>
+                                <Setter Property="Background" Value="#03a9f4"/>
+                            </Style>
+                        </Button.Resources>
+                        <!-- -->
+                        <materialDesign:PackIcon Kind="Close"/>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Popup>
+        <!-- Ende Pop Up -->
+
+
+        <!-- Pop UP Error null successfully -->
+        <Popup Placement="Center" IsOpen="{Binding IsNullVisible}">
+            <Border CornerRadius="5" Background="#03a9f4">
+                <StackPanel Background="#303338" Height="83" Width="288">
+                    <TextBlock Text="Please fill all fields!" Margin="5" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Silver"/>
+                    <Button Grid.Column="1"  Height="20" Width="22" Command="{Binding CloseNullCommand}"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}" Foreground="#03a9f4" Background="#303338" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3,8,5,7">
+                        <!-- Um den Hover abzurunden -->
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="3"/>
+                                <Setter Property="Background" Value="#03a9f4"/>
+                            </Style>
+                        </Button.Resources>
+                        <!-- -->
+                        <materialDesign:PackIcon Kind="Close"/>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Popup>
+        <!-- Ende Pop Up -->
 
     </Grid>
 

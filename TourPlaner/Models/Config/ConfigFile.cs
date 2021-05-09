@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TourPlaner.Models.Config;
 
 namespace TourPlaner.Models
 {
@@ -12,7 +13,8 @@ namespace TourPlaner.Models
         public ImageConfig RouteImageSettings { get; set; }
         public ReqKeyConfig RequestKey { get; set; }
         public DeleteConfig ToDeletePath { get; set; }
+        public LogToPdf GeneratePdf { get; set; }
 
-   
+
     }
 }

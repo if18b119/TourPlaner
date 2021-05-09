@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -73,7 +74,7 @@ namespace TourPlaner.BusinessLayer
 
             if (caseSensitive)
             {
-                return items.Where(x => x.Name.Contains(tourName));
+                return items.Where(x => x.Name.Contains(tourName));// || x => x.From.Contains(tourName));
             }
             return items.Where(x => x.Name.ToLower().Contains(tourName.ToLower()));
         }
@@ -97,6 +98,11 @@ namespace TourPlaner.BusinessLayer
         public bool DeleteLog(string tour_id, string log_id)
         {
             return tourItemDatabase.DeleteLog(tour_id, log_id);
+        }
+
+        public bool MakePdf(Tour current_tour)
+        {
+            return tourItemFileSystem.MakePdf(current_tour);
         }
     }
 }

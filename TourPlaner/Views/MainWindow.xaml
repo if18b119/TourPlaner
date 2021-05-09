@@ -69,7 +69,7 @@
                 <ColumnDefinition Width="63.5"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0" Margin="5" Text="{Binding SearchName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Background="#303338"/>
+            <TextBox Grid.Column="0" Margin="5" Text="{Binding SearchName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Background="#303338" Foreground="LightSkyBlue"/>
             <Button Grid.Column="3" Margin="10" Height="24" Command="{Binding SearchCommand}" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignOutlinedButton}" >
                 <!-- Um den Hover abzurunden -->
                 <Button.Resources>
@@ -138,12 +138,13 @@
                         <ColumnDefinition Width="185*"/>
                         <ColumnDefinition Width="12*"/>
                     </Grid.ColumnDefinitions>
-                    <ListBox  Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineListBox}"                 
+                    <ListBox  Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineListBox}"      
                         x:Name="listTours" 
                         ItemsSource="{Binding Tours}"
                         SelectedItem="{Binding CurrentTour}"
                         DisplayMemberPath="Name" Grid.ColumnSpan="2"                       
                     >
+                       
                     </ListBox>
 
                 </Grid>
@@ -275,6 +276,7 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Height="30"  Foreground="#c0c0c0" FontSize="19" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Agency" Margin="0,0,0,5" Content="Logs"/>
                         <Button Grid.Column="1"  Height="20" Width="22" Command="{Binding AddLogCommand}"
@@ -310,6 +312,18 @@
                             </Button.Resources>
                             <!-- -->
                             <materialDesign:PackIcon Kind="Settings"/>
+                        </Button>
+                        <Button Grid.Column="4"  Height="20" Width="20"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}" Foreground="#03a9f4" Background="#25272b" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,0,5,0"
+                                Command="{Binding MakePdfCommand}">
+                            <!-- Um den Hover abzurunden -->
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </Button.Resources>
+                            <!-- -->
+                            <materialDesign:PackIcon Kind="FilePdf"/>
                         </Button>
                     </Grid>
                     <DataGrid Style="{StaticResource MaterialDesignDataGrid}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="10" Background="#303338" SelectedItem="{Binding CurrentLog}" ItemsSource="{Binding Logs}" AutoGenerateColumns="False" IsReadOnly="True">
@@ -431,18 +445,18 @@
                 </Grid>
             </Grid>
         </Grid>
-        
-        <!-- Pop UP Deleted successfully -->
-        <Popup Placement="Center" IsOpen="{Binding IsHelpVisible}">
-            <Border>
-                <StackPanel Background="#25272b" Height="83" Width="288">
-                    <TextBlock Text="Deleted Successfully!" Margin="5" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Silver"/>
-                    <Button Grid.Column="1"  Height="20" Width="22" Command="{Binding CloseHelpCommand}"
-                            Style="{StaticResource MaterialDesignIconForegroundButton}" Foreground="#03a9f4" Background="#25272b" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3,8,5,7">
+        <!-- Pop UP Added Pdf successfully -->
+        <Popup Placement="Center" IsOpen="{Binding IsAddedPdfVisible}">
+            <Border CornerRadius="5" Background="#03a9f4">
+                <StackPanel Background="#303338" Height="83" Width="339">
+                    <TextBlock Text="Pdf created Successfully!" Margin="5" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Silver"/>
+                    <Button Grid.Column="1"  Height="20" Width="22" Command="{Binding CloseAddedPdfCommand}"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}" Foreground="#03a9f4" Background="#303338" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3,8,5,7">
                         <!-- Um den Hover abzurunden -->
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="3"/>
+                                <Setter Property="Background" Value="#03a9f4"/>
                             </Style>
                         </Button.Resources>
                         <!-- -->
@@ -451,5 +465,31 @@
                 </StackPanel>
             </Border>
         </Popup>
+        <!-- Ende Pop Up -->
+        <!-- Pop UP Deleted successfully -->
+        <Popup Placement="Center" IsOpen="{Binding IsDeleteVisible}">
+            <Border CornerRadius="5" Background="#03a9f4">
+                <StackPanel Background="#303338" Height="83" Width="288">
+                    <TextBlock Text="Deleted Successfully!" Margin="5" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Silver"/>
+                    <Button Grid.Column="1"  Height="20" Width="22" Command="{Binding CloseDeleteCommand}"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}" Foreground="#03a9f4" Background="#303338" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3,8,5,7">
+                        <!-- Um den Hover abzurunden -->
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="3"/>
+                                <Setter Property="Background" Value="#03a9f4"/>
+                            </Style>
+                        </Button.Resources>
+                        <!-- -->
+                        <materialDesign:PackIcon Kind="Close"/>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Popup>
+        <!-- Ende Pop Up -->
+
+      
+
+        
     </Grid>
 </Window>

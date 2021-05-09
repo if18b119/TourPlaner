@@ -15,6 +15,7 @@ namespace TourPlaner.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        private string search_name;
 
         public ITourItemFactory itemFactory;
 
@@ -32,6 +33,12 @@ namespace TourPlaner.ViewModels
 
         private Log currentLog;
 
+        private RelayCommand search;
+        public ICommand SearchCommand => search ??= new RelayCommand(Search);
+
+        private RelayCommand clear;
+        public ICommand ClearCommand => clear ??= new RelayCommand(Clear);
+
         private RelayCommand editlogs;
         public ICommand EditLogsCommand => editlogs ??= new RelayCommand(EditLogs);
 
@@ -44,60 +51,125 @@ namespace TourPlaner.ViewModels
         private RelayCommand addLog;
         public ICommand AddLogCommand => addLog ??= new RelayCommand(AddLog);
 
-        private ICommand deleteTourCommand;
+        private RelayCommand deleteTourCommand;
         public ICommand DeleteTourCommand => deleteTourCommand ??= new RelayCommand(Delete);
 
 
+        private RelayCommand makepdflog;
+        public ICommand MakePdfCommand => makepdflog ??= new RelayCommand(MakePdf);
 
 
-        //Pop Up Delted Successfully 
-        private ICommand openHelpCommand;
-        private ICommand closeHelpCommand;
-        private bool isHelpVisible;
+        //Pop Up Deleted Successfully 
+        // //////////////////////////////
+        private ICommand openDeleteCommand;
+        private ICommand closeDeleteCommand;
+        private bool isDeleteVisible;
 
-        public ICommand OpenHelpCommand
+        public ICommand OpenDeleteCommand
         {
             get
             {
-                if (openHelpCommand == null)
-                    openHelpCommand = new RelayCommand(OpenHelp);
-                return openHelpCommand;
+                if (openDeleteCommand == null)
+                    openDeleteCommand = new RelayCommand(OpenDelete);
+                return openDeleteCommand;
             }
         }
 
-        private void OpenHelp(object param)
+        private void OpenDelete(object param)
         {
-            IsHelpVisible = true;
+            IsDeleteVisible = true;
         }
 
-        public ICommand CloseHelpCommand
+        public ICommand CloseDeleteCommand
         {
             get
             {
-                if (closeHelpCommand == null)
-                    closeHelpCommand = new RelayCommand(CloseHelp);
-                return closeHelpCommand;
+                if (closeDeleteCommand == null)
+                    closeDeleteCommand = new RelayCommand(CloseDelete);
+                return closeDeleteCommand;
             }
         }
 
-        private void CloseHelp(object param)
+        private void CloseDelete(object param)
         {
-            IsHelpVisible = false;
+            IsDeleteVisible = false;
         }
 
-        public bool IsHelpVisible
+        public bool IsDeleteVisible
         {
-            get { return isHelpVisible; }
+            get { return isDeleteVisible; }
             set
             {
-                if (isHelpVisible == value)
+                if (isDeleteVisible == value)
                     return;
-                isHelpVisible = value;
-                RaisePropertyChangedEvent("IsHelpVisible");
+                isDeleteVisible = value;
+                RaisePropertyChangedEvent("IsDeleteVisible");
             }
         }
 
-       // ////////////
+        // ////////////
+        //Pop Up Added Successfully 
+        // //////////////////////////////
+        private ICommand openAddedPdfCommand;
+        private ICommand closeAddedPdfCommand;
+        private bool isAddedPdfVisible;
+
+        public ICommand OpenAddedPdfCommand
+        {
+            get
+            {
+                if (openAddedPdfCommand == null)
+                    openAddedPdfCommand = new RelayCommand(OpenAddedPdf);
+                return openAddedPdfCommand;
+            }
+        }
+
+        private void OpenAddedPdf(object param)
+        {
+            IsAddedPdfVisible = true;
+        }
+
+        public ICommand CloseAddedPdfCommand
+        {
+            get
+            {
+                if (closeAddedPdfCommand == null)
+                    closeAddedPdfCommand = new RelayCommand(CloseAddedPdf);
+                return closeAddedPdfCommand;
+            }
+        }
+
+        private void CloseAddedPdf(object param)
+        {
+            IsAddedPdfVisible = false;           
+        }
+
+        public bool IsAddedPdfVisible
+        {
+            get { return isAddedPdfVisible; }
+            set
+            {
+                if (isAddedPdfVisible == value)
+                    return;
+                isAddedPdfVisible = value;
+                RaisePropertyChangedEvent("IsAddedPdfVisible");
+            }
+        }
+        // ///////////////
+
+        private void MakePdf(object obj)
+        {
+            if(currentTour == null || currentTour.LogItems.Count()==0)
+            {
+                return;
+            }
+            else
+            {
+                itemFactory.MakePdf(currentTour);
+                OpenAddedPdf(obj);
+            }
+        }
+       
 
         private void DeleteLog(object obj)
         {
@@ -109,7 +181,7 @@ namespace TourPlaner.ViewModels
                     currentTour.LogItems = itemFactory.GetTourLogs(currentTour.UUID);
                     Logs = currentTour.LogItems;
                 }
-                OpenHelp( obj);
+                OpenDelete(obj);
             }
         }
 
@@ -169,7 +241,7 @@ namespace TourPlaner.ViewModels
                 {
                     tours.Clear();
                     RefreshingListItems();
-                    
+                  
                 }
             }
             else
@@ -191,6 +263,7 @@ namespace TourPlaner.ViewModels
             {
                 tours.Clear();
                 RefreshingListItems();
+    
             }
         }
 
@@ -205,6 +278,7 @@ namespace TourPlaner.ViewModels
             itemFactory.SavePathAndDeleteTour(currentTour);
             tours.Clear();
             RefreshingListItems();
+            OpenDelete(obj);
         }
 
         public ObservableCollection<Tour> Tours
@@ -306,6 +380,21 @@ namespace TourPlaner.ViewModels
 
         }
 
+        public string SearchName
+        {
+            get 
+            {
+                return search_name;
+            }
+            set
+            {
+                if (search_name == value)
+                    return;
+                search_name = value;
+                RaisePropertyChangedEvent("SearchName");
+            }
+        }
+
         ~MainWindowViewModel()
         {
             itemFactory.DeleteImages();
@@ -328,12 +417,28 @@ namespace TourPlaner.ViewModels
         private void Search(object commandParameter)
         {
 
+            if(tours.Count==0)
+            {
+                MessageBox.Show("No Data Available to search for!");
+            }
+            else
+            {
+                IEnumerable<Tour> search_outcome = itemFactory.Search(SearchName);
+                Tours.Clear();
+                foreach(Tour t in search_outcome)
+                {
+                    Tours.Add(t);
+                }
+            }
+
         }
 
 
         private void Clear(object commandParameter)
         {
-
+            Tours.Clear();
+            SearchName = string.Empty;
+            RefreshingListItems();
         }
 
        

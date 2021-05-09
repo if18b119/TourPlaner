@@ -83,5 +83,9 @@ namespace TourPlaner.DataAcessLayer
             return accesType.DeleteLog(tour_id, log_id);
         }
 
+        public bool MakePdf(Tour current_tour)
+        {
+            return accesType.MakePdf(current_tour);
+        }
     }
 }

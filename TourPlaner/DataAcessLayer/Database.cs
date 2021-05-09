@@ -340,10 +340,10 @@ namespace TourPlaner.DataAcessLayer
                     PicPath = reader.GetString(6)
                 }) ;
                 //Die beschreibung des unsers mit der tour info aus dem request zusammentun für die anzeige
-                tourItems[0].TourInfo = PutInfosInDescription(tourItems[0].UUID, tourItems[0].From, tourItems[0].To, tourItems[0]);
+                tourItems[i].TourInfo = PutInfosInDescription(tourItems[i].UUID, tourItems[i].From, tourItems[i].To, tourItems[i]);
 
                 //making the touinfo string für das anzeigen in der view
-                tourItems[0].TourInfoString = CreateTourInfoString(tourItems[0]);
+                tourItems[i].TourInfoString = CreateTourInfoString(tourItems[i]);
                 i++;
             }
             conn.Close();
@@ -583,6 +583,11 @@ namespace TourPlaner.DataAcessLayer
                 return false;
             }
            
+        }
+
+        public bool MakePdf(Tour current_tour)
+        {
+            throw new NotImplementedException();
         }
     }
 }

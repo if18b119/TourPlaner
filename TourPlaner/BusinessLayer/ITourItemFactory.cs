@@ -18,6 +18,7 @@ namespace TourPlaner.BusinessLayer
         public bool SavePathAndDeleteTour(Tour tour_to_delete);
         public bool DeleteImages();
 
+        public bool MakePdf(Tour current_tour);
         public bool DeleteLog(string tour_id, string log_id);
         public Log GetNewLog(string tour_id, string log_id);
         public bool UpdateLogValue(string tour_id, string log_id, string to_update_column, string new_value);

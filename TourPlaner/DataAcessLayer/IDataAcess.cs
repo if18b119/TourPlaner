@@ -21,5 +21,6 @@ namespace TourPlaner.DataAcessLayer
         public string SaveImage(string from, string to);
         public Log GetNewLog(string tour_id, string log_id);
         public bool DeleteLog(string tour_id, string log_id);
+        public bool MakePdf(Tour current_tour);
     }
 }

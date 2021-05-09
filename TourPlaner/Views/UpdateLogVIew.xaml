@@ -46,5 +46,27 @@
                                 Command="{Binding CancelCommand}" CommandParameter="{x:Reference Name=UpdateLogWindow}">
             <materialDesign:PackIcon Kind="Cancel" Height="26" Width="30"/>
         </Button>
+
+        <!-- Pop UP Edited successfully -->
+        <Popup Placement="Center" IsOpen="{Binding IsEditedVisible}">
+            <Border CornerRadius="5" Background="#03a9f4">
+                <StackPanel Background="#303338" Height="83" Width="288">
+                    <TextBlock Text="Updated Successfully!" Margin="5" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Silver"/>
+                    <Button Grid.Column="1"  Height="20" Width="22" Command="{Binding CloseEditedCommand}"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}" Foreground="#03a9f4" Background="#303338" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3,8,5,7">
+                        <!-- Um den Hover abzurunden -->
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="3"/>
+                                <Setter Property="Background" Value="#03a9f4"/>
+                           </Style>
+                        </Button.Resources>
+                        <!-- -->
+                        <materialDesign:PackIcon Kind="Close"/>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Popup>
+        <!-- Ende Pop Up -->
     </Grid>
 </Window>

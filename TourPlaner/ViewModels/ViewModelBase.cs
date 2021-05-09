@@ -17,6 +17,7 @@ namespace TourPlaner.ViewModels
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
+            //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         //ist ein validator um zu überprüfen ob es den namen überhaupt gibt

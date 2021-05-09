@@ -39,6 +39,9 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DynamicPDF.NETFramework40, Version=11.11.0.43757, Culture=neutral, PublicKeyToken=09b5ce0d5c0a9d8b, processorArchitecture=MSIL">
+      <HintPath>..\packages\ceTe.DynamicPDF.CoreSuite.NET.11.11.0\lib\net40\DynamicPDF.NETFramework40.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=2.0.0.2422, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.2.0.0\lib\net452\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -113,6 +116,7 @@
     <Compile Include="Models\Config\DBConfig.cs" />
     <Compile Include="Models\Config\DeleteConfig.cs" />
     <Compile Include="Models\Config\ImageConfig.cs" />
+    <Compile Include="Models\Config\LogToPdf.cs" />
     <Compile Include="Models\JsonObjects\ImageToBeDeleted.cs" />
     <Compile Include="Models\JsonObjects\ReqObj.cs" />
     <Compile Include="Models\JsonObjects\RouteInformation.cs" />

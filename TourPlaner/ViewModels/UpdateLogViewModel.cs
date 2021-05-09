@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -26,6 +27,56 @@ namespace TourPlaner.ViewModels
 
         private string new_value;
 
+        //Pop Up Edited Successfully
+        // //////////////////////////////
+        private ICommand openEditedCommand;
+        private ICommand closeEditedCommand;
+        private bool isEditedVisible;
+
+        public ICommand OpenEditedCommand
+        {
+            get
+            {
+                if (openEditedCommand == null)
+                    openEditedCommand = new RelayCommand(OpenEdited);
+                return openEditedCommand;
+            }
+        }
+
+        private void OpenEdited(object param)
+        {
+            IsEditedVisible = true;
+        }
+
+        public ICommand CloseEditedCommand
+        {
+            get
+            {
+                if (closeEditedCommand == null)
+                    closeEditedCommand = new RelayCommand(CloseEdited);
+                return closeEditedCommand;
+            }
+        }
+
+        private void CloseEdited(object param)
+        {
+            IsEditedVisible = false;
+        }
+
+        public bool IsEditedVisible
+        {
+            get { return isEditedVisible; }
+            set
+            {
+                if (isEditedVisible == value)
+                    return;
+                isEditedVisible = value;
+                RaisePropertyChangedEvent("IsEditedVisible");
+            }
+        }
+
+        // ////////////
+
         public string NewValue
         {
             get
@@ -45,15 +96,16 @@ namespace TourPlaner.ViewModels
         private void UpdateField(object obj)
         {
             Window window = (Window)obj;
-
+            
             itemFactory.UpdateLogValue(tour_id, log_id, to_update_name, NewValue);
-            new_value = string.Empty;
-
+            OpenEdited(obj);
+            new_value = string.Empty;           
             window.Close();
         }
 
         private void Cancel(object obj)
         {
+            
             Window window = (Window)obj;
             new_value = string.Empty;
             window.Close();
