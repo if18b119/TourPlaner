@@ -58,6 +58,17 @@ namespace TourPlaner.ViewModels
         private RelayCommand makepdflog;
         public ICommand MakePdfCommand => makepdflog ??= new RelayCommand(MakePdf);
 
+        private RelayCommand export;
+        public ICommand ExportCommand => export ??= new RelayCommand(Export);
+
+        private RelayCommand import;
+        public ICommand ImportCommand => import ??= new RelayCommand(Import);
+
+       
+
+        private RelayCommand close;
+        public ICommand CloseProgrammCommand => close ??= new RelayCommand(CloseProgramm);
+
 
         //Pop Up Deleted Successfully 
         // //////////////////////////////
@@ -182,6 +193,47 @@ namespace TourPlaner.ViewModels
                     Logs = currentTour.LogItems;
                 }
                 OpenDelete(obj);
+            }
+        }
+
+        private void CloseProgramm(object obj)
+        {
+            Window tmp = (Window)obj;
+            tmp.Close();
+        }
+
+        private  void Export(object obj)
+        {
+            if(tours.Count == 0)
+            {
+                MessageBox.Show("No Data available!");
+                return;
+            }
+            itemFactory.Export();
+        }
+
+        private void Import(object obj)
+        {
+            // Create OpenFileDialog
+            Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
+
+            // Launch OpenFileDialog by calling ShowDialog method
+            Nullable<bool> result = openFileDlg.ShowDialog();
+            // Get the selected file name and display in a TextBox.
+            // Load content of file in a TextBlock
+            if (result == true)
+            {
+                if (itemFactory.Import(openFileDlg.FileName))
+                {
+                    tours.Clear();
+                    RefreshingListItems();
+                    MessageBox.Show("File imported successfuly!");
+                }
+                else
+                {
+                    MessageBox.Show("Error while importing file!");
+                }
+
             }
         }
 

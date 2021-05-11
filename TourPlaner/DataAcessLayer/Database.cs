@@ -212,9 +212,6 @@ namespace TourPlaner.DataAcessLayer
                     req_obj.route.distance = Math.Round(req_obj.route.distance * 1.60934, 2);
 
 
-                   
-
-
                     /*tourItems.Add(new Tour()
                     {
                         UUID = UUID,
@@ -267,7 +264,7 @@ namespace TourPlaner.DataAcessLayer
                     }
                     else
                     {
-                        throw new Exception("Error: ID already in use!");
+                        return;
                     }
 
                     description = AddTourInfoToDbPrep(UUID, description, from, to, req_obj.route);
@@ -588,6 +585,40 @@ namespace TourPlaner.DataAcessLayer
         public bool MakePdf(Tour current_tour)
         {
             throw new NotImplementedException();
+        }
+
+        public bool Export(List<Tour> current_tours_in_DB)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DoesTourExistInDb(string tour_id)
+        {
+            var con = new NpgsqlConnection(connection_string);
+            con.Open();
+
+            int count_username = 0;
+            var sql_count = "SELECT count (*) from tours where tour_id = @UUID";
+            var cmd = new NpgsqlCommand(sql_count, con);
+            //prepared statments
+            cmd.Parameters.AddWithValue("UUID", tour_id);
+            cmd.Prepare();
+
+            NpgsqlDataReader GetCount = cmd.ExecuteReader(); //curser
+
+            GetCount.Read();
+            count_username = GetCount.GetInt32(0);
+
+            GetCount.Close();
+
+            if(count_username>0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

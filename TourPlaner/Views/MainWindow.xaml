@@ -13,7 +13,8 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}">
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        x:Name="MainWindowView">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -30,9 +31,9 @@
                 <Menu DockPanel.Dock="Top" Style="{StaticResource MaterialDesignMenu}" Background="#25272b">
                     <MenuItem Header="{materialDesign:PackIcon Kind=File}"
                         Style="{StaticResource MaterialDesignMenuItem}" Foreground="Silver">
-                        <MenuItem Header="_Import" />
-                        <MenuItem Header="_Export" />
-                        <MenuItem Header="_Quit" />
+                        <Button Content="Export" Command="{Binding ExportCommand}" Margin="2"/>
+                        <Button Content="Import" Command="{Binding ImportCommand}" Margin="2"/>
+                        <Button Content="Quit" Command="{Binding CloseProgrammCommand}" CommandParameter="{x:Reference Name=MainWindowView}" Margin="2"/>
                     </MenuItem>
                     <MenuItem Header="{materialDesign:PackIcon Kind=Edit}"
                         Style="{StaticResource MaterialDesignMenuItem}" Foreground="Silver">

@@ -104,5 +104,64 @@ namespace TourPlaner.BusinessLayer
         {
             return tourItemFileSystem.MakePdf(current_tour);
         }
+
+        public bool Export()
+        {
+            List<Tour> current_tours_in_DB = new List<Tour>();
+            current_tours_in_DB = tourItemDatabase.GetTours();
+            foreach (Tour t in current_tours_in_DB)
+            {
+                t.LogItems = tourItemDatabase.GetTourLogs(t.UUID);
+            }
+            return tourItemFileSystem.Export(current_tours_in_DB);
+        }
+
+        public bool Import(string file_name)
+        {
+            //Die liste an tours von dem json file deserializen
+            List<Tour> tours_from_json = new List<Tour>();
+            string json_path = file_name;
+            string json = File.ReadAllText(json_path);
+            tours_from_json = JsonConvert.DeserializeObject<List<Tour>>(json);
+
+            string image_path = string.Empty;
+            try
+            {
+                foreach (Tour t in tours_from_json)
+                {
+                    //überprüfen ob die tour schon in der Datenbank exisitert
+                    if (!tourItemDatabase.DoesTourExistInDb(t.UUID))
+                    {
+                        //Request schicken um Foto zu bekommen.
+                        image_path = tourItemFileSystem.SaveImage(t.From, t.To);
+                        //image path in externe txt datei speichern für das spätere löschen
+                        tourItemFileSystem.SaveImagePath(image_path);
+
+                        //tour in die Datenbankeinfügen
+                        if (!tourItemDatabase.AddTour(t.UUID, t.Name, t.From, t.To, image_path, t.Description, t.Route_Type))
+                        {
+                            return false;
+                        }
+
+                        //logs in die db einfügen
+                        foreach (Log l in t.LogItems)
+                        {
+                            if (!tourItemDatabase.AddLog(t, l.Date_Time, l.Distance, l.TotalTime, l.Report, l.Rating, l.AvarageSpeed, l.Comment, l.Problems, l.TransportModus, l.Recomended))
+                            {
+                                return false;
+                            }
+
+                        }
+
+                    }
+                }
+                return true;
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
+           
+        }
     }
 }

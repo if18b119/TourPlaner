@@ -22,10 +22,11 @@ namespace TourPlaner.DataAcessLayer
         public string delete_path;
         public string key;
         public string to_pdf;
+        public string export_path;
         private ConfigFile config_file;
         public FileSystem()
         {
-            
+            //here we get the important information from the config file that we need in our filesystem
             string json_path = "C:\\Users\\titto\\Desktop\\Studium\\4.Semester\\Swe2\\TourPlaner\\TourPlaner\\config_file.json";
             string json = File.ReadAllText(json_path);
             this.config_file = JsonConvert.DeserializeObject<ConfigFile>(json);
@@ -33,6 +34,7 @@ namespace TourPlaner.DataAcessLayer
             this.delete_path = config_file.ToDeletePath.Path;
             this.key = config_file.RequestKey.Key;
             this.to_pdf = config_file.GeneratePdf.Path;
+            this.export_path = config_file.ExportTours.Path;
         }
         public void AddTourAsync(String UUID, string name,string from, string to, string pic_path, string description, string route_Type)
         {
@@ -272,6 +274,33 @@ namespace TourPlaner.DataAcessLayer
             {
                 return false;
             }
+        }
+
+        public bool Export(List<Tour> current_tours_in_DB)
+        {
+            try
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.NullValueHandling = NullValueHandling.Ignore;
+                String UUID = Guid.NewGuid().ToString();
+                using (StreamWriter sw = new StreamWriter(export_path + "export_" + UUID + ".json"))
+                using (JsonWriter writer = new JsonTextWriter(sw))
+                {
+
+                    serializer.Serialize(writer, current_tours_in_DB);
+                }
+                return true;
+            }
+            catch(Exception e )
+            {
+                return false;
+            }
+           
+        }
+
+        public bool DoesTourExistInDb(string tour_id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

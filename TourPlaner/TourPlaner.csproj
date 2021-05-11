@@ -115,6 +115,7 @@
     <Compile Include="Models\Config\ConfigFile.cs" />
     <Compile Include="Models\Config\DBConfig.cs" />
     <Compile Include="Models\Config\DeleteConfig.cs" />
+    <Compile Include="Models\Config\ExportFiles.cs" />
     <Compile Include="Models\Config\ImageConfig.cs" />
     <Compile Include="Models\Config\LogToPdf.cs" />
     <Compile Include="Models\JsonObjects\ImageToBeDeleted.cs" />

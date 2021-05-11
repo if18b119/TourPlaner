@@ -14,7 +14,7 @@ namespace TourPlaner.Models
         public ReqKeyConfig RequestKey { get; set; }
         public DeleteConfig ToDeletePath { get; set; }
         public LogToPdf GeneratePdf { get; set; }
-
+        public ExportFiles ExportTours { get; set; }
 
     }
 }

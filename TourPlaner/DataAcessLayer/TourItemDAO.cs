@@ -87,5 +87,14 @@ namespace TourPlaner.DataAcessLayer
         {
             return accesType.MakePdf(current_tour);
         }
+
+        public bool Export(List<Tour> current_tours_in_DB)
+        {
+            return accesType.Export(current_tours_in_DB);
+        }
+        public bool DoesTourExistInDb(string tour_id)
+        {
+            return accesType.DoesTourExistInDb(tour_id);
+        }
     }
 }
