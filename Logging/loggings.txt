@@ -1,0 +1,8 @@
+
+20:50:26,102 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "god please help me"],"successfully":{1}}
+20:50:35,716 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"logAdded":[Tour: "pleaseGod"],"successfully":{1}}
+20:50:43,288 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"logDeleted":[Tour: "pleaseGod"],"successfully":{1}}
+20:50:52,412 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourCopied":[Tour: "pleaseGod"],"successfully":{1}}
+20:50:56,155 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourCopied":[Tour: "pleaseGod Copy"],"successfully":{1}}
+20:50:59,078 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "pleaseGod Copy"],"successfully":{1}}
+20:51:11,800 [TourPlaner.ViewModels.AddTourViewModel] INFO-{"tourAdded":[Name: "Test1"],"successfully":{1}}

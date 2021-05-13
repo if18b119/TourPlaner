@@ -12,6 +12,9 @@ namespace TourPlaner.BusinessLayer
 {
     internal class TourItemFactoryImpl : ITourItemFactory
     {
+        //Logging -Instanz
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private TourItemDAO tourItemDatabase;
         private TourItemDAO tourItemFileSystem;
@@ -118,27 +121,38 @@ namespace TourPlaner.BusinessLayer
 
         public bool Paste(Tour to_copy)
         {
-            string pic_path = tourItemFileSystem.SaveImage(to_copy.From, to_copy.To);
-
-            //Um sie vom originalen zu unterscheiden.
-            to_copy.UUID += "-Copy";
-            to_copy.Name += " Copy";
-
-            //Dadurch dass beim adden einer tour auf die id geprüft werden kann nicht eine tour mehrmals kopiert werden, aber die kopie kann geupdatet werden
-            //wenn man versucht eine bereits kopierte tour zu kopieren, wobei die tour neue daten enthält (logs);
-            tourItemDatabase.AddTour(to_copy.UUID, to_copy.Name, to_copy.From, to_copy.To, pic_path, to_copy.Description, to_copy.Route_Type);
-
-            //für die logs
-            foreach(Log l in to_copy.LogItems)
+            try
             {
-                tourItemDatabase.AddLog(to_copy, l.Date_Time, l.Distance, l.TotalTime, l.Report, l.Rating, l.AvarageSpeed, l.Comment, l.Problems, l.TransportModus, l.Recomended);
-            }
+                string pic_path = tourItemFileSystem.SaveImage(to_copy.From, to_copy.To);
 
-            return true;
+                //Um sie vom originalen zu unterscheiden.
+                to_copy.UUID += "-Copy";
+                to_copy.Name += " Copy";
+
+                //Dadurch dass beim adden einer tour auf die id geprüft werden kann nicht eine tour mehrmals kopiert werden, aber die kopie kann geupdatet werden
+                //wenn man versucht eine bereits kopierte tour zu kopieren, wobei die tour neue daten enthält (logs);
+                tourItemDatabase.AddTour(to_copy.UUID, to_copy.Name, to_copy.From, to_copy.To, pic_path, to_copy.Description, to_copy.Route_Type);
+
+                //für die logs
+                foreach (Log l in to_copy.LogItems)
+                {
+                    tourItemDatabase.AddLog(to_copy, l.Date_Time, l.Distance, l.TotalTime, l.Report, l.Rating, l.AvarageSpeed, l.Comment, l.Problems, l.TransportModus, l.Recomended);
+                }
+
+                return true;
+            }
+            catch(Exception e)
+            {
+                string exception = "{\"errorMessages\":[\"" + e.Message.ToString() + "\"],\"errors\":{}}";
+                log.Error(exception, e);
+                return false;
+            }
+            
         }
 
         public bool Import(string file_name)
         {
+         
             //Die liste an tours von dem json file deserializen
             List<Tour> tours_from_json = new List<Tour>();
             string json_path = file_name;
@@ -184,6 +198,8 @@ namespace TourPlaner.BusinessLayer
             }
             catch(Exception e)
             {
+                string exception = "{\"errorMessages\":[\"" + e.Message.ToString() + "\"],\"errors\":{}}";
+                log.Error(exception, e);
                 return false;
             }
            

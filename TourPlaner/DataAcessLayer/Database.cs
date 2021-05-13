@@ -15,6 +15,10 @@ namespace TourPlaner.DataAcessLayer
 {
     class Database : IDataAcess
     {
+        //Logging -Instanz
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private string connection_string;
 
         private ConfigFile config_file;
@@ -85,8 +89,8 @@ namespace TourPlaner.DataAcessLayer
             }
             catch (Exception e)
             {
-                Console.WriteLine("\nException Caught!");
-                Console.WriteLine("Message :{0} ", e.Message);
+                string exception = "{\"errorMessages\":[\"" + e.Message.ToString() + "\"],\"errors\":{}}";
+                log.Error(exception, e);
                 return false;
             }                  
         }
@@ -168,8 +172,8 @@ namespace TourPlaner.DataAcessLayer
             }
             catch (Exception e)
             {
-                Console.WriteLine("\nException Caught!");
-                Console.WriteLine("Message :{0} ", e.Message);
+                string exception = "{\"errorMessages\":[\"" + e.Message.ToString() + "\"],\"errors\":{}}";
+                log.Error(exception, e);
                 return false;
             }
 
@@ -279,8 +283,8 @@ namespace TourPlaner.DataAcessLayer
             }
             catch (HttpRequestException e)
             {
-                Console.WriteLine("\nException Caught!");
-                Console.WriteLine("Message :{0} ", e.Message);
+                string exception = "{\"errorMessages\":[\"" + e.Message.ToString() + "\"],\"errors\":{}}";
+                log.Error(exception, e);
             };
                       
         }
@@ -297,20 +301,29 @@ namespace TourPlaner.DataAcessLayer
 
         public bool DeleteTour(string UUID)
         {
-            tourItems.RemoveAt(tourItems.FindIndex(a => a.UUID == UUID));
+            try
+            {
+                tourItems.RemoveAt(tourItems.FindIndex(a => a.UUID == UUID));
 
-            NpgsqlConnection conn = new NpgsqlConnection(connection_string);
-            conn.Open();
+                NpgsqlConnection conn = new NpgsqlConnection(connection_string);
+                conn.Open();
 
-            string strdelete = "Delete from tours where tour_id = @tour_id";
-            NpgsqlCommand sqldelete = new NpgsqlCommand(strdelete, conn);
+                string strdelete = "Delete from tours where tour_id = @tour_id";
+                NpgsqlCommand sqldelete = new NpgsqlCommand(strdelete, conn);
 
-            sqldelete.Parameters.AddWithValue("tour_id", UUID);
-            sqldelete.Prepare();
-            sqldelete.ExecuteNonQuery();
+                sqldelete.Parameters.AddWithValue("tour_id", UUID);
+                sqldelete.Prepare();
+                sqldelete.ExecuteNonQuery();
 
-            conn.Close();
-            return true;
+                conn.Close();
+                return true;
+            }
+            catch(Exception e)
+            {
+                string exception = "{\"errorMessages\":[\"" + e.Message.ToString() + "\"],\"errors\":{}}";
+                log.Error(exception, e);
+                return false;
+            }
         }
 
         public List<Tour> GetTours()
@@ -406,116 +419,125 @@ namespace TourPlaner.DataAcessLayer
 
         public bool UpdateLogValue(string tour_id, string log_id, string to_update_column,string new_value)
         {
-            NpgsqlConnection conn = new NpgsqlConnection(connection_string);
-            conn.Open();
-            string updatelogs;
-            switch (to_update_column)
+            try
             {
-                case "b0":
-                    updatelogs = "Update logs set date_time = @new_value where (log_id = @logid and fk_tour_id = @tour_id);";
-                    NpgsqlCommand sqlupdate = new NpgsqlCommand(updatelogs, conn);
-                    sqlupdate.Parameters.AddWithValue("new_value", new_value);
-                    sqlupdate.Parameters.AddWithValue("logid", log_id);
-                    sqlupdate.Parameters.AddWithValue("tour_id", tour_id);
-                    sqlupdate.Prepare();
-                    sqlupdate.ExecuteNonQuery();
-                    conn.Close();
-                    return true;
-                case "b1":
-                    updatelogs = "Update logs set distance = @new_value where (log_id = @logid and fk_tour_id = @tour_id);";
-                    NpgsqlCommand sqlupdate2 = new NpgsqlCommand(updatelogs, conn);
-                    sqlupdate2.Parameters.AddWithValue("new_value", new_value);
-                    sqlupdate2.Parameters.AddWithValue("logid", log_id);
-                    sqlupdate2.Parameters.AddWithValue("tour_id", tour_id);
-                    sqlupdate2.Prepare();
-                    sqlupdate2.ExecuteNonQuery();
-                    conn.Close();
-                    return true;
-                case "b2":
-                    updatelogs = "Update logs set total_time = @new_value where (log_id = @logid and fk_tour_id = @tour_id);";
-                    NpgsqlCommand sqlupdate3 = new NpgsqlCommand(updatelogs, conn);
-                    sqlupdate3.Parameters.AddWithValue("new_value", new_value);
-                    sqlupdate3.Parameters.AddWithValue("logid", log_id);
-                    sqlupdate3.Parameters.AddWithValue("tour_id", tour_id);
-                    sqlupdate3.Prepare();
-                    sqlupdate3.ExecuteNonQuery();
-                    conn.Close();
-                    return true;
-                case "b3":
-                    updatelogs = "Update logs set report = @new_value where (log_id = @logid and fk_tour_id = @tour_id);";
-                    NpgsqlCommand sqlupdate4 = new NpgsqlCommand(updatelogs, conn);
-                    sqlupdate4.Parameters.AddWithValue("new_value", new_value);
-                    sqlupdate4.Parameters.AddWithValue("logid", log_id);
-                    sqlupdate4.Parameters.AddWithValue("tour_id", tour_id);
-                    sqlupdate4.Prepare();
-                    sqlupdate4.ExecuteNonQuery();
-                    conn.Close();
-                    return true;
-                case "b4":
-                    updatelogs = "Update logs set rating = @new_value where (log_id = @logid and fk_tour_id = @tour_id);";
-                    NpgsqlCommand sqlupdate5 = new NpgsqlCommand(updatelogs, conn);
-                    sqlupdate5.Parameters.AddWithValue("new_value", new_value);
-                    sqlupdate5.Parameters.AddWithValue("logid", log_id);
-                    sqlupdate5.Parameters.AddWithValue("tour_id", tour_id);
-                    sqlupdate5.Prepare();
-                    sqlupdate5.ExecuteNonQuery();
-                    conn.Close();
-                    return true;
-                case "b5":
-                    updatelogs = "Update logs set avarage_speed = @new_value where (log_id = @logid and fk_tour_id = @tour_id);";
-                    NpgsqlCommand sqlupdate6 = new NpgsqlCommand(updatelogs, conn);
-                    sqlupdate6.Parameters.AddWithValue("new_value", new_value);
-                    sqlupdate6.Parameters.AddWithValue("logid", log_id);
-                    sqlupdate6.Parameters.AddWithValue("tour_id", tour_id);
-                    sqlupdate6.Prepare();
-                    sqlupdate6.ExecuteNonQuery();
-                    conn.Close();
-                    return true;
-                case "b6":
-                    updatelogs = "Update logs set comment = @new_value where (log_id = @logid and fk_tour_id = @tour_id);";
-                    NpgsqlCommand sqlupdate7 = new NpgsqlCommand(updatelogs, conn);
-                    sqlupdate7.Parameters.AddWithValue("new_value", new_value);
-                    sqlupdate7.Parameters.AddWithValue("logid", log_id);
-                    sqlupdate7.Parameters.AddWithValue("tour_id", tour_id);
-                    sqlupdate7.Prepare();
-                    sqlupdate7.ExecuteNonQuery();
-                    conn.Close();
-                    return true;
-                case "b7":
-                    updatelogs = "Update logs set problems = @new_value where (log_id = @logid and fk_tour_id = @tour_id);";
-                    NpgsqlCommand sqlupdate8 = new NpgsqlCommand(updatelogs, conn);
-                    sqlupdate8.Parameters.AddWithValue("new_value", new_value);
-                    sqlupdate8.Parameters.AddWithValue("logid", log_id);
-                    sqlupdate8.Parameters.AddWithValue("tour_id", tour_id);
-                    sqlupdate8.Prepare();
-                    sqlupdate8.ExecuteNonQuery();
-                    conn.Close();
-                    return true;
-                case "b8":
-                    updatelogs = "Update logs set transport_modus = @new_value where (log_id = @logid and fk_tour_id = @tour_id);";
-                    NpgsqlCommand sqlupdate9 = new NpgsqlCommand(updatelogs, conn);
-                    sqlupdate9.Parameters.AddWithValue("new_value", new_value);
-                    sqlupdate9.Parameters.AddWithValue("logid", log_id);
-                    sqlupdate9.Parameters.AddWithValue("tour_id", tour_id);
-                    sqlupdate9.Prepare();
-                    sqlupdate9.ExecuteNonQuery();
-                    conn.Close();
-                    return true;
-                case "b9":
-                    updatelogs = "Update logs set recomended = @new_value where (log_id = @logid and fk_tour_id = @tour_id);";
-                    NpgsqlCommand sqlupdate10 = new NpgsqlCommand(updatelogs, conn);
-                    sqlupdate10.Parameters.AddWithValue("new_value", new_value);
-                    sqlupdate10.Parameters.AddWithValue("logid", log_id);
-                    sqlupdate10.Parameters.AddWithValue("tour_id", tour_id);
-                    sqlupdate10.Prepare();
-                    sqlupdate10.ExecuteNonQuery();
-                    conn.Close();
-                    return true;
-                    
-                default:
-                    conn.Close();
-                    return false;
+                NpgsqlConnection conn = new NpgsqlConnection(connection_string);
+                conn.Open();
+                string updatelogs;
+                switch (to_update_column)
+                {
+                    case "b0":
+                        updatelogs = "Update logs set date_time = @new_value where (log_id = @logid and fk_tour_id = @tour_id);";
+                        NpgsqlCommand sqlupdate = new NpgsqlCommand(updatelogs, conn);
+                        sqlupdate.Parameters.AddWithValue("new_value", new_value);
+                        sqlupdate.Parameters.AddWithValue("logid", log_id);
+                        sqlupdate.Parameters.AddWithValue("tour_id", tour_id);
+                        sqlupdate.Prepare();
+                        sqlupdate.ExecuteNonQuery();
+                        conn.Close();
+                        return true;
+                    case "b1":
+                        updatelogs = "Update logs set distance = @new_value where (log_id = @logid and fk_tour_id = @tour_id);";
+                        NpgsqlCommand sqlupdate2 = new NpgsqlCommand(updatelogs, conn);
+                        sqlupdate2.Parameters.AddWithValue("new_value", new_value);
+                        sqlupdate2.Parameters.AddWithValue("logid", log_id);
+                        sqlupdate2.Parameters.AddWithValue("tour_id", tour_id);
+                        sqlupdate2.Prepare();
+                        sqlupdate2.ExecuteNonQuery();
+                        conn.Close();
+                        return true;
+                    case "b2":
+                        updatelogs = "Update logs set total_time = @new_value where (log_id = @logid and fk_tour_id = @tour_id);";
+                        NpgsqlCommand sqlupdate3 = new NpgsqlCommand(updatelogs, conn);
+                        sqlupdate3.Parameters.AddWithValue("new_value", new_value);
+                        sqlupdate3.Parameters.AddWithValue("logid", log_id);
+                        sqlupdate3.Parameters.AddWithValue("tour_id", tour_id);
+                        sqlupdate3.Prepare();
+                        sqlupdate3.ExecuteNonQuery();
+                        conn.Close();
+                        return true;
+                    case "b3":
+                        updatelogs = "Update logs set report = @new_value where (log_id = @logid and fk_tour_id = @tour_id);";
+                        NpgsqlCommand sqlupdate4 = new NpgsqlCommand(updatelogs, conn);
+                        sqlupdate4.Parameters.AddWithValue("new_value", new_value);
+                        sqlupdate4.Parameters.AddWithValue("logid", log_id);
+                        sqlupdate4.Parameters.AddWithValue("tour_id", tour_id);
+                        sqlupdate4.Prepare();
+                        sqlupdate4.ExecuteNonQuery();
+                        conn.Close();
+                        return true;
+                    case "b4":
+                        updatelogs = "Update logs set rating = @new_value where (log_id = @logid and fk_tour_id = @tour_id);";
+                        NpgsqlCommand sqlupdate5 = new NpgsqlCommand(updatelogs, conn);
+                        sqlupdate5.Parameters.AddWithValue("new_value", new_value);
+                        sqlupdate5.Parameters.AddWithValue("logid", log_id);
+                        sqlupdate5.Parameters.AddWithValue("tour_id", tour_id);
+                        sqlupdate5.Prepare();
+                        sqlupdate5.ExecuteNonQuery();
+                        conn.Close();
+                        return true;
+                    case "b5":
+                        updatelogs = "Update logs set avarage_speed = @new_value where (log_id = @logid and fk_tour_id = @tour_id);";
+                        NpgsqlCommand sqlupdate6 = new NpgsqlCommand(updatelogs, conn);
+                        sqlupdate6.Parameters.AddWithValue("new_value", new_value);
+                        sqlupdate6.Parameters.AddWithValue("logid", log_id);
+                        sqlupdate6.Parameters.AddWithValue("tour_id", tour_id);
+                        sqlupdate6.Prepare();
+                        sqlupdate6.ExecuteNonQuery();
+                        conn.Close();
+                        return true;
+                    case "b6":
+                        updatelogs = "Update logs set comment = @new_value where (log_id = @logid and fk_tour_id = @tour_id);";
+                        NpgsqlCommand sqlupdate7 = new NpgsqlCommand(updatelogs, conn);
+                        sqlupdate7.Parameters.AddWithValue("new_value", new_value);
+                        sqlupdate7.Parameters.AddWithValue("logid", log_id);
+                        sqlupdate7.Parameters.AddWithValue("tour_id", tour_id);
+                        sqlupdate7.Prepare();
+                        sqlupdate7.ExecuteNonQuery();
+                        conn.Close();
+                        return true;
+                    case "b7":
+                        updatelogs = "Update logs set problems = @new_value where (log_id = @logid and fk_tour_id = @tour_id);";
+                        NpgsqlCommand sqlupdate8 = new NpgsqlCommand(updatelogs, conn);
+                        sqlupdate8.Parameters.AddWithValue("new_value", new_value);
+                        sqlupdate8.Parameters.AddWithValue("logid", log_id);
+                        sqlupdate8.Parameters.AddWithValue("tour_id", tour_id);
+                        sqlupdate8.Prepare();
+                        sqlupdate8.ExecuteNonQuery();
+                        conn.Close();
+                        return true;
+                    case "b8":
+                        updatelogs = "Update logs set transport_modus = @new_value where (log_id = @logid and fk_tour_id = @tour_id);";
+                        NpgsqlCommand sqlupdate9 = new NpgsqlCommand(updatelogs, conn);
+                        sqlupdate9.Parameters.AddWithValue("new_value", new_value);
+                        sqlupdate9.Parameters.AddWithValue("logid", log_id);
+                        sqlupdate9.Parameters.AddWithValue("tour_id", tour_id);
+                        sqlupdate9.Prepare();
+                        sqlupdate9.ExecuteNonQuery();
+                        conn.Close();
+                        return true;
+                    case "b9":
+                        updatelogs = "Update logs set recomended = @new_value where (log_id = @logid and fk_tour_id = @tour_id);";
+                        NpgsqlCommand sqlupdate10 = new NpgsqlCommand(updatelogs, conn);
+                        sqlupdate10.Parameters.AddWithValue("new_value", new_value);
+                        sqlupdate10.Parameters.AddWithValue("logid", log_id);
+                        sqlupdate10.Parameters.AddWithValue("tour_id", tour_id);
+                        sqlupdate10.Prepare();
+                        sqlupdate10.ExecuteNonQuery();
+                        conn.Close();
+                        return true;
 
+                    default:
+                        conn.Close();
+                        return false;
+                }
+           
+
+            }
+            catch(Exception e)
+            {
+
+                return false;
             }
         }
 
@@ -576,7 +598,8 @@ namespace TourPlaner.DataAcessLayer
             }
             catch(Exception e)
             {
-
+                string exception = "{\"errorMessages\":[\"" + e.Message.ToString() + "\"],\"errors\":{}}";
+                log.Error(exception, e);
                 return false;
             }
            
@@ -594,31 +617,41 @@ namespace TourPlaner.DataAcessLayer
 
         public bool DoesTourExistInDb(string tour_id)
         {
-            var con = new NpgsqlConnection(connection_string);
-            con.Open();
-
-            int count_username = 0;
-            var sql_count = "SELECT count (*) from tours where tour_id = @UUID";
-            var cmd = new NpgsqlCommand(sql_count, con);
-            //prepared statments
-            cmd.Parameters.AddWithValue("UUID", tour_id);
-            cmd.Prepare();
-
-            NpgsqlDataReader GetCount = cmd.ExecuteReader(); //curser
-
-            GetCount.Read();
-            count_username = GetCount.GetInt32(0);
-
-            GetCount.Close();
-
-            if(count_username>0)
+            try
             {
-                return true;
+                var con = new NpgsqlConnection(connection_string);
+                con.Open();
+
+                int count_username = 0;
+                var sql_count = "SELECT count (*) from tours where tour_id = @UUID";
+                var cmd = new NpgsqlCommand(sql_count, con);
+                //prepared statments
+                cmd.Parameters.AddWithValue("UUID", tour_id);
+                cmd.Prepare();
+
+                NpgsqlDataReader GetCount = cmd.ExecuteReader(); //curser
+
+                GetCount.Read();
+                count_username = GetCount.GetInt32(0);
+
+                GetCount.Close();
+
+                if (count_username > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (Exception e)
             {
+                string exception = "{\"errorMessages\":[\"" + e.Message.ToString() + "\"],\"errors\":{}}";
+                log.Error(exception, e);
                 return false;
             }
+           
         }
 
        

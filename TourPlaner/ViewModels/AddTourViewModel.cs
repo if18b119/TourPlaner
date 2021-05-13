@@ -19,6 +19,10 @@ namespace TourPlaner.ViewModels
         private string description;
         private string route_type;
 
+        //Logging -Instanz
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public ObservableCollection<TourType> list_of_tourtypes { get; private set; }
 
         public ITourItemFactory itemFactory;
@@ -62,7 +66,8 @@ namespace TourPlaner.ViewModels
         private void CloseAdded(object param)
         {
             IsAddedVisible = false;
-            Window tmp = (Window)param;
+            Window tmp = (Window)param;          
+
             tmp.Close();
         }
 
@@ -242,15 +247,18 @@ namespace TourPlaner.ViewModels
 
                 itemFactory.AddTour(UUID, NewTourName, From, To, Description, RouteType);
 
+                string _log = "{\"tourAdded\":[Name: \"" + NewTourName + "\"],\"successfully\":{1}}";
+                log.Info(_log);
 
                 //die felder leeren
                 NewTourName = string.Empty;
                 From = string.Empty;
                 To = string.Empty;
                 Description = string.Empty;
-
                 OpenAdded(obj);
-                //schließen des Fensters
+
+
+                
             }
 
 

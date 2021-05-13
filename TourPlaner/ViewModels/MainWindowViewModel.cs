@@ -15,6 +15,10 @@ namespace TourPlaner.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        //Logging -Instanz
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private string search_name;
 
         private Tour to_copy_tour;
@@ -201,6 +205,8 @@ namespace TourPlaner.ViewModels
             else
             {
                 ToCopyTour = CurrentTour;
+                string _log = "{\"tourCopied\":[Tour: \"" + CurrentTour.Name + "\"],\"successfully\":{1}}";
+                log.Info(_log);
             }
         }
 
@@ -214,6 +220,10 @@ namespace TourPlaner.ViewModels
             else
             {
                 itemFactory.Paste(ToCopyTour);
+
+                string _log = "{\"tourPasted\":[Tour: \"" + ToCopyTour.Name + "\"],\"successfully\":{1}}";
+                log.Info(_log);
+
                 //Damit es im Kopie speicher alles geleert wird
                 ToCopyTour = null;
 
@@ -227,11 +237,15 @@ namespace TourPlaner.ViewModels
             if(currentLog != null && currentTour != null)
             {
                 itemFactory.DeleteLog(currentTour.UUID, currentLog.UUID);
+                string _log = "{\"logDeleted\":[Tour: \"" + CurrentTour.Name + "\"],\"successfully\":{1}}";
+                log.Info(_log);
+
                 if (currentTour != null)
                 {
                     currentTour.LogItems = itemFactory.GetTourLogs(currentTour.UUID);
                     Logs = currentTour.LogItems;
                 }
+      
                 OpenDelete(obj);
             }
         }
@@ -331,6 +345,9 @@ namespace TourPlaner.ViewModels
                 bool? dialogResult = addLogView.ShowDialog();
                 if (!(bool)dialogResult)
                 {
+                    string _log = "{\"logAdded\":[Tour: \"" + CurrentTour.Name + "\"],\"successfully\":{1}}";
+                    log.Info(_log);
+
                     tours.Clear();
                     RefreshingListItems();
                   
@@ -367,9 +384,18 @@ namespace TourPlaner.ViewModels
             if (currentTour == null)
                 return;
 
+
             itemFactory.SavePathAndDeleteTour(currentTour);
+
+            string _log = "{\"tourDeleted\":[Name: \"" + CurrentTour.Name + "\"],\"successfully\":{1}}";
+            log.Info(_log);
+
+
             tours.Clear();
             RefreshingListItems();
+
+            
+
             OpenDelete(obj);
         }
 
