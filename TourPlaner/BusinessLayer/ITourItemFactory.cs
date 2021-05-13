@@ -25,7 +25,7 @@ namespace TourPlaner.BusinessLayer
         public bool UpdateLogValue(string tour_id, string log_id, string to_update_column, string new_value);
         public bool AddLog(Tour current_tour, string date_Time, string distance, string totalTime, string report, string rating, string avarage_speed, string comment, string problems, string transport_modus, string recomended);
         public bool Import(string file_name);
-
+        public bool Paste(Tour to_copy);
 
     }
 }

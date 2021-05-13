@@ -302,5 +302,6 @@ namespace TourPlaner.DataAcessLayer
         {
             throw new NotImplementedException();
         }
+
     }
 }

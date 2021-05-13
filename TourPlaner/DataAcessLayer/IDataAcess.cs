@@ -24,6 +24,5 @@ namespace TourPlaner.DataAcessLayer
         public bool MakePdf(Tour current_tour);
         public bool Export(List <Tour> current_tours_in_DB);
         public bool DoesTourExistInDb(string tour_id);
-
     }
 }

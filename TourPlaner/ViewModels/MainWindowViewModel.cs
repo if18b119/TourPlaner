@@ -17,6 +17,8 @@ namespace TourPlaner.ViewModels
     {
         private string search_name;
 
+        private Tour to_copy_tour;
+
         public ITourItemFactory itemFactory;
 
         public AddTourViewModel addTourViewModel;
@@ -68,6 +70,14 @@ namespace TourPlaner.ViewModels
 
         private RelayCommand close;
         public ICommand CloseProgrammCommand => close ??= new RelayCommand(CloseProgramm);
+
+
+        private RelayCommand copy;
+        public ICommand CopyCommand => copy ??= new RelayCommand(Copy);
+
+
+        private RelayCommand paste;
+        public ICommand PasteCommand => paste ??= new RelayCommand(Paste);
 
 
         //Pop Up Deleted Successfully 
@@ -172,6 +182,7 @@ namespace TourPlaner.ViewModels
         {
             if(currentTour == null || currentTour.LogItems.Count()==0)
             {
+
                 return;
             }
             else
@@ -180,7 +191,36 @@ namespace TourPlaner.ViewModels
                 OpenAddedPdf(obj);
             }
         }
-       
+
+        private void Copy(object obj)
+        {
+            if (currentTour == null)
+            {
+                return;
+            }
+            else
+            {
+                ToCopyTour = CurrentTour;
+            }
+        }
+
+        private void Paste(object obj)
+        {
+            //Wenn es schon eine Kopie ist oder keine Tor zum kopieren ausgewählt wurde
+            if (ToCopyTour == null || ToCopyTour.Name.Contains("Copy"))
+            {
+                return;
+            }
+            else
+            {
+                itemFactory.Paste(ToCopyTour);
+                //Damit es im Kopie speicher alles geleert wird
+                ToCopyTour = null;
+
+                tours.Clear();
+                RefreshingListItems();
+            }
+        }
 
         private void DeleteLog(object obj)
         {
@@ -346,6 +386,23 @@ namespace TourPlaner.ViewModels
                 {
                     tours = value;
                     RaisePropertyChangedEvent(nameof(Tours));
+                }
+            }
+        }
+
+        public Tour ToCopyTour
+        {
+            get
+            {
+
+                return to_copy_tour;
+            }
+            set
+            {
+                if (to_copy_tour != value)
+                {
+                    to_copy_tour = value;
+                    RaisePropertyChangedEvent(nameof(ToCopyTour));
                 }
             }
         }

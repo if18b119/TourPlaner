@@ -116,6 +116,27 @@ namespace TourPlaner.BusinessLayer
             return tourItemFileSystem.Export(current_tours_in_DB);
         }
 
+        public bool Paste(Tour to_copy)
+        {
+            string pic_path = tourItemFileSystem.SaveImage(to_copy.From, to_copy.To);
+
+            //Um sie vom originalen zu unterscheiden.
+            to_copy.UUID += "-Copy";
+            to_copy.Name += " Copy";
+
+            //Dadurch dass beim adden einer tour auf die id geprüft werden kann nicht eine tour mehrmals kopiert werden, aber die kopie kann geupdatet werden
+            //wenn man versucht eine bereits kopierte tour zu kopieren, wobei die tour neue daten enthält (logs);
+            tourItemDatabase.AddTour(to_copy.UUID, to_copy.Name, to_copy.From, to_copy.To, pic_path, to_copy.Description, to_copy.Route_Type);
+
+            //für die logs
+            foreach(Log l in to_copy.LogItems)
+            {
+                tourItemDatabase.AddLog(to_copy, l.Date_Time, l.Distance, l.TotalTime, l.Report, l.Rating, l.AvarageSpeed, l.Comment, l.Problems, l.TransportModus, l.Recomended);
+            }
+
+            return true;
+        }
+
         public bool Import(string file_name)
         {
             //Die liste an tours von dem json file deserializen
@@ -143,15 +164,19 @@ namespace TourPlaner.BusinessLayer
                             return false;
                         }
 
-                        //logs in die db einfügen
-                        foreach (Log l in t.LogItems)
+                        if(t.LogItems != null && t.LogItems.Count != 0)
                         {
-                            if (!tourItemDatabase.AddLog(t, l.Date_Time, l.Distance, l.TotalTime, l.Report, l.Rating, l.AvarageSpeed, l.Comment, l.Problems, l.TransportModus, l.Recomended))
+                            //logs in die db einfügen
+                            foreach (Log l in t.LogItems)
                             {
-                                return false;
-                            }
+                                if (!tourItemDatabase.AddLog(t, l.Date_Time, l.Distance, l.TotalTime, l.Report, l.Rating, l.AvarageSpeed, l.Comment, l.Problems, l.TransportModus, l.Recomended))
+                                {
+                                    return false;
+                                }
 
+                            }
                         }
+                        
 
                     }
                 }

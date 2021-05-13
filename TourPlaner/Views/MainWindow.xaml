@@ -37,9 +37,8 @@
                     </MenuItem>
                     <MenuItem Header="{materialDesign:PackIcon Kind=Edit}"
                         Style="{StaticResource MaterialDesignMenuItem}" Foreground="Silver">
-                        <MenuItem Header="_Cut" />
-                        <MenuItem Header="_Copy" />
-                        <MenuItem Header="_Paste" />
+                        <Button Content="Copy" Command="{Binding CopyCommand}" Margin="2"/>
+                        <Button Content="Paste" Command="{Binding PasteCommand}" Margin="2"/>
                     </MenuItem>
                     <MenuItem Header="{materialDesign:PackIcon Kind=Accessibility}"
                         Style="{StaticResource MaterialDesignMenuItem}" Foreground="Silver">
