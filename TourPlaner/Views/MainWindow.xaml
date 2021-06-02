@@ -142,11 +142,7 @@
                         x:Name="listTours" 
                         ItemsSource="{Binding Tours}"
                         SelectedItem="{Binding CurrentTour}"
-                        DisplayMemberPath="Name" Grid.ColumnSpan="2"                       
-                    >
-                       
-                    </ListBox>
-
+                        DisplayMemberPath="Name" Grid.ColumnSpan="2"/>
                 </Grid>
 
             </Grid>

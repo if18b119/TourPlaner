@@ -27,6 +27,7 @@ namespace TourPlaner.ViewModels
 
         public AddTourViewModel addTourViewModel;
         public AddLogViewModel addLogViewModel;
+        public ImportViewModel importViewModel;
         public EditLogsViewModel editLogViewModel;
 
         //die ObservableCollection nimmt dann die liste die von dem DataAccessLayer über den businessLayer geht
@@ -268,25 +269,17 @@ namespace TourPlaner.ViewModels
 
         private void Import(object obj)
         {
-            // Create OpenFileDialog
-            Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
+            ImportView importView = new ImportView();
+            importView.DataContext = importViewModel;
 
-            // Launch OpenFileDialog by calling ShowDialog method
-            Nullable<bool> result = openFileDlg.ShowDialog();
-            // Get the selected file name and display in a TextBox.
-            // Load content of file in a TextBlock
-            if (result == true)
+
+            bool? dialogResult = importView.ShowDialog();
+            if (!(bool)dialogResult)
             {
-                if (itemFactory.Import(openFileDlg.FileName))
-                {
-                    tours.Clear();
-                    RefreshingListItems();
-                    MessageBox.Show("File imported successfuly!");
-                }
-                else
-                {
-                    MessageBox.Show("Error while importing file!");
-                }
+                tours.Clear();
+                RefreshingListItems();
+                
+
 
             }
         }
@@ -510,7 +503,9 @@ namespace TourPlaner.ViewModels
             addTourViewModel = new AddTourViewModel();
             addLogViewModel = new AddLogViewModel();
             editLogViewModel = new EditLogsViewModel();
+            importViewModel = new ImportViewModel();
             itemFactory = TourItemFactory.GetInstance();
+
             ReadListBox();
 
         }

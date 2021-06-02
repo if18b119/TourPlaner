@@ -6,3 +6,92 @@
 20:50:56,155 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourCopied":[Tour: "pleaseGod Copy"],"successfully":{1}}
 20:50:59,078 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "pleaseGod Copy"],"successfully":{1}}
 20:51:11,800 [TourPlaner.ViewModels.AddTourViewModel] INFO-{"tourAdded":[Name: "Test1"],"successfully":{1}}
+17:41:26,702 [TourPlaner.ViewModels.ImportViewModel] INFO-{"File Import ","successfully":{1}}
+17:48:50,836 [TourPlaner.ViewModels.ImportViewModel] INFO-{"File Import ","successfully":{1}}
+17:49:01,099 [TourPlaner.ViewModels.ImportViewModel] INFO-{"File Import ","successfully":{1}}
+18:05:56,125 [TourPlaner.ViewModels.AddTourViewModel] INFO-{"tourAdded":[Name: "Import99"],"successfully":{1}}
+18:06:28,688 [TourPlaner.ViewModels.ImportViewModel] INFO-{"File Import ","successfully":{1}}
+18:06:45,567 [TourPlaner.ViewModels.ImportViewModel] INFO-{"File Import ","successfully":{1}}
+19:41:50,115 [TourPlaner.ViewModels.ImportViewModel] INFO-{"File Import ","successfully":{1}}
+19:42:02,454 [TourPlaner.ViewModels.ImportViewModel] INFO-{"File Import ","successfully":{1}}
+19:43:15,634 [TourPlaner.ViewModels.AddTourViewModel] INFO-{"tourAdded":[Name: "tour3"],"successfully":{1}}
+19:43:32,782 [TourPlaner.ViewModels.ImportViewModel] INFO-{"File Import ","successfully":{1}}
+19:43:39,161 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "Tour2"],"successfully":{1}}
+19:43:40,438 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "Tour1"],"successfully":{1}}
+19:43:52,155 [TourPlaner.ViewModels.ImportViewModel] INFO-{"File Import ","successfully":{1}}
+20:55:34,150 [TourPlaner.ViewModels.AddTourViewModel] INFO-{"tourAdded":[Name: "asdasd"],"successfully":{1}}
+20:55:38,788 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "asdasd"],"successfully":{1}}
+21:27:37,221 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"logAdded":[Tour: "Tour2"],"successfully":{1}}
+21:31:50,071 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"logAdded":[Tour: "Tour2"],"successfully":{1}}
+22:04:50,589 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"logAdded":[Tour: "Tour2"],"successfully":{1}}
+22:07:34,764 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"logAdded":[Tour: "Tour2"],"successfully":{1}}
+22:10:51,736 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"logAdded":[Tour: "Tour2"],"successfully":{1}}
+22:16:26,992 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"logAdded":[Tour: "Tour2"],"successfully":{1}}
+22:39:07,597 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"logAdded":[Tour: "Tour2"],"successfully":{1}}
+22:41:33,651 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"logAdded":[Tour: "Tour2"],"successfully":{1}}
+22:43:39,221 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"logAdded":[Tour: "Tour2"],"successfully":{1}}
+23:08:14,742 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourCopied":[Tour: "Tour2"],"successfully":{1}}
+23:08:19,367 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourPasted":[Tour: "Tour2 Copy"],"successfully":{1}}
+23:08:25,039 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourCopied":[Tour: "Tour2"],"successfully":{1}}
+23:08:28,382 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourPasted":[Tour: "Tour2 Copy"],"successfully":{1}}
+23:30:51,531 [TourPlaner.BusinessLayer.TourItemFactoryImpl] ERROR-{"errorMessages":["Die Sammlung wurde geändert. Der Enumerationsvorgang kann möglicherweise nicht ausgeführt werden."],"errors":{}}
+System.InvalidOperationException: Die Sammlung wurde geändert. Der Enumerationsvorgang kann möglicherweise nicht ausgeführt werden.
+   bei System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   bei System.Collections.Generic.List`1.Enumerator.MoveNextRare()
+   bei System.Collections.Generic.List`1.Enumerator.MoveNext()
+   bei TourPlaner.BusinessLayer.TourItemFactoryImpl.ImportAndDelete(String file_name) in C:\Users\titto\Desktop\Studium\4.Semester\Swe2\TourPlaner\TourPlaner\BusinessLayer\TourItemFactoryImpl.cs:Zeile 220.
+23:33:29,833 [TourPlaner.BusinessLayer.TourItemFactoryImpl] ERROR-{"errorMessages":["Die Sammlung wurde geändert. Der Enumerationsvorgang kann möglicherweise nicht ausgeführt werden."],"errors":{}}
+System.InvalidOperationException: Die Sammlung wurde geändert. Der Enumerationsvorgang kann möglicherweise nicht ausgeführt werden.
+   bei System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   bei System.Collections.Generic.List`1.Enumerator.MoveNextRare()
+   bei System.Collections.Generic.List`1.Enumerator.MoveNext()
+   bei TourPlaner.BusinessLayer.TourItemFactoryImpl.ImportAndDelete(String file_name) in C:\Users\titto\Desktop\Studium\4.Semester\Swe2\TourPlaner\TourPlaner\BusinessLayer\TourItemFactoryImpl.cs:Zeile 220.
+23:34:04,464 [TourPlaner.BusinessLayer.TourItemFactoryImpl] ERROR-{"errorMessages":["Die Sammlung wurde geändert. Der Enumerationsvorgang kann möglicherweise nicht ausgeführt werden."],"errors":{}}
+System.InvalidOperationException: Die Sammlung wurde geändert. Der Enumerationsvorgang kann möglicherweise nicht ausgeführt werden.
+   bei System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   bei System.Collections.Generic.List`1.Enumerator.MoveNextRare()
+   bei System.Collections.Generic.List`1.Enumerator.MoveNext()
+   bei TourPlaner.BusinessLayer.TourItemFactoryImpl.ImportAndDelete(String file_name) in C:\Users\titto\Desktop\Studium\4.Semester\Swe2\TourPlaner\TourPlaner\BusinessLayer\TourItemFactoryImpl.cs:Zeile 220.
+23:35:44,317 [TourPlaner.ViewModels.AddTourViewModel] INFO-{"tourAdded":[Name: "TourTemp"],"successfully":{1}}
+23:38:26,017 [TourPlaner.BusinessLayer.TourItemFactoryImpl] ERROR-{"errorMessages":["Die Sammlung wurde geändert. Der Enumerationsvorgang kann möglicherweise nicht ausgeführt werden."],"errors":{}}
+System.InvalidOperationException: Die Sammlung wurde geändert. Der Enumerationsvorgang kann möglicherweise nicht ausgeführt werden.
+   bei System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   bei System.Collections.Generic.List`1.Enumerator.MoveNextRare()
+   bei System.Collections.Generic.List`1.Enumerator.MoveNext()
+   bei TourPlaner.BusinessLayer.TourItemFactoryImpl.ImportAndDelete(String file_name) in C:\Users\titto\Desktop\Studium\4.Semester\Swe2\TourPlaner\TourPlaner\BusinessLayer\TourItemFactoryImpl.cs:Zeile 220.
+23:39:49,021 [TourPlaner.ViewModels.AddTourViewModel] INFO-{"tourAdded":[Name: "tmp1"],"successfully":{1}}
+23:40:05,922 [TourPlaner.ViewModels.AddTourViewModel] INFO-{"tourAdded":[Name: "Tmp2"],"successfully":{1}}
+23:40:15,617 [TourPlaner.BusinessLayer.TourItemFactoryImpl] ERROR-{"errorMessages":["Die Sammlung wurde geändert. Der Enumerationsvorgang kann möglicherweise nicht ausgeführt werden."],"errors":{}}
+System.InvalidOperationException: Die Sammlung wurde geändert. Der Enumerationsvorgang kann möglicherweise nicht ausgeführt werden.
+   bei System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   bei System.Collections.Generic.List`1.Enumerator.MoveNextRare()
+   bei System.Collections.Generic.List`1.Enumerator.MoveNext()
+   bei TourPlaner.BusinessLayer.TourItemFactoryImpl.ImportAndDelete(String file_name) in C:\Users\titto\Desktop\Studium\4.Semester\Swe2\TourPlaner\TourPlaner\BusinessLayer\TourItemFactoryImpl.cs:Zeile 220.
+23:41:12,477 [TourPlaner.ViewModels.AddTourViewModel] INFO-{"tourAdded":[Name: "tmp1"],"successfully":{1}}
+23:42:52,116 [TourPlaner.BusinessLayer.TourItemFactoryImpl] ERROR-{"errorMessages":["Die Sammlung wurde geändert. Der Enumerationsvorgang kann möglicherweise nicht ausgeführt werden."],"errors":{}}
+System.InvalidOperationException: Die Sammlung wurde geändert. Der Enumerationsvorgang kann möglicherweise nicht ausgeführt werden.
+   bei System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   bei System.Collections.Generic.List`1.Enumerator.MoveNextRare()
+   bei System.Collections.Generic.List`1.Enumerator.MoveNext()
+   bei TourPlaner.BusinessLayer.TourItemFactoryImpl.ImportAndDelete(String file_name) in C:\Users\titto\Desktop\Studium\4.Semester\Swe2\TourPlaner\TourPlaner\BusinessLayer\TourItemFactoryImpl.cs:Zeile 220.
+23:47:59,328 [TourPlaner.ViewModels.AddTourViewModel] INFO-{"tourAdded":[Name: "tmp2"],"successfully":{1}}
+23:51:12,080 [TourPlaner.ViewModels.AddTourViewModel] INFO-{"tourAdded":[Name: "tmp3"],"successfully":{1}}
+23:59:12,279 [TourPlaner.ViewModels.AddTourViewModel] INFO-{"tourAdded":[Name: "tmp4"],"successfully":{1}}
+23:59:19,230 [TourPlaner.BusinessLayer.TourItemFactoryImpl] ERROR-{"errorMessages":["Der Index lag außerhalb des Bereichs. Er darf nicht negativ und kleiner als die Sammlung sein.
+Parametername: index"],"errors":{}}
+System.ArgumentOutOfRangeException: Der Index lag außerhalb des Bereichs. Er darf nicht negativ und kleiner als die Sammlung sein.
+Parametername: index
+   bei System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   bei System.Collections.Generic.List`1.get_Item(Int32 index)
+   bei TourPlaner.BusinessLayer.TourItemFactoryImpl.ImportAndDelete(String file_name) in C:\Users\titto\Desktop\Studium\4.Semester\Swe2\TourPlaner\TourPlaner\BusinessLayer\TourItemFactoryImpl.cs:Zeile 223.
+00:00:04,860 [TourPlaner.ViewModels.AddTourViewModel] INFO-{"tourAdded":[Name: "tmp34"],"successfully":{1}}
+00:00:18,983 [TourPlaner.ViewModels.AddTourViewModel] INFO-{"tourAdded":[Name: "sdfsdf"],"successfully":{1}}
+00:04:22,265 [TourPlaner.ViewModels.AddTourViewModel] INFO-{"tourAdded":[Name: "asda"],"successfully":{1}}
+00:04:32,074 [TourPlaner.ViewModels.AddTourViewModel] INFO-{"tourAdded":[Name: "asd"],"successfully":{1}}
+00:04:46,061 [TourPlaner.ViewModels.ImportViewModel] INFO-{"File Import ","successfully":{1}}
+00:05:18,856 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "Tour2"],"successfully":{1}}
+00:05:21,464 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "Tour1"],"successfully":{1}}
+00:15:28,640 [TourPlaner.ViewModels.AddTourViewModel] INFO-{"tourAdded":[Name: "yxc"],"successfully":{1}}
+00:15:33,237 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "yxc"],"successfully":{1}}
+00:38:34,674 [TourPlaner.ViewModels.AddTourViewModel] INFO-{"tourAdded":[Name: "asd"],"successfully":{1}}
+00:38:52,609 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"logAdded":[Tour: "asd"],"successfully":{1}}

@@ -5,12 +5,3 @@
 passt das logpdf?
 kann man für datenvalidierung massageboxes verwenden?
 Beim search dass man auch from und to einbezieht.
-
-TO DO 17.05.2021
-Search mit description auch
-Eingabe validierung
-Tour bearbeiten
-summary erstellen
-extra feature
-unittests
-doku

@@ -341,5 +341,9 @@ namespace TourPlaner.DataAcessLayer
             throw new NotImplementedException();
         }
 
+        public bool DeleteAllTour()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

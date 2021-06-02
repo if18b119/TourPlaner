@@ -301,12 +301,13 @@ namespace TourPlaner.DataAcessLayer
 
         public bool DeleteTour(string UUID)
         {
+            NpgsqlConnection conn = new NpgsqlConnection(connection_string);
+            conn.Open();
             try
             {
                 tourItems.RemoveAt(tourItems.FindIndex(a => a.UUID == UUID));
 
-                NpgsqlConnection conn = new NpgsqlConnection(connection_string);
-                conn.Open();
+                
 
                 string strdelete = "Delete from tours where tour_id = @tour_id";
                 NpgsqlCommand sqldelete = new NpgsqlCommand(strdelete, conn);
@@ -315,14 +316,19 @@ namespace TourPlaner.DataAcessLayer
                 sqldelete.Prepare();
                 sqldelete.ExecuteNonQuery();
 
-                conn.Close();
+                
                 return true;
             }
             catch(Exception e)
             {
                 string exception = "{\"errorMessages\":[\"" + e.Message.ToString() + "\"],\"errors\":{}}";
                 log.Error(exception, e);
+                
                 return false;
+            }
+            finally
+            {
+                conn.Close();
             }
         }
 
@@ -654,6 +660,30 @@ namespace TourPlaner.DataAcessLayer
            
         }
 
-       
+        public bool DeleteAllTour()
+        {
+            try
+            {
+                tourItems.Clear();
+
+                NpgsqlConnection conn = new NpgsqlConnection(connection_string);
+                conn.Open();
+
+                string strdelete = "Delete from tours where tour_id is not null;";
+                NpgsqlCommand sqldelete = new NpgsqlCommand(strdelete, conn);
+
+                sqldelete.Prepare();
+                sqldelete.ExecuteNonQuery();
+
+                conn.Close();
+                return true;
+            }
+            catch (Exception e)
+            {
+                string exception = "{\"errorMessages\":[\"" + e.Message.ToString() + "\"],\"errors\":{}}";
+                log.Error(exception, e);
+                return false;
+            }
+        }
     }
 }

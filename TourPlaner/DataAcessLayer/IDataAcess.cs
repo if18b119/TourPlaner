@@ -13,6 +13,7 @@ namespace TourPlaner.DataAcessLayer
         public List<Tour> GetTours();
         public void AddTourAsync(String UUID, string name, string from, string to, string pic_path, string description,string route_Type);
         public bool DeleteTour(string name); //tour von der db löschen
+        public bool DeleteAllTour();
         public bool DeleteImages( ); //fotos vom filesystem mittels pfad in json datei löschen
         public bool AddLog(Tour current_tour, string date_Time, string distance, string totalTime, string report, string rating, string avarage_speed, string comment, string problems, string transport_modus, string recomended);
         public ObservableCollection<Log> GetTourLogs(String UUID);

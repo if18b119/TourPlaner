@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -10,7 +12,7 @@ using TourPlaner.BusinessLayer;
 
 namespace TourPlaner.ViewModels
 {
-    public class UpdateLogViewModel:ViewModelBase
+    public class UpdateLogViewModel:ViewModelBase, INotifyDataErrorInfo
     {
         public string to_update_name;
         public string tour_id;
@@ -32,6 +34,8 @@ namespace TourPlaner.ViewModels
         private ICommand openEditedCommand;
         private ICommand closeEditedCommand;
         private bool isEditedVisible;
+
+        
 
         public ICommand OpenEditedCommand
         {
@@ -89,18 +93,89 @@ namespace TourPlaner.ViewModels
                 {
                     new_value = value;
                     RaisePropertyChangedEvent(nameof(NewValue));
+                    
                 }
             }
         }
+        //Datenvalidierung
+        //https://kmatyaszek.github.io/wpf%20validation/2019/03/13/wpf-validation-using-inotifydataerrorinfo.html
+
+        private readonly Dictionary<string, List<string>> _errorsByPropertyName = new Dictionary<string, List<string>>();
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+        public bool HasErrors => _errorsByPropertyName.Any();
+        public IEnumerable GetErrors(string propertyName)
+        {
+            return _errorsByPropertyName.ContainsKey(propertyName) ?
+            _errorsByPropertyName[propertyName] : null;
+        }
+        private void OnErrorsChanged(string propertyName)
+        {
+            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+        }
+        private void AddError(string propertyName, string error)
+        {
+            if (!_errorsByPropertyName.ContainsKey(propertyName))
+                _errorsByPropertyName[propertyName] = new List<string>();
+
+            if (!_errorsByPropertyName[propertyName].Contains(error))
+            {
+                _errorsByPropertyName[propertyName].Add(error);
+                OnErrorsChanged(propertyName);
+            }
+        }
+
+        private void ClearErrors(string propertyName)
+        {
+            if (_errorsByPropertyName.ContainsKey(propertyName))
+            {
+                _errorsByPropertyName.Remove(propertyName);
+                OnErrorsChanged(propertyName);
+            }
+        }
+
+        private bool Validate()
+        {
+
+            ClearErrors(nameof(NewValue));
+            if (string.IsNullOrWhiteSpace(NewValue))
+            {
+                AddError(nameof(NewValue), "Field cannot be empty.");
+                return false;
+            }               
+            if (NewValue == null || NewValue?.Length <= 2)
+            {
+                AddError(nameof(NewValue), "'From' must contain at least 3 characters.");
+                return false;
+            }                
+            if (NewValue?.Length >= 21)
+            {
+                AddError(nameof(NewValue), "'From' can contain a maximum of 20 characters.");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+                
+        }
+
+        //------------------End of Data validierung ------------//
 
         private void UpdateField(object obj)
         {
             Window window = (Window)obj;
+            if(Validate())
+            {
+                itemFactory.UpdateLogValue(tour_id, log_id, to_update_name, NewValue);
+                OpenEdited(obj);
+                new_value = string.Empty;
+                window.Close();
+            }
+            else
+            {
+                return;
+            }
             
-            itemFactory.UpdateLogValue(tour_id, log_id, to_update_name, NewValue);
-            OpenEdited(obj);
-            new_value = string.Empty;           
-            window.Close();
         }
 
         private void Cancel(object obj)
@@ -110,6 +185,8 @@ namespace TourPlaner.ViewModels
             new_value = string.Empty;
             window.Close();
         }
+
+       
 
         public UpdateLogViewModel()
         {

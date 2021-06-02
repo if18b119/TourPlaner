@@ -55,6 +55,11 @@ namespace TourPlaner.DataAcessLayer
             accesType.DeleteTour(name);
             return true;
         }
+        public bool DeleteAllTour()
+        {
+            accesType.DeleteAllTour();
+            return true;
+        }
 
         public bool DeleteImages( )
         {

@@ -19,18 +19,18 @@
 
     <Grid Background="#25272b" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -39,8 +39,8 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0"  Margin="49,0,10,0" VerticalAlignment="Center" Foreground="#03a9f4" HorizontalAlignment="Center" FontFamily="Arial" FontSize="17" FontWeight="Bold" Width="139">Date or Time</Label>
-            <TextBox Grid.Column="1" Margin="5,0,0,0" Text="{Binding Date_Time}" Background="#303338" Foreground="GhostWhite"/>
-            <Label Grid.Column="2"  Margin="70,0,0,0" VerticalAlignment="Center" Foreground="LightSkyBlue">dd.mm.yyyy</Label>
+            <TextBox Grid.Column="1" Margin="5,3,0,10" Text="{Binding Date_Time,Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Background="#303338" Foreground="GhostWhite"/>
+            <Label Grid.Column="2"  Margin="50,0,0,0" VerticalAlignment="Center" Foreground="LightSkyBlue" FontWeight="ExtraLight">dd.mm.yyyy or hh:mm</Label>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
@@ -50,8 +50,8 @@
                 <ColumnDefinition Width="99*"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0"  Margin="58,0,60,1" VerticalAlignment="Center" Foreground="#03a9f4" HorizontalAlignment="Center" FontFamily="Arial" FontSize="17" FontWeight="Bold">Distance</Label>
-            <TextBox Grid.Column="1" Margin="5,3,0,1" Text="{Binding Distance,  UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" Background="#303338" Foreground="GhostWhite"/>
-            <Label Grid.Column="3"  Margin="70,2,0,3" VerticalAlignment="Center" Foreground="LightSkyBlue">Kilometers</Label>
+            <TextBox Grid.Column="1" Margin="5,3,0,10" Text="{Binding Distance, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" Background="#303338" Foreground="GhostWhite"/>
+            <Label Grid.Column="3"  Margin="70,2,0,3" VerticalAlignment="Center" Foreground="LightSkyBlue" FontWeight="ExtraLight">Kilometers</Label>
         </Grid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
@@ -60,8 +60,8 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Margin="29,0,10,4" VerticalAlignment="Center" Foreground="#03a9f4" HorizontalAlignment="Center" FontFamily="Arial" FontSize="17" FontWeight="Bold">Total Time</Label>
-            <TextBox Grid.Column="1" Margin="5,0,0,2" Text="{Binding TotalTime , UpdateSourceTrigger=PropertyChanged}" Background="#303338" Foreground="GhostWhite"/>
-            <Label Grid.Column="2"  Margin="70,0,0,0" VerticalAlignment="Center" Foreground="LightSkyBlue">hh.mm.ss</Label>
+            <TextBox Grid.Column="1" Margin="5,3,0,10" Text="{Binding TotalTime , Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Background="#303338" Foreground="GhostWhite"/>
+            <Label Grid.Column="2"  Margin="70,0,0,0" VerticalAlignment="Center" Foreground="LightSkyBlue" FontWeight="ExtraLight">hh:mm:ss</Label>
         </Grid>
 
         <Grid Grid.Row="4">
@@ -72,7 +72,7 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Margin="29,0,10,4" VerticalAlignment="Center" Foreground="#03a9f4" HorizontalAlignment="Center" FontFamily="Arial" FontSize="17" FontWeight="Bold">Report
             </Label>
-            <TextBox Grid.Column="1" Margin="5,0,0,4" Text="{Binding Report , UpdateSourceTrigger=PropertyChanged}" Background="#303338" Foreground="GhostWhite"/>
+            <TextBox Grid.Column="1" Margin="5,3,0,10" Text="{Binding Report , Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Background="#303338" Foreground="GhostWhite"/>
             <Label Grid.Column="2"  Margin="70,0,0,0" VerticalAlignment="Center"></Label>
         </Grid>
         <Grid Grid.Row="5">
@@ -83,8 +83,8 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Margin="29,0,10,4" VerticalAlignment="Center" Foreground="#03a9f4" HorizontalAlignment="Center" FontFamily="Arial" FontSize="17" FontWeight="Bold">Rating
             </Label>
-            <TextBox Grid.Column="1"  Margin="6,0,192,2" Text="{Binding Rating , UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" Background="#303338" Foreground="GhostWhite"/>
-            <Label Grid.Column="2"  Margin="70,0,0,0" VerticalAlignment="Center"></Label>
+            <TextBox Grid.Column="1"  Margin="5,3,0,10" Text="{Binding Rating , Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Background="#303338" Foreground="GhostWhite"/>
+            <Label Grid.Column="2"  Margin="70,0,0,0" VerticalAlignment="Center" Foreground="LightSkyBlue" FontWeight="ExtraLight">1-5</Label>
         </Grid>
         <Grid Grid.Row="6">
             <Grid.ColumnDefinitions>
@@ -94,8 +94,8 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Margin="29,0,10,4" VerticalAlignment="Center" Foreground="#03a9f4" HorizontalAlignment="Center" FontFamily="Arial" FontSize="17" FontWeight="Bold" Width="159">Avarage Speed
             </Label>
-            <TextBox Grid.Column="1" Margin="5,0,0,4" Text="{Binding AvarageSpeed , UpdateSourceTrigger=PropertyChanged}" Background="#303338" Foreground="GhostWhite"/>
-            <Label Grid.Column="2" Margin="70,0,0,0" VerticalAlignment="Center" Foreground="LightSkyBlue">km/h
+            <TextBox Grid.Column="1" Margin="5,3,0,10" Text="{Binding AvarageSpeed , Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Background="#303338" Foreground="GhostWhite"/>
+            <Label Grid.Column="2" Margin="70,0,0,0" VerticalAlignment="Center" Foreground="LightSkyBlue" FontWeight="ExtraLight">in km/h
             </Label>
         </Grid>
         <Grid Grid.Row="7">
@@ -106,7 +106,7 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0"  Margin="29,0,10,4" VerticalAlignment="Center" Foreground="#03a9f4" HorizontalAlignment="Center" FontFamily="Arial" FontSize="17" FontWeight="Bold">Comment
             </Label>
-            <TextBox Grid.Column="1" Margin="5,0,0,2" Text="{Binding Comment , UpdateSourceTrigger=PropertyChanged}" Background="#303338" Foreground="GhostWhite"/>
+            <TextBox Grid.Column="1" Margin="5,3,0,10" Text="{Binding Comment , Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Background="#303338" Foreground="GhostWhite"/>
             <Label Grid.Column="2"  Margin="70,0,0,0" VerticalAlignment="Center"></Label>
         </Grid>
         <Grid Grid.Row="8">
@@ -116,7 +116,7 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0"  Margin="29,0,10,4" VerticalAlignment="Center" Content="Problems" Foreground="#03a9f4" HorizontalAlignment="Center" FontFamily="Arial" FontSize="17" FontWeight="Bold"/>
-            <TextBox Grid.Column="1" Margin="5,0,0,2" Text="{Binding Problems , UpdateSourceTrigger=PropertyChanged}" Background="#303338" Foreground="GhostWhite"/>
+            <TextBox Grid.Column="1" Margin="5,3,0,10" Text="{Binding Problems , Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Background="#303338" Foreground="GhostWhite"/>
         </Grid>
         <Grid Grid.Row="9">
             <Grid.ColumnDefinitions>
@@ -125,7 +125,7 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Margin="10,4,10,0" VerticalAlignment="Center" Content="Transport Modus" Foreground="#03a9f4" HorizontalAlignment="Center" FontFamily="Arial" FontSize="17" FontWeight="Bold" Width="178"/>
-            <TextBox Grid.Column="1" Margin="5,0,0,2" Text="{Binding TransportModus , UpdateSourceTrigger=PropertyChanged}" Background="#303338" Foreground="GhostWhite"/>
+            <TextBox Grid.Column="1" Margin="5,3,0,10" Text="{Binding TransportModus , Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Background="#303338" Foreground="GhostWhite"/>
         </Grid>
         <Grid Grid.Row="10">
             <Grid.ColumnDefinitions>
@@ -134,7 +134,7 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Margin="0,6,391,0" VerticalAlignment="Center" Content="Would you recomend?" Foreground="#03a9f4" HorizontalAlignment="Center" FontFamily="Arial" FontSize="17" FontWeight="Bold" Width="203" Grid.ColumnSpan="2"/>
-            <TextBox Grid.Column="1" Margin="5,0,0,2" Text="{Binding Recomended , UpdateSourceTrigger=PropertyChanged}" Background="#303338" Foreground="GhostWhite"/>
+            <TextBox Grid.Column="1" Margin="5,3,0,10" Text="{Binding Recomended , Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Background="#303338" Foreground="GhostWhite"/>
         </Grid>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -142,7 +142,7 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="1" Margin="40,4,20,0" FontSize="50" VerticalAlignment="Center" Content="{Binding NameOfTour}" Foreground="#03a9f4"/>
+            <Label Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding NameOfTour}" Foreground="#03a9f4"/>
         </Grid>
 
         <Grid Grid.Row="11">
