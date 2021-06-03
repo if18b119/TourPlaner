@@ -134,8 +134,10 @@
     <Compile Include="ViewModels\AddLogViewModel.cs" />
     <Compile Include="ViewModels\AddTourViewModel.cs" />
     <Compile Include="ViewModels\EditLogsViewModel.cs" />
+    <Compile Include="ViewModels\EditTourViewModel.cs" />
     <Compile Include="ViewModels\ImportViewModel.cs" />
     <Compile Include="ViewModels\UpdateLogViewModel.cs" />
+    <Compile Include="ViewModels\UpdateTourViewModel.cs" />
     <Compile Include="Views\AddLogView.xaml.cs">
       <DependentUpon>AddLogView.xaml</DependentUpon>
     </Compile>
@@ -148,11 +150,17 @@
     <Compile Include="ViewModels\TourViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\EditTourView.xaml.cs">
+      <DependentUpon>EditTourView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ImportView.xaml.cs">
       <DependentUpon>ImportView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UpdateLogVIew.xaml.cs">
       <DependentUpon>UpdateLogVIew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdateTourView.xaml.cs">
+      <DependentUpon>UpdateTourView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\AddLogView.xaml">
       <SubType>Designer</SubType>
@@ -163,6 +171,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EditLogsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditTourView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -186,6 +198,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\UpdateLogVIew.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateTourView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

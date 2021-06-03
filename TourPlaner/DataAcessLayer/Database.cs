@@ -582,6 +582,35 @@ namespace TourPlaner.DataAcessLayer
             return new_log;
         }
 
+        public Tour GetNewTour(string tour_id)
+        {
+            Tour new_tour = new Tour();
+
+            NpgsqlConnection conn = new NpgsqlConnection(connection_string);
+            conn.Open();
+            string strtours = "Select * from tours where tour_id=@tour_id;";
+            NpgsqlCommand sqlcomm = new NpgsqlCommand(strtours, conn);
+            sqlcomm.Parameters.AddWithValue("tour_id", tour_id);
+            sqlcomm.Prepare();
+
+
+            NpgsqlDataReader reader = sqlcomm.ExecuteReader();
+            while (reader.Read())
+            {
+
+                new_tour.UUID = reader.GetString(0);
+                new_tour.Name = reader.GetString(1);
+                new_tour.Description = reader.GetString(2);
+                new_tour.From = reader.GetString(3);
+                new_tour.To = reader.GetString(4);
+                new_tour.Route_Type = reader.GetString(5);
+                new_tour.PicPath = reader.GetString(6);
+
+            }
+            conn.Close();
+            return new_tour;
+        }
+
 
 
         public bool DeleteLog(string tour_id, string log_id)

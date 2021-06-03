@@ -345,5 +345,10 @@ namespace TourPlaner.DataAcessLayer
         {
             throw new NotImplementedException();
         }
+
+        public Tour GetNewTour(string tour_id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

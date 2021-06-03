@@ -21,6 +21,7 @@ namespace TourPlaner.DataAcessLayer
         public void SaveImagePath(string path); //das speichern des pfads in json datei um es später löschen zu können
         public string SaveImage(string from, string to);
         public Log GetNewLog(string tour_id, string log_id);
+        public Tour GetNewTour(string tour_id);
         public bool DeleteLog(string tour_id, string log_id);
         public bool MakePdf(Tour current_tour);
         public bool Export(List <Tour> current_tours_in_DB);

@@ -93,9 +93,78 @@ namespace TourPlaner.BusinessLayer
             return tourItemDatabase.UpdateLogValue(tour_id, log_id, to_update_column, new_value);
         }
 
+        public bool UpdateTourValue(string tour_id, string to_update_column, string new_value)
+        {
+            try
+            {
+
+                    ObservableCollection<Tour> tmp_tours = new ObservableCollection<Tour>();
+                    //Die gesamten informationen der Tour aus der db holen
+                    foreach (Tour t in tourItemDatabase.GetTours())
+                    {
+                        tmp_tours.Add(t);
+                    }
+                    Tour tour_to_change = tmp_tours.Where(x => x.UUID == tour_id).First();
+                if (tour_to_change != null)
+                {
+                    switch (to_update_column)
+                    {
+                        case "b0":
+                            tour_to_change.Name = new_value;
+                            break;
+                        case "b1":
+                            tour_to_change.From = new_value;
+                            break;
+                        case "b2":
+                            tour_to_change.To = new_value;
+                            break;
+                        case "b4":
+                            tour_to_change.Description = new_value;
+                            break;
+                        default:
+                            return false;
+
+                    }
+                    //Values speichern um einen neuen Request zu schicken
+                    string uuid = tour_to_change.UUID;
+                    string name = tour_to_change.Name;
+                    string from = tour_to_change.From;
+                    string to = tour_to_change.To;
+                    string route_type = tour_to_change.Route_Type;
+                    string desc = tour_to_change.Description;
+
+                    //Die Tour aus der Datenbank löschen und das Foto
+                    SavePathAndDeleteTour(tour_to_change);
+
+                    //Neuen Request schicken und tour speichern.
+                    AddTour(uuid, name, from, to, desc, route_type);
+                    return true;
+                }
+                else
+                {
+                    throw new Exception("Keine Tour gefunden-[uPdate]");
+                }
+                    
+                    
+
+                
+            }
+            catch(Exception e)
+            {
+                string exception = "{\"errorMessages\":[\"" + e.Message.ToString() + "\"],\"errors\":{}}";
+                log.Error(exception, e);
+                return false;
+            }
+
+        }
+
         public Log GetNewLog(string tour_id, string log_id)
         {
             return tourItemDatabase.GetNewLog(tour_id, log_id);
+        }
+        public Tour GetNewTour(string tour_id)
+        {
+            return tourItemDatabase.GetNewTour(tour_id);
         }
 
         public bool DeleteLog(string tour_id, string log_id)

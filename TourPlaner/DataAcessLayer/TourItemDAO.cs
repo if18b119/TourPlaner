@@ -29,6 +29,7 @@ namespace TourPlaner.DataAcessLayer
         {
             return accesType.UpdateLogValue(tour_id, log_id, to_update_column, new_value);
         }
+
         public string SaveImage(string from, string to)
         {
             return accesType.SaveImage(from, to);
@@ -55,6 +56,8 @@ namespace TourPlaner.DataAcessLayer
             accesType.DeleteTour(name);
             return true;
         }
+
+        
         public bool DeleteAllTour()
         {
             accesType.DeleteAllTour();
@@ -81,6 +84,10 @@ namespace TourPlaner.DataAcessLayer
         public Log GetNewLog(string tour_id, string log_id)
         {
             return accesType.GetNewLog(tour_id, log_id);
+        }
+        public Tour GetNewTour(string tour_id)
+        {
+           return accesType.GetNewTour(tour_id);
         }
 
         public bool DeleteLog(string tour_id, string log_id)

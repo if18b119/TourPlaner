@@ -132,6 +132,16 @@
                         <!-- -->
                         <materialDesign:PackIcon Kind="Minus"/>
                     </Button>
+                    <Button Grid.Column="3"  Height="20" Width="20" Command="{Binding EditTourCommand}" Style="{StaticResource MaterialDesignIconForegroundButton}" Foreground="#03a9f4" Background="#25272b" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,0,5,0">
+                        <!-- Um den Hover abzurunden -->
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="3"/>
+                            </Style>
+                        </Button.Resources>
+                        <!-- -->
+                        <materialDesign:PackIcon Kind="Settings"/>
+                    </Button>
                 </Grid>
                 <Grid Grid.Row="1" Background="#303338">
                     <Grid.ColumnDefinitions>
@@ -322,7 +332,7 @@
                             <materialDesign:PackIcon Kind="FilePdf"/>
                         </Button>
                     </Grid>
-                    <DataGrid Style="{StaticResource MaterialDesignDataGrid}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="10" Background="#303338" SelectedItem="{Binding CurrentLog}" ItemsSource="{Binding Logs}" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid Style="{StaticResource MaterialDesignDataGrid}" Grid.Row="1" Grid.Column="0" Background="#303338" SelectedItem="{Binding CurrentLog}" ItemsSource="{Binding Logs}" AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Date-Time" Width="auto" Binding="{Binding Date_Time, UpdateSourceTrigger=PropertyChanged}" EditingElementStyle="{StaticResource MaterialDesignFloatingHintTextBox}" ElementStyle="{StaticResource MaterialDesignCharacterCounterTextBlock}" Foreground="Silver">
                                 <DataGridTextColumn.HeaderStyle>

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -12,11 +11,10 @@ using TourPlaner.BusinessLayer;
 
 namespace TourPlaner.ViewModels
 {
-    public class UpdateLogViewModel:ViewModelBase, INotifyDataErrorInfo
+    public class UpdateTourViewModel : ViewModelBase, INotifyDataErrorInfo
     {
         public string to_update_name;
         public string tour_id;
-        public string log_id;
 
 
 
@@ -35,7 +33,7 @@ namespace TourPlaner.ViewModels
         private ICommand closeEditedCommand;
         private bool isEditedVisible;
 
-        
+
 
         public ICommand OpenEditedCommand
         {
@@ -93,7 +91,7 @@ namespace TourPlaner.ViewModels
                 {
                     new_value = value;
                     RaisePropertyChangedEvent(nameof(NewValue));
-                    
+
                 }
             }
         }
@@ -141,12 +139,12 @@ namespace TourPlaner.ViewModels
             {
                 AddError(nameof(NewValue), "Field cannot be empty.");
                 return false;
-            }               
+            }
             if (NewValue == null || NewValue?.Length <= 2)
             {
                 AddError(nameof(NewValue), "'From' must contain at least 3 characters.");
                 return false;
-            }                
+            }
             if (NewValue?.Length >= 21)
             {
                 AddError(nameof(NewValue), "'From' can contain a maximum of 20 characters.");
@@ -156,7 +154,7 @@ namespace TourPlaner.ViewModels
             {
                 return true;
             }
-                
+
         }
 
         //------------------End of Data validierung ------------//
@@ -164,9 +162,9 @@ namespace TourPlaner.ViewModels
         private void UpdateField(object obj)
         {
             Window window = (Window)obj;
-            if(Validate())
+            if (Validate())
             {
-                itemFactory.UpdateLogValue(tour_id,log_id, to_update_name, NewValue);
+                itemFactory.UpdateTourValue(tour_id, to_update_name, NewValue);
                 OpenEdited(obj);
                 new_value = string.Empty;
                 window.Close();
@@ -175,23 +173,24 @@ namespace TourPlaner.ViewModels
             {
                 return;
             }
-            
+
         }
 
         private void Cancel(object obj)
         {
-            
+
             Window window = (Window)obj;
             new_value = string.Empty;
             window.Close();
         }
 
-       
 
-        public UpdateLogViewModel()
+
+        public UpdateTourViewModel()
         {
             this.itemFactory = TourItemFactory.GetInstance();
 
         }
     }
 }
+

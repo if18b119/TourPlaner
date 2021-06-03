@@ -29,6 +29,7 @@ namespace TourPlaner.ViewModels
         public AddLogViewModel addLogViewModel;
         public ImportViewModel importViewModel;
         public EditLogsViewModel editLogViewModel;
+        public EditTourViewModel editTourViewModel;
 
         //die ObservableCollection nimmt dann die liste die von dem DataAccessLayer über den businessLayer geht
         private ObservableCollection<Tour> tours;
@@ -45,6 +46,9 @@ namespace TourPlaner.ViewModels
 
         private RelayCommand clear;
         public ICommand ClearCommand => clear ??= new RelayCommand(Clear);
+
+        private RelayCommand edit_tour;
+        public ICommand EditTourCommand => edit_tour??= new RelayCommand(EditTour);
 
         private RelayCommand editlogs;
         public ICommand EditLogsCommand => editlogs ??= new RelayCommand(EditLogs);
@@ -327,6 +331,31 @@ namespace TourPlaner.ViewModels
             }
 
         }
+
+        private void EditTour(object obj)
+        {
+            if (currentTour != null)
+            {
+                EditTourView editTourView = new EditTourView();
+                editTourViewModel = new EditTourViewModel(CurrentTour);
+                editTourView.DataContext = editTourViewModel;
+
+                //um den angeklickten  Tour ID im anderen View zu bekommen
+                //editTourViewModel.CurrentTour = CurrentTour;
+                bool? dialogResult = editTourView.ShowDialog();
+                if (!(bool)dialogResult)
+                {
+                    tours.Clear();
+                    RefreshingListItems();
+
+                }
+            }
+            else
+            {
+                return;
+            }
+
+        }
         private void AddLog(object obj)
         {
             if(currentTour!=null)
@@ -503,6 +532,7 @@ namespace TourPlaner.ViewModels
             addTourViewModel = new AddTourViewModel();
             addLogViewModel = new AddLogViewModel();
             editLogViewModel = new EditLogsViewModel();
+            
             importViewModel = new ImportViewModel();
             itemFactory = TourItemFactory.GetInstance();
 
