@@ -20,6 +20,7 @@ namespace TourPlaner.BusinessLayer
 
         public bool Export();
         public bool MakePdf(Tour current_tour);
+        public bool MakeReport();
         public bool DeleteLog(string tour_id, string log_id);
         public Log GetNewLog(string tour_id, string log_id);
         public Tour GetNewTour(string tour_id);

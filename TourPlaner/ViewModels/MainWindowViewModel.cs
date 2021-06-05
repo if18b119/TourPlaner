@@ -69,6 +69,9 @@ namespace TourPlaner.ViewModels
         private RelayCommand makepdflog;
         public ICommand MakePdfCommand => makepdflog ??= new RelayCommand(MakePdf);
 
+        private RelayCommand makereportflog;
+        public ICommand MakeReportCommand => makereportflog ??= new RelayCommand(MakeReport);
+
         private RelayCommand export;
         public ICommand ExportCommand => export ??= new RelayCommand(Export);
 
@@ -197,6 +200,19 @@ namespace TourPlaner.ViewModels
             else
             {
                 itemFactory.MakePdf(currentTour);
+                OpenAddedPdf(obj);
+            }
+        }
+
+        private void MakeReport(object obj)
+        {
+            if (Tours.Count == 0)
+            {
+                return;
+            }
+            else
+            {
+                itemFactory.MakeReport();
                 OpenAddedPdf(obj);
             }
         }

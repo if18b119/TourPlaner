@@ -123,3 +123,29 @@ System.InvalidCastException: Das Objekt des Typs "WhereListIterator`1[TourPlaner
 System.InvalidCastException: Das Objekt des Typs "WhereListIterator`1[TourPlaner.Models.Tour]" kann nicht in Typ "TourPlaner.Models.Tour" umgewandelt werden.
    bei TourPlaner.BusinessLayer.TourItemFactoryImpl.UpdateTourValue(String tour_id, String to_update_column, String new_value) in C:\Users\titto\Desktop\Studium\4.Semester\Swe2\TourPlaner\TourPlaner\BusinessLayer\TourItemFactoryImpl.cs:Zeile 101.
 18:12:11,881 [TourPlaner.ViewModels.AddTourViewModel] INFO-{"tourAdded":[Name: "Tour1"],"successfully":{1}}
+20:54:39,189 [TourPlaner.DataAcessLayer.FileSystem] ERROR-{"errorMessages":["Die Eingabezeichenfolge hat das falsche Format."],"errors":{}}
+System.FormatException: Die Eingabezeichenfolge hat das falsche Format.
+   bei System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   bei System.Convert.ToDouble(String value)
+   bei TourPlaner.DataAcessLayer.FileSystem.MakeReport(List`1 tours) in C:\Users\titto\Desktop\Studium\4.Semester\Swe2\TourPlaner\TourPlaner\DataAcessLayer\FileSystem.cs:Zeile 380.
+20:56:42,039 [TourPlaner.DataAcessLayer.FileSystem] ERROR-{"errorMessages":["Die Eingabezeichenfolge hat das falsche Format."],"errors":{}}
+System.FormatException: Die Eingabezeichenfolge hat das falsche Format.
+   bei System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   bei System.Convert.ToDouble(String value)
+   bei TourPlaner.DataAcessLayer.FileSystem.MakeReport(List`1 tours) in C:\Users\titto\Desktop\Studium\4.Semester\Swe2\TourPlaner\TourPlaner\DataAcessLayer\FileSystem.cs:Zeile 380.
+20:58:17,078 [TourPlaner.DataAcessLayer.FileSystem] ERROR-{"errorMessages":["Die Eingabezeichenfolge hat das falsche Format."],"errors":{}}
+System.FormatException: Die Eingabezeichenfolge hat das falsche Format.
+   bei System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   bei System.Convert.ToDouble(String value)
+   bei TourPlaner.DataAcessLayer.FileSystem.MakeReport(List`1 tours) in C:\Users\titto\Desktop\Studium\4.Semester\Swe2\TourPlaner\TourPlaner\DataAcessLayer\FileSystem.cs:Zeile 380.
+21:04:44,323 [TourPlaner.DataAcessLayer.FileSystem] ERROR-{"errorMessages":["Die Eingabezeichenfolge hat das falsche Format."],"errors":{}}
+System.FormatException: Die Eingabezeichenfolge hat das falsche Format.
+   bei System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   bei System.Convert.ToDouble(String value)
+   bei TourPlaner.DataAcessLayer.FileSystem.MakeReport(List`1 tours) in C:\Users\titto\Desktop\Studium\4.Semester\Swe2\TourPlaner\TourPlaner\DataAcessLayer\FileSystem.cs:Zeile 380.
+21:07:12,563 [TourPlaner.DataAcessLayer.FileSystem] ERROR-{"errorMessages":["Die Eingabezeichenfolge hat das falsche Format."],"errors":{}}
+System.FormatException: Die Eingabezeichenfolge hat das falsche Format.
+   bei System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   bei System.Convert.ToDouble(String value)
+   bei TourPlaner.DataAcessLayer.FileSystem.MakeReport(List`1 tours) in C:\Users\titto\Desktop\Studium\4.Semester\Swe2\TourPlaner\TourPlaner\DataAcessLayer\FileSystem.cs:Zeile 380.
+21:39:41,732 [TourPlaner.ViewModels.ImportViewModel] INFO-{"File Import ","successfully":{1}}

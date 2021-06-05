@@ -644,6 +644,10 @@ namespace TourPlaner.DataAcessLayer
         {
             throw new NotImplementedException();
         }
+        public bool MakeReport(List <Tour> tours)
+        {
+            throw new NotImplementedException();
+        }
 
         public bool Export(List<Tour> current_tours_in_DB)
         {

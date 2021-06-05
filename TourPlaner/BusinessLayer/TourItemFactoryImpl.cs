@@ -177,6 +177,12 @@ namespace TourPlaner.BusinessLayer
             return tourItemFileSystem.MakePdf(current_tour);
         }
 
+        public bool MakeReport()
+        {
+            List<Tour> tours = tourItemDatabase.GetTours();
+            return tourItemFileSystem.MakeReport(tours);
+        }
+
         public bool Export()
         {
             List<Tour> current_tours_in_DB = new List<Tour>();

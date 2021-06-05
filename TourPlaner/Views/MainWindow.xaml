@@ -109,6 +109,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Height="30"  Foreground="#c0c0c0" FontSize="23" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Agency" Margin="0,0,0,5" Content="Tours"/>
                     <Button Grid.Column="1"  Height="20" Width="20" Name="AddTour" Command="{Binding AddTourCommand}"
@@ -141,6 +142,18 @@
                         </Button.Resources>
                         <!-- -->
                         <materialDesign:PackIcon Kind="Settings"/>
+                    </Button>
+                    <Button Grid.Column="4"  Height="20" Width="20"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}" Foreground="#03a9f4" Background="#25272b" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,0,5,0"
+                                Command="{Binding MakeReportCommand}">
+                        <!-- Um den Hover abzurunden -->
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="3"/>
+                            </Style>
+                        </Button.Resources>
+                        <!-- -->
+                        <materialDesign:PackIcon Kind="FilePdf"/>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="1" Background="#303338">

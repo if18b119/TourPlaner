@@ -24,6 +24,7 @@ namespace TourPlaner.DataAcessLayer
         public Tour GetNewTour(string tour_id);
         public bool DeleteLog(string tour_id, string log_id);
         public bool MakePdf(Tour current_tour);
+        public bool MakeReport(List<Tour> tours);
         public bool Export(List <Tour> current_tours_in_DB);
         public bool DoesTourExistInDb(string tour_id);
     }
