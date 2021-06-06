@@ -166,6 +166,7 @@ namespace TourPlaner.ViewModels
             Window window = (Window)obj;
             if(Validate())
             {
+                
                 itemFactory.UpdateLogValue(tour_id,log_id, to_update_name, NewValue);
                 OpenEdited(obj);
                 new_value = string.Empty;

@@ -98,13 +98,14 @@ namespace TourPlaner.BusinessLayer
             try
             {
 
-                    ObservableCollection<Tour> tmp_tours = new ObservableCollection<Tour>();
-                    //Die gesamten informationen der Tour aus der db holen
-                    foreach (Tour t in tourItemDatabase.GetTours())
-                    {
-                        tmp_tours.Add(t);
-                    }
-                    Tour tour_to_change = tmp_tours.Where(x => x.UUID == tour_id).First();
+                ObservableCollection<Tour> tmp_tours = new ObservableCollection<Tour>();
+                //Die gesamten informationen der Tour aus der db holen
+                foreach (Tour t in tourItemDatabase.GetTours())
+                {
+                   tmp_tours.Add(t);
+                }
+
+                Tour tour_to_change = tmp_tours.Where(x => x.UUID == tour_id).First();
                 if (tour_to_change != null)
                 {
                     switch (to_update_column)
@@ -198,23 +199,36 @@ namespace TourPlaner.BusinessLayer
         {
             try
             {
-                string pic_path = tourItemFileSystem.SaveImage(to_copy.From, to_copy.To);
-
-                //Um sie vom originalen zu unterscheiden.
-                to_copy.UUID += "-Copy";
-                to_copy.Name += " Copy";
-
-                //Dadurch dass beim adden einer tour auf die id geprüft werden kann nicht eine tour mehrmals kopiert werden, aber die kopie kann geupdatet werden
-                //wenn man versucht eine bereits kopierte tour zu kopieren, wobei die tour neue daten enthält (logs);
-                tourItemDatabase.AddTour(to_copy.UUID, to_copy.Name, to_copy.From, to_copy.To, pic_path, to_copy.Description, to_copy.Route_Type);
-
-                //für die logs
-                foreach (Log l in to_copy.LogItems)
+                if(to_copy != null)
                 {
-                    tourItemDatabase.AddLog(to_copy, l.Date_Time, l.Distance, l.TotalTime, l.Report, l.Rating, l.AvarageSpeed, l.Comment, l.Problems, l.TransportModus, l.Recomended);
-                }
+                    string pic_path = tourItemFileSystem.SaveImage(to_copy.From, to_copy.To);
 
-                return true;
+                    //Um sie vom originalen zu unterscheiden.
+                    to_copy.UUID += "-Copy";
+                    to_copy.Name += " Copy";
+
+                    //Dadurch dass beim adden einer tour auf die id geprüft werden kann nicht eine tour mehrmals kopiert werden, aber die kopie kann geupdatet werden
+                    //wenn man versucht eine bereits kopierte tour zu kopieren, wobei die tour neue daten enthält (logs);
+                    tourItemDatabase.AddTour(to_copy.UUID, to_copy.Name, to_copy.From, to_copy.To, pic_path, to_copy.Description, to_copy.Route_Type);
+
+
+                    if (to_copy.LogItems.Count > 0)
+                    {
+                        foreach (Log l in to_copy.LogItems)
+                        {
+                            tourItemDatabase.AddLog(to_copy, l.Date_Time, l.Distance, l.TotalTime, l.Report, l.Rating, l.AvarageSpeed, l.Comment, l.Problems, l.TransportModus, l.Recomended);
+                        }
+                    }
+                    //für die logs
+
+
+                    return true;
+                }
+                else
+                {
+                    throw new Exception("No Tour to copy!");
+                }
+               
             }
             catch(Exception e)
             {

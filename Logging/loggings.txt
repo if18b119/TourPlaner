@@ -149,3 +149,20 @@ System.FormatException: Die Eingabezeichenfolge hat das falsche Format.
    bei System.Convert.ToDouble(String value)
    bei TourPlaner.DataAcessLayer.FileSystem.MakeReport(List`1 tours) in C:\Users\titto\Desktop\Studium\4.Semester\Swe2\TourPlaner\TourPlaner\DataAcessLayer\FileSystem.cs:Zeile 380.
 21:39:41,732 [TourPlaner.ViewModels.ImportViewModel] INFO-{"File Import ","successfully":{1}}
+15:15:42,412 [TourPlaner.ViewModels.AddTourViewModel] INFO-{"tourAdded":[Name: "Tour4"],"successfully":{1}}
+15:16:22,635 [TourPlaner.ViewModels.ImportViewModel] INFO-{"File Import ","successfully":{1}}
+15:16:35,496 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "Tour4"],"successfully":{1}}
+15:16:38,798 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "Tour3"],"successfully":{1}}
+15:16:42,056 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "Tour2"],"successfully":{1}}
+15:16:45,373 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "Tour1"],"successfully":{1}}
+15:17:48,184 [TourPlaner.ViewModels.ImportViewModel] INFO-{"File Import ","successfully":{1}}
+15:18:10,858 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "Tour4"],"successfully":{1}}
+15:18:12,943 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "Tour3"],"successfully":{1}}
+15:18:14,964 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "Tour2"],"successfully":{1}}
+15:18:16,974 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "Tour1"],"successfully":{1}}
+18:38:45,056 [TourPlaner.ViewModels.AddTourViewModel] INFO-{"tourAdded":[Name: "Tour888"],"successfully":{1}}
+18:39:24,000 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"logAdded":[Tour: "Tour888"],"successfully":{1}}
+18:40:54,151 [TourPlaner.ViewModels.ImportViewModel] INFO-{"File Import ","successfully":{1}}
+18:41:29,795 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "Tour3"],"successfully":{1}}
+18:44:25,799 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourCopied":[Tour: "Tour1"],"successfully":{1}}
+18:44:35,624 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourPasted":[Tour: "Tour1 Copy"],"successfully":{1}}

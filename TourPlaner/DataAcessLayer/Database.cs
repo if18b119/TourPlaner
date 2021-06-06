@@ -65,27 +65,35 @@ namespace TourPlaner.DataAcessLayer
             String UUID = Guid.NewGuid().ToString();
             try
             {
-                var con = new NpgsqlConnection(connection_string);
-                con.Open();
-                var sql_insert = "Insert into logs (log_id, fk_tour_id, date_time, distance, total_time, report, rating, avarage_speed, comment, problems, transport_modus, recomended) values (@UUID, @fk_tour_id, @date_time, @distance, @total_time, @report, @rating, @avarage_speed, @comment, @problems, @transport_modus, @recomended)";
-                var cmd = new NpgsqlCommand(sql_insert, con);
-                //prepared statment
-                cmd.Parameters.AddWithValue("UUID", UUID);
-                cmd.Parameters.AddWithValue("fk_tour_id", current_tour.UUID);
-                cmd.Parameters.AddWithValue("date_time", date_Time);
-                cmd.Parameters.AddWithValue("distance", distance);
-                cmd.Parameters.AddWithValue("total_time", totalTime);
-                cmd.Parameters.AddWithValue("report", report);
-                cmd.Parameters.AddWithValue("rating", rating);
-                cmd.Parameters.AddWithValue("avarage_speed", avarage_speed);
-                cmd.Parameters.AddWithValue("comment", comment);
-                cmd.Parameters.AddWithValue("problems", problems);
-                cmd.Parameters.AddWithValue("transport_modus", transport_modus);
-                cmd.Parameters.AddWithValue("recomended", recomended);
-                cmd.Prepare();
-                //
-                cmd.ExecuteNonQuery();
-                return true;
+                if(current_tour != null)
+                {
+                    var con = new NpgsqlConnection(connection_string);
+                    con.Open();
+                    var sql_insert = "Insert into logs (log_id, fk_tour_id, date_time, distance, total_time, report, rating, avarage_speed, comment, problems, transport_modus, recomended) values (@UUID, @fk_tour_id, @date_time, @distance, @total_time, @report, @rating, @avarage_speed, @comment, @problems, @transport_modus, @recomended)";
+                    var cmd = new NpgsqlCommand(sql_insert, con);
+                    //prepared statment
+                    cmd.Parameters.AddWithValue("UUID", UUID);
+                    cmd.Parameters.AddWithValue("fk_tour_id", current_tour.UUID);
+                    cmd.Parameters.AddWithValue("date_time", date_Time);
+                    cmd.Parameters.AddWithValue("distance", distance);
+                    cmd.Parameters.AddWithValue("total_time", totalTime);
+                    cmd.Parameters.AddWithValue("report", report);
+                    cmd.Parameters.AddWithValue("rating", rating);
+                    cmd.Parameters.AddWithValue("avarage_speed", avarage_speed);
+                    cmd.Parameters.AddWithValue("comment", comment);
+                    cmd.Parameters.AddWithValue("problems", problems);
+                    cmd.Parameters.AddWithValue("transport_modus", transport_modus);
+                    cmd.Parameters.AddWithValue("recomended", recomended);
+                    cmd.Prepare();
+                    //
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+               
             }
             catch (Exception e)
             {

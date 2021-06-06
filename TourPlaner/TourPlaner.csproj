@@ -139,6 +139,7 @@
     <Compile Include="ViewModels\EditLogsViewModel.cs" />
     <Compile Include="ViewModels\EditTourViewModel.cs" />
     <Compile Include="ViewModels\ImportViewModel.cs" />
+    <Compile Include="ViewModels\LogoViewModel.cs" />
     <Compile Include="ViewModels\UpdateLogViewModel.cs" />
     <Compile Include="ViewModels\UpdateTourViewModel.cs" />
     <Compile Include="Views\AddLogView.xaml.cs">
