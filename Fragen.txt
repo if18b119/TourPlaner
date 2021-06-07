@@ -1,0 +1,16 @@
+-wenn keine current tour angeklickt ist, sieht man die logs trtzdm
+-farbe von den tours ändern.
+-kann man message box verwenden?
+-was genau soll man bei den tour daten ändern können?
+passt das logpdf?
+kann man für datenvalidierung massageboxes verwenden?
+Beim search dass man auch from und to einbezieht.
+
+TO DO 17.05.2021
+Search mit description auch
+Eingabe validierung
+Tour bearbeiten
+summary erstellen
+extra feature
+unittests
+doku

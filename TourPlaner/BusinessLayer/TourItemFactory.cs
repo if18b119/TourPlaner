@@ -8,7 +8,7 @@ using TourPlaner.Models;
 
 namespace TourPlaner.BusinessLayer
 {
-    class TourItemFactory
+    public class TourItemFactory
     {
         private static ITourItemFactory tourItemFactory;
         

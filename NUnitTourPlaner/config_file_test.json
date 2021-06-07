@@ -1,0 +1,30 @@
+{
+  "DbSettings": {
+    "Username": "postgres",
+    "Password": "root",
+    "Host": "localhost",
+
+    "Port": "5432",
+    "Database": "TourPlaner"
+  },
+
+  "RouteImageSettings": {
+    "Location": "C:\\Users\\titto\\Desktop\\Studium\\4.Semester\\Swe2\\TourPlaner\\TourPic\\"
+  },
+
+  "RequestKey": {
+    "Key": "zWULCwXtukAXX8gQEsyQVMrXaHNJJMPU"
+  },
+
+  "ToDeletePath": {
+    "Path": "C:\\Users\\titto\\Desktop\\Studium\\4.Semester\\Swe2\\TourPlaner\\cleanup_images.json"
+  },
+
+  "GeneratePdf": {
+    "Path": "C:\\Users\\titto\\Desktop\\Studium\\4.Semester\\Swe2\\TourPlaner\\LogPdfs\\"
+  },
+
+  "ExportTours": {
+    "Path": "C:\\Users\\titto\\Desktop\\Studium\\4.Semester\\Swe2\\TourPlaner\\ExportJsonFiles\\"
+  }
+}

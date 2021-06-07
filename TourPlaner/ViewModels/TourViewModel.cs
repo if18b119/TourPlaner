@@ -73,7 +73,7 @@ namespace TourPlaner.ViewModels
             }
         }
 
-        public RouteType Route_Type
+        public string Route_Type
         {
             get
             {

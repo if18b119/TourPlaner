@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TourPlaner.DataAcessLayer.Database">
+    <Position X="1" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAEAQAAAAIGQAgAGD1AICAAAAAAAAHAGAAAAARA=</HashCode>
+      <FileName>DataAcessLayer\Database.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.1" />
+  </Class>
+  <Class Name="TourPlaner.DataAcessLayer.FileSystem">
+    <Position X="3" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAIgEAQAAAAOGQAAAGDEAICAAAAIAAAGAGAAAAARA=</HashCode>
+      <FileName>DataAcessLayer\FileSystem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.26" />
+  </Class>
+  <Class Name="TourPlaner.DataAcessLayer.TourItemDAO">
+    <Position X="6.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAQAAAAIGQAAACBEAIAgAAAAABAGAGAAAAARA=</HashCode>
+      <FileName>DataAcessLayer\TourItemDAO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="TourPlaner.DataAcessLayer.IDataAcess">
+    <Position X="4.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAEAQAAAAIGQAAACBEAIAAAAAAAAAGAGAAAAARA=</HashCode>
+      <FileName>DataAcessLayer\IDataAcess.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="TourPlaner.DataAcessLayer.DataType">
+    <Position X="6.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataAcessLayer\TourItemDAO.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

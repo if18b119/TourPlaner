@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodels="clr-namespace:TourPlaner.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AddTourViewModel}"
         mc:Ignorable="d"
-        Title="AddTourView" Height="450" Width="800">
-    <Grid>
+        Title="AddTourWindow" Height="450" Width="800"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        x:Name="AddTourWindow">
+
+
+    <Grid Background="#25272b">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -21,53 +32,59 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0"  Margin="70,0,0,0" VerticalAlignment="Center">Name</Label>
-            <TextBox Grid.Column="1" Margin="5" Height="20" Text="{Binding NewTourName}"/>
+            <Label Grid.Column="0"  Margin="70,2,0,-2" VerticalAlignment="Center" Foreground="#03a9f4" FontSize="16" FontWeight="Bold" FontFamily="Arial">Name</Label>
+            <TextBox Grid.Column="1" Margin="5,5,5,-7" Height="28" Text="{Binding NewTourName, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" Foreground="GhostWhite" Background="#303338" VerticalAlignment="Top">
+               
+            </TextBox>
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Margin="0,40,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0"  Margin="70,0,0,0" VerticalAlignment="Center" >From</Label>
-            <TextBox Grid.Column="1" Margin="5" Height="20" Text="{Binding From,  UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Grid.Column="0"  Margin="70,7,0,-7" VerticalAlignment="Center" Foreground="#03a9f4" FontSize="16" FontWeight="Bold" FontFamily="Arial">From</Label>
+            <TextBox Grid.Column="1" Margin="5,10,5,-11" Text="{Binding From,  Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" Foreground="GhostWhite" Background="#303338">
+                
+            </TextBox>
         </Grid>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Margin="0,40,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="198*"/>
                 <ColumnDefinition Width="109*"/>
                 <ColumnDefinition Width="287*"/>
                 <ColumnDefinition Width="198*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Margin="70,2,0,2" VerticalAlignment="Center">To</Label>
-            <TextBox Grid.Column="1" Margin="5" Height="20" Grid.ColumnSpan="2" Text="{Binding To , UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Grid.Column="0" Margin="70,11,0,-7" VerticalAlignment="Center" Foreground="#03a9f4" FontSize="16" FontWeight="Bold" FontFamily="Arial">To</Label>
+            <TextBox Grid.Column="1" Margin="5,14,5,-12" Grid.ColumnSpan="2" Text="{Binding To, Mode=TwoWay,  ValidatesOnNotifyDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Foreground="GhostWhite" Background="#303338">
+                
+            </TextBox>
         </Grid>
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="3" Margin="0,40,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Margin="70,0,0,0" VerticalAlignment="Center">Route Type</Label>
-            <StackPanel Grid.Column="1" Margin="10">
-                <ComboBox>
-                    <ComboBoxItem IsSelected="True">Fastest</ComboBoxItem>
-                    <ComboBoxItem>Shortest</ComboBoxItem>
-                    <ComboBoxItem>Pedestrian</ComboBoxItem>
-                    <ComboBoxItem>Multimodal</ComboBoxItem>
-                    <ComboBoxItem>Bicycle</ComboBoxItem>
-                </ComboBox>
+            <Label Grid.Column="0" Margin="70,16,0,10" VerticalAlignment="Center" Foreground="#03a9f4" FontSize="16" FontWeight="Bold" FontFamily="Arial">Route Type</Label>
+            <StackPanel Grid.Column="1" Margin="5,10,5,10">
+                <ComboBox SelectedValue="{Binding RouteType, UpdateSourceTrigger=PropertyChanged}" Margin="0,10,0,0"  Background="#303338"
+                          ItemsSource="{Binding ListOfTourTypes, Mode=OneWay}"
+                          DisplayMemberPath="Name"
+                          SelectedValuePath="Name" Height="22"
+                          />
             </StackPanel>
         </Grid>
-        <Grid Grid.Row="4">
+        <Grid Grid.Row="4" Margin="0,20,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Margin="70,0,0,0" VerticalAlignment="Center">Description</Label>
-            <TextBox Grid.Column="1" Margin="5"/>
+            <Label Grid.Column="0" Margin="70,16,0,10" VerticalAlignment="Center" Foreground="#03a9f4" FontSize="16" FontWeight="Bold" FontFamily="Arial">Description</Label>
+            <TextBox Grid.Column="1" Margin="5" Text="{Binding Description, Mode=TwoWay, ValidatesOnNotifyDataErrors=True,  UpdateSourceTrigger=PropertyChanged}" Foreground="GhostWhite" Background="#303338">
+               
+            </TextBox>
         </Grid>
         <Grid Grid.Row="5">
             <Grid.ColumnDefinitions>
@@ -75,7 +92,7 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="1" Margin="5" Background="LightGreen" Command="{Binding AddTourCommand }">
+            <Button Grid.Column="1" Margin="5,40,5,5" Background="#03a9f4" Foreground="GhostWhite" Command="{Binding AddTourCommand}" >
                 <!-- Um den Hover abzurunden -->
                 <Button.Resources>
                     <Style TargetType="Border">
@@ -86,5 +103,52 @@
                 Submit
             </Button>
         </Grid>
+
+        <!-- Pop UP Added successfully -->
+        <Popup Placement="Center" IsOpen="{Binding IsAddedVisible}">
+            <Border CornerRadius="5" Background="#03a9f4">
+                <StackPanel Background="#303338" Height="83" Width="288">
+                    <TextBlock Text="Added Successfully!" Margin="5" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Silver"/>
+                    <Button Grid.Column="1"  Height="20" Width="22" Command="{Binding CloseAddedCommand}" CommandParameter="{x:Reference Name=AddTourWindow}"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}" Foreground="#03a9f4" Background="#303338" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3,8,5,7">
+                        <!-- Um den Hover abzurunden -->
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="3"/>
+                                <Setter Property="Background" Value="#03a9f4"/>
+                            </Style>
+                        </Button.Resources>
+                        <!-- -->
+                        <materialDesign:PackIcon Kind="Close"/>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Popup>
+        <!-- Ende Pop Up -->
+
+
+        <!-- Pop UP Error null successfully -->
+        <Popup Placement="Center" IsOpen="{Binding IsNullVisible}">
+            <Border CornerRadius="5" Background="#03a9f4">
+                <StackPanel Background="#303338" Height="83" Width="288">
+                    <TextBlock Text="Please fill all fields!" Margin="5" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Silver"/>
+                    <Button Grid.Column="1"  Height="20" Width="22" Command="{Binding CloseNullCommand}"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}" Foreground="#03a9f4" Background="#303338" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3,8,5,7">
+                        <!-- Um den Hover abzurunden -->
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="3"/>
+                                <Setter Property="Background" Value="#03a9f4"/>
+                            </Style>
+                        </Button.Resources>
+                        <!-- -->
+                        <materialDesign:PackIcon Kind="Close"/>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Popup>
+        <!-- Ende Pop Up -->
+        
+        
     </Grid>
 </Window>

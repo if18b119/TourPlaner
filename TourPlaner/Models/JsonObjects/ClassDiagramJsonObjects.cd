@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TourPlaner.Models.ImageToBeDeleted">
+    <Position X="1.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\JsonObjects\ImageToBeDeleted.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TourPlaner.Models.JsonObjects.ReqObj">
+    <Position X="1.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\JsonObjects\ReqObj.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TourPlaner.Models.JsonObjects.RouteInformation">
+    <Position X="3.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAEAAAAgAAAAAQQAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\JsonObjects\RouteInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
