@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TourPlaner.BusinessLayer.TourItemFactory">
+    <Position X="5.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>BusinessLayer\TourItemFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TourPlaner.BusinessLayer.TourItemFactoryImpl">
+    <Position X="3.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgBAAAQECAAAAQIAACDFAAAAAAAgABAGAGEAAgAQA=</HashCode>
+      <FileName>BusinessLayer\TourItemFactoryImpl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="0.1" />
+  </Class>
+  <Interface Name="TourPlaner.BusinessLayer.ITourItemFactory">
+    <Position X="1.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgBAAAQAAAAAAQIAACBFAAAAAAAgABAGAGEAAgAQA=</HashCode>
+      <FileName>BusinessLayer\ITourItemFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

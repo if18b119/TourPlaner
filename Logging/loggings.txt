@@ -166,3 +166,80 @@ System.FormatException: Die Eingabezeichenfolge hat das falsche Format.
 18:41:29,795 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "Tour3"],"successfully":{1}}
 18:44:25,799 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourCopied":[Tour: "Tour1"],"successfully":{1}}
 18:44:35,624 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourPasted":[Tour: "Tour1 Copy"],"successfully":{1}}
+16:23:33,554 [TourPlaner.ViewModels.ImportViewModel] INFO-{"File Import ","successfully":{1}}
+16:26:21,592 [TourPlaner.DataAcessLayer.FileSystem] ERROR-{"errorMessages":["Exceeds float max"],"errors":{}}
+System.Exception: Exceeds float max
+   bei zz93.br.a(Single A_0)
+   bei ceTe.DynamicPDF.IO.OperatorWriter.Write_cm(Single a, Single b, Single c, Single d, Single e, Single f)
+   bei ceTe.DynamicPDF.Imaging.ImageData.Draw(OperatorWriter writer, Single pdfX, Single pdfY, Single width, Single height)
+   bei ceTe.DynamicPDF.PageElements.Image.DrawRotated(PageWriter writer)
+   bei ceTe.DynamicPDF.PageElements.RotatingPageElement.Draw(PageWriter writer)
+   bei ceTe.DynamicPDF.PageElements.Group.Draw(PageWriter writer)
+   bei ceTe.DynamicPDF.Page.b(PageWriter A_0)
+   bei ceTe.DynamicPDF.Page.gk(DocumentWriter A_0, Int32 A_1, Int32 A_2)
+   bei ceTe.DynamicPDF.Page.a(DocumentWriter A_0, Int32 A_1, Int32 A_2, Int32 A_3)
+   bei zz93.b1.h()
+   bei zz93.b1.Draw()
+   bei ceTe.DynamicPDF.Document.Draw(Stream stream)
+   bei ceTe.DynamicPDF.Document.Draw(String filePath)
+   bei TourPlaner.DataAcessLayer.FileSystem.MakePdf(Tour current_tour) in C:\Users\titto\Desktop\Studium\4.Semester\Swe2\TourPlaner\TourPlaner\DataAcessLayer\FileSystem.cs:Zeile 310.
+16:26:36,508 [TourPlaner.DataAcessLayer.FileSystem] ERROR-{"errorMessages":["Exceeds float max"],"errors":{}}
+System.Exception: Exceeds float max
+   bei zz93.br.a(Single A_0)
+   bei ceTe.DynamicPDF.IO.OperatorWriter.Write_cm(Single a, Single b, Single c, Single d, Single e, Single f)
+   bei ceTe.DynamicPDF.Imaging.ImageData.Draw(OperatorWriter writer, Single pdfX, Single pdfY, Single width, Single height)
+   bei ceTe.DynamicPDF.PageElements.Image.DrawRotated(PageWriter writer)
+   bei ceTe.DynamicPDF.PageElements.RotatingPageElement.Draw(PageWriter writer)
+   bei ceTe.DynamicPDF.PageElements.Group.Draw(PageWriter writer)
+   bei ceTe.DynamicPDF.Page.b(PageWriter A_0)
+   bei ceTe.DynamicPDF.Page.gk(DocumentWriter A_0, Int32 A_1, Int32 A_2)
+   bei ceTe.DynamicPDF.Page.a(DocumentWriter A_0, Int32 A_1, Int32 A_2, Int32 A_3)
+   bei zz93.b1.h()
+   bei zz93.b1.Draw()
+   bei ceTe.DynamicPDF.Document.Draw(Stream stream)
+   bei ceTe.DynamicPDF.Document.Draw(String filePath)
+   bei TourPlaner.DataAcessLayer.FileSystem.MakePdf(Tour current_tour) in C:\Users\titto\Desktop\Studium\4.Semester\Swe2\TourPlaner\TourPlaner\DataAcessLayer\FileSystem.cs:Zeile 310.
+16:26:57,575 [TourPlaner.DataAcessLayer.FileSystem] ERROR-{"errorMessages":["Exceeds float max"],"errors":{}}
+System.Exception: Exceeds float max
+   bei zz93.br.a(Single A_0)
+   bei ceTe.DynamicPDF.IO.OperatorWriter.Write_cm(Single a, Single b, Single c, Single d, Single e, Single f)
+   bei ceTe.DynamicPDF.Imaging.ImageData.Draw(OperatorWriter writer, Single pdfX, Single pdfY, Single width, Single height)
+   bei ceTe.DynamicPDF.PageElements.Image.DrawRotated(PageWriter writer)
+   bei ceTe.DynamicPDF.PageElements.RotatingPageElement.Draw(PageWriter writer)
+   bei ceTe.DynamicPDF.PageElements.Group.Draw(PageWriter writer)
+   bei ceTe.DynamicPDF.Page.b(PageWriter A_0)
+   bei ceTe.DynamicPDF.Page.gk(DocumentWriter A_0, Int32 A_1, Int32 A_2)
+   bei ceTe.DynamicPDF.Page.a(DocumentWriter A_0, Int32 A_1, Int32 A_2, Int32 A_3)
+   bei zz93.b1.h()
+   bei zz93.b1.Draw()
+   bei ceTe.DynamicPDF.Document.Draw(Stream stream)
+   bei ceTe.DynamicPDF.Document.Draw(String filePath)
+   bei TourPlaner.DataAcessLayer.FileSystem.MakePdf(Tour current_tour) in C:\Users\titto\Desktop\Studium\4.Semester\Swe2\TourPlaner\TourPlaner\DataAcessLayer\FileSystem.cs:Zeile 310.
+16:27:13,501 [TourPlaner.DataAcessLayer.FileSystem] ERROR-{"errorMessages":["Exceeds float max"],"errors":{}}
+System.Exception: Exceeds float max
+   bei zz93.br.a(Single A_0)
+   bei ceTe.DynamicPDF.IO.OperatorWriter.Write_cm(Single a, Single b, Single c, Single d, Single e, Single f)
+   bei ceTe.DynamicPDF.Imaging.ImageData.Draw(OperatorWriter writer, Single pdfX, Single pdfY, Single width, Single height)
+   bei ceTe.DynamicPDF.PageElements.Image.DrawRotated(PageWriter writer)
+   bei ceTe.DynamicPDF.PageElements.RotatingPageElement.Draw(PageWriter writer)
+   bei ceTe.DynamicPDF.PageElements.Group.Draw(PageWriter writer)
+   bei ceTe.DynamicPDF.Page.b(PageWriter A_0)
+   bei ceTe.DynamicPDF.Page.gk(DocumentWriter A_0, Int32 A_1, Int32 A_2)
+   bei ceTe.DynamicPDF.Page.a(DocumentWriter A_0, Int32 A_1, Int32 A_2, Int32 A_3)
+   bei zz93.b1.h()
+   bei zz93.b1.Draw()
+   bei ceTe.DynamicPDF.Document.Draw(Stream stream)
+   bei ceTe.DynamicPDF.Document.Draw(String filePath)
+   bei TourPlaner.DataAcessLayer.FileSystem.MakePdf(Tour current_tour) in C:\Users\titto\Desktop\Studium\4.Semester\Swe2\TourPlaner\TourPlaner\DataAcessLayer\FileSystem.cs:Zeile 310.
+16:31:27,071 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "Tour4"],"successfully":{1}}
+16:31:29,388 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "Tour3"],"successfully":{1}}
+16:31:31,394 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "Tour2"],"successfully":{1}}
+16:31:33,372 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "Tour1"],"successfully":{1}}
+16:32:32,606 [TourPlaner.ViewModels.ImportViewModel] INFO-{"File Import ","successfully":{1}}
+16:38:02,798 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "Tour4"],"successfully":{1}}
+16:38:05,194 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "Tour3"],"successfully":{1}}
+16:38:07,282 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "Tour2"],"successfully":{1}}
+16:38:09,326 [TourPlaner.ViewModels.MainWindowViewModel] INFO-{"tourDeleted":[Name: "Tour1"],"successfully":{1}}
+16:39:00,409 [TourPlaner.ViewModels.ImportViewModel] INFO-{"File Import ","successfully":{1}}
+16:40:12,494 [TourPlaner.ViewModels.ImportViewModel] INFO-{"File Import ","successfully":{1}}
+16:44:38,197 [TourPlaner.ViewModels.ImportViewModel] INFO-{"File Import ","successfully":{1}}

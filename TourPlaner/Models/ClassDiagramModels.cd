@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TourPlaner.Models.Log">
+    <Position X="0.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAhAAEAAAAAAAAEAAAAAAEAAAAAAFAIAAAQAAABAA=</HashCode>
+      <FileName>Models\Log.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TourPlaner.Models.Tour">
+    <Position X="2.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAIAAAAgAAAAEAAEAAQAAAAJAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Models\Tour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TourPlaner.Models.TourInfo">
+    <Position X="4.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwAAgAAAAAAAAAAAAAAAAAABAAAIAABAAAAAAgAAAQA=</HashCode>
+      <FileName>Models\TourInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TourPlaner.Models.TourType">
+    <Position X="6" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TourType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

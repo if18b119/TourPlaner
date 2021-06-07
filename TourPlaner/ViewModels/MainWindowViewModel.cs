@@ -192,15 +192,17 @@ namespace TourPlaner.ViewModels
 
         private void MakePdf(object obj)
         {
-            if(currentTour == null || currentTour.LogItems.Count()==0)
+            if(currentTour == null)
             {
-
+                MessageBox.Show("Please select a Tour!");
                 return;
             }
             else
             {
-                itemFactory.MakePdf(currentTour);
-                OpenAddedPdf(obj);
+                if (itemFactory.MakePdf(currentTour))
+                    OpenAddedPdf(obj);
+                else
+                    MessageBox.Show("Error making a PDF!");
             }
         }
 

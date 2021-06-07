@@ -9,7 +9,7 @@ using TourPlaner.Models;
 
 namespace NUnitTourPlaner
 {
-    [TestFixture]
+    [TestFixture, SingleThreaded]
     public class Tests
     {
         
@@ -29,7 +29,7 @@ namespace NUnitTourPlaner
         public void Setup()
         {
             
-            string json_path = "C:\\Users\\titto\\Desktop\\Studium\\4.Semester\\Swe2\\TourPlaner\\TourPlaner\\config_file.json";
+            string json_path = "config_file_test.json";
             string json = File.ReadAllText(json_path);
             config_file = JsonConvert.DeserializeObject<ConfigFile>(json);
             this.save_path = config_file.RouteImageSettings.Location;

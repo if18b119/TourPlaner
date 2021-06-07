@@ -69,6 +69,7 @@
     </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
     </Reference>
@@ -228,11 +229,21 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="BusinessLayer\ClassDiagramBusinessLayer.cd" />
+    <None Include="config_file.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DataAcessLayer\ClassDiagramDataAcessLayer.cd" />
+    <None Include="Models\ClassDiagramModels.cd" />
+    <None Include="Models\Config\ClassDiagramModelsConfig.cd" />
+    <None Include="Models\JsonObjects\ClassDiagramJsonObjects.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="ViewModels\ClassDiagramViewModels.cd" />
+    <None Include="Views\ClassDiagramViews.cd" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

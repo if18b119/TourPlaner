@@ -36,7 +36,7 @@ namespace TourPlaner.DataAcessLayer
         public Database()
         {
             //connection string to the database
-            string json_path = "C:\\Users\\titto\\Desktop\\Studium\\4.Semester\\Swe2\\TourPlaner\\TourPlaner\\config_file.json";
+            string json_path = "config_file.json";
             string json = File.ReadAllText(json_path); //den text in der json datei auslesen
             this.config_file = JsonConvert.DeserializeObject<ConfigFile>(json);  //aus dem text ein Object erstellén
             this.key = config_file.RequestKey.Key; //MapQuest Key

@@ -175,7 +175,25 @@ namespace TourPlaner.BusinessLayer
 
         public bool MakePdf(Tour current_tour)
         {
-            return tourItemFileSystem.MakePdf(current_tour);
+            //Neues foto holen
+            string path = tourItemFileSystem.SaveImage(current_tour.From, current_tour.To);
+            string original_path = current_tour.PicPath;
+            current_tour.PicPath = path;
+            bool suc = tourItemFileSystem.MakePdf(current_tour);
+            if (suc)
+            {
+                current_tour.PicPath = original_path;
+                File.Delete(path);
+                return true;
+            }
+            else
+            {
+                current_tour.PicPath = original_path;
+                File.Delete(path);
+                return false;
+            }
+            
+
         }
 
         public bool MakeReport()
@@ -212,7 +230,7 @@ namespace TourPlaner.BusinessLayer
                     tourItemDatabase.AddTour(to_copy.UUID, to_copy.Name, to_copy.From, to_copy.To, pic_path, to_copy.Description, to_copy.Route_Type);
 
 
-                    if (to_copy.LogItems.Count > 0)
+                    if (to_copy.LogItems != null)
                     {
                         foreach (Log l in to_copy.LogItems)
                         {
@@ -258,8 +276,7 @@ namespace TourPlaner.BusinessLayer
                     {
                         //Request schicken um Foto zu bekommen.
                         image_path = tourItemFileSystem.SaveImage(t.From, t.To);
-                        //image path in externe txt datei speichern für das spätere löschen
-                        tourItemFileSystem.SaveImagePath(image_path);
+                        
 
                         //tour in die Datenbankeinfügen
                         if (!tourItemDatabase.AddTour(t.UUID, t.Name, t.From, t.To, image_path, t.Description, t.Route_Type))
@@ -327,8 +344,7 @@ namespace TourPlaner.BusinessLayer
                     {
                         //Request schicken um Foto zu bekommen.
                         image_path = tourItemFileSystem.SaveImage(t.From, t.To);
-                        //image path in externe txt datei speichern für das spätere löschen
-                        tourItemFileSystem.SaveImagePath(image_path);
+                        
 
                         //tour in die Datenbankeinfügen
                         if (!tourItemDatabase.AddTour(t.UUID, t.Name, t.From, t.To, image_path, t.Description, t.Route_Type))

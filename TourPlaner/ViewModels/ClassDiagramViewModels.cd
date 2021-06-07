@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TourPlaner.ViewModels.AddLogViewModel">
+    <Position X="0.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AUQEnAgEAIAgBABpJQACCAEEA0EAgANIIBBESCU55UE=</HashCode>
+      <FileName>ViewModels\AddLogViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TourPlaner.ViewModels.AddTourViewModel">
+    <Position X="5.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AkAAiNJAAAAgADApIQAACAkAABEJABEJABBAAAEp4QE=</HashCode>
+      <FileName>ViewModels\AddTourViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TourPlaner.ViewModels.EditLogsViewModel">
+    <Position X="2.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QUTEhAAEQYAABAAAAAAAAAAEAUAAgAFAJAAAUigQBEA=</HashCode>
+      <FileName>ViewModels\EditLogsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TourPlaner.ViewModels.EditTourViewModel">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>Q0DAAAIBQAAgBCAAIAAABAgAAAAJAAAABCAAAgAQAAA=</HashCode>
+      <FileName>ViewModels\EditTourViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TourPlaner.ViewModels.ImportViewModel">
+    <Position X="6" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAABAYAAAAAAAAAAACAAAAAABIAAAAAAAAAAAEAA=</HashCode>
+      <FileName>ViewModels\ImportViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TourPlaner.ViewModels.LogoViewModel">
+    <Position X="13.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\LogoViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TourPlaner.ViewModels.MainWindowViewModel">
+    <Position X="8.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CECInJwRABGC1CpAJBQiDGAMooUICE5RE7BGMAF0jkU=</HashCode>
+      <FileName>ViewModels\MainWindowViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TourPlaner.ViewModels.RelayCommand">
+    <Position X="13.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAACAAQAAEAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>ViewModels\RelayCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TourPlaner.ViewModels.TourViewModel">
+    <Position X="5.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAgAAAAAAAAAAQAAAAJAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\TourViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TourPlaner.ViewModels.UpdateLogViewModel">
+    <Position X="3.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>SUDBBAAAQAiQAAABgAABEAAAABAAAAAIhBAAAAAhoQQ=</HashCode>
+      <FileName>ViewModels\UpdateLogViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TourPlaner.ViewModels.UpdateTourViewModel">
+    <Position X="10.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>SUDBBAAAQACQAAABgAABEAAAABAAAAAIhBAAAAAhoQQ=</HashCode>
+      <FileName>ViewModels\UpdateTourViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TourPlaner.ViewModels.ViewModel&lt;T&gt;">
+    <Position X="13.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TourPlaner.ViewModels.ViewModelBase">
+    <Position X="15" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAgAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ViewModelBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

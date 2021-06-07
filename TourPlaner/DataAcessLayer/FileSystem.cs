@@ -15,6 +15,7 @@ using ceTe.DynamicPDF.PageElements;
 using Aspose.Pdf.Text;
 using Aspose.Pdf;
 using Page = ceTe.DynamicPDF.Page;
+using Image = ceTe.DynamicPDF.PageElements.Image;
 
 namespace TourPlaner.DataAcessLayer
 {
@@ -34,7 +35,7 @@ namespace TourPlaner.DataAcessLayer
         public FileSystem()
         {
             //here we get the important information from the config file that we need in our filesystem
-            string json_path = "C:\\Users\\titto\\Desktop\\Studium\\4.Semester\\Swe2\\TourPlaner\\TourPlaner\\config_file.json";
+            string json_path = "config_file.json";
             string json = File.ReadAllText(json_path);
             this.config_file = JsonConvert.DeserializeObject<ConfigFile>(json);
             this.save_path = config_file.RouteImageSettings.Location;
@@ -218,89 +219,96 @@ namespace TourPlaner.DataAcessLayer
                 page.Elements.Add(label6);
 
 
+                Image image = new Image(current_tour.PicPath, 115, 504);
+                page.Elements.Add(image);
+
                 int i = 1;
                 string string_schleife = "";
                 Label label_schleife;
 
-                foreach (Log log in current_tour.LogItems)
+                if(current_tour.LogItems != null)
                 {
-                    int y = 130;
+                    foreach (Log log in current_tour.LogItems)
+                    {
+                        int y = 130;
 
-                    Page page2 = new Page(ceTe.DynamicPDF.PageSize.Letter, PageOrientation.Portrait, 54.0f);
-                    document.Pages.Add(page2);
+                        Page page2 = new Page(ceTe.DynamicPDF.PageSize.Letter, PageOrientation.Portrait, 54.0f);
+                        document.Pages.Add(page2);
 
-                    string_schleife = "Log " + i;
-                    label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
-                    page2.Elements.Add(label_schleife);
-                    y += 10;
+                        string_schleife = "Log " + i;
+                        label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
+                        page2.Elements.Add(label_schleife);
+                        y += 10;
 
-                    string_schleife = "_________";
-                    label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
-                    page2.Elements.Add(label_schleife);
-                    y += 20;
+                        string_schleife = "_________";
+                        label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
+                        page2.Elements.Add(label_schleife);
+                        y += 20;
 
-                    string_schleife = "UUID: " + log.UUID;
-                    label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
-                    page2.Elements.Add(label_schleife);
-                    y += 20;
+                        string_schleife = "UUID: " + log.UUID;
+                        label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
+                        page2.Elements.Add(label_schleife);
+                        y += 20;
 
-                    string_schleife = "Date: " + log.Date_Time;
-                    label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
-                    page2.Elements.Add(label_schleife);
-                    y += 20;
+                        string_schleife = "Date: " + log.Date_Time;
+                        label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
+                        page2.Elements.Add(label_schleife);
+                        y += 20;
 
-                    string_schleife = "Distance: " + log.Distance;
-                    label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
-                    page2.Elements.Add(label_schleife);
-                    y += 20;
+                        string_schleife = "Distance: " + log.Distance;
+                        label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
+                        page2.Elements.Add(label_schleife);
+                        y += 20;
 
-                    string_schleife = "Total Time: " + log.TotalTime;
-                    label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
-                    page2.Elements.Add(label_schleife);
-                    y += 20;
+                        string_schleife = "Total Time: " + log.TotalTime;
+                        label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
+                        page2.Elements.Add(label_schleife);
+                        y += 20;
 
-                    string_schleife = "Report: " + log.Report;
-                    label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
-                    page2.Elements.Add(label_schleife);
-                    y += 20;
+                        string_schleife = "Report: " + log.Report;
+                        label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
+                        page2.Elements.Add(label_schleife);
+                        y += 20;
 
-                    string_schleife = "Rating: " + log.Rating;
-                    label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
-                    page2.Elements.Add(label_schleife);
-                    y += 20;
+                        string_schleife = "Rating: " + log.Rating;
+                        label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
+                        page2.Elements.Add(label_schleife);
+                        y += 20;
 
-                    string_schleife = "Avarage Speed: " + log.AvarageSpeed;
-                    label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
-                    page2.Elements.Add(label_schleife);
-                    y += 20;
+                        string_schleife = "Avarage Speed: " + log.AvarageSpeed;
+                        label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
+                        page2.Elements.Add(label_schleife);
+                        y += 20;
 
-                    string_schleife = "Comment: " + log.Comment;
-                    label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
-                    page2.Elements.Add(label_schleife);
-                    y += 20;
+                        string_schleife = "Comment: " + log.Comment;
+                        label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
+                        page2.Elements.Add(label_schleife);
+                        y += 20;
 
-                    string_schleife = "Problems: " + log.Problems;
-                    label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
-                    page2.Elements.Add(label_schleife);
-                    y += 20;
+                        string_schleife = "Problems: " + log.Problems;
+                        label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
+                        page2.Elements.Add(label_schleife);
+                        y += 20;
 
-                    string_schleife = "Transport Mode: " + log.TransportModus;
-                    label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
-                    page2.Elements.Add(label_schleife);
-                    y += 20;
+                        string_schleife = "Transport Mode: " + log.TransportModus;
+                        label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
+                        page2.Elements.Add(label_schleife);
+                        y += 20;
 
-                    string_schleife = "Recomendation " + log.Recomended;
-                    label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
-                    page2.Elements.Add(label_schleife);
-                    y += 20;
+                        string_schleife = "Recomendation " + log.Recomended;
+                        label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
+                        page2.Elements.Add(label_schleife);
+                        y += 20;
 
-                    string_schleife = "______________________________________________________________";
-                    label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
-                    page2.Elements.Add(label_schleife);
-                    y += 20;
+                        string_schleife = "______________________________________________________________";
+                        label_schleife = new Label(string_schleife, 0, y, 504, 100, ceTe.DynamicPDF.Font.Helvetica, 14, TextAlign.Left);
+                        page2.Elements.Add(label_schleife);
+                        y += 20;
 
-                    i++;
+                        i++;
+                    }
                 }
+               
 
 
                 document.Draw(this.to_pdf + current_tour.Name + "_" + current_tour.UUID + ".pdf");
