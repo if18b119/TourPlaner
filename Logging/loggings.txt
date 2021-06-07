@@ -243,3 +243,4 @@ System.Exception: Exceeds float max
 16:39:00,409 [TourPlaner.ViewModels.ImportViewModel] INFO-{"File Import ","successfully":{1}}
 16:40:12,494 [TourPlaner.ViewModels.ImportViewModel] INFO-{"File Import ","successfully":{1}}
 16:44:38,197 [TourPlaner.ViewModels.ImportViewModel] INFO-{"File Import ","successfully":{1}}
+21:06:38,693 [TourPlaner.ViewModels.AddTourViewModel] INFO-{"tourAdded":[Name: "aaa"],"successfully":{1}}
